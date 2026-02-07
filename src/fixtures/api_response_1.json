@@ -1,0 +1,4751 @@
+{
+    "location": {
+        "lat": 40.706565,
+        "lon": -74.011333
+    },
+    "station_count": 20,
+    "stations": [
+        {
+            "station_id": "M23",
+            "station_name": "Broad St",
+            "location": [
+                40.706476,
+                -74.011056
+            ],
+            "distance_meters": 25.359688108792223,
+            "distance_miles": 0.015757774759848332,
+            "northbound_trains": [
+                {
+                    "route": "J",
+                    "direction": "N",
+                    "arrival_time": 1768678920,
+                    "arrival_time_formatted": "7:42:00 PM",
+                    "minutes_away": 1,
+                    "train_id": "1J 1442 BRD/CRE",
+                    "is_assigned": false,
+                    "stop_id": "M23N"
+                },
+                {
+                    "route": "J",
+                    "direction": "N",
+                    "arrival_time": 1768679400,
+                    "arrival_time_formatted": "7:50:00 PM",
+                    "minutes_away": 9,
+                    "train_id": "1J 1450 BRD/CRE",
+                    "is_assigned": false,
+                    "stop_id": "M23N"
+                },
+                {
+                    "route": "J",
+                    "direction": "N",
+                    "arrival_time": 1768679880,
+                    "arrival_time_formatted": "7:58:00 PM",
+                    "minutes_away": 17,
+                    "train_id": "1J 1458 BRD/CRE",
+                    "is_assigned": false,
+                    "stop_id": "M23N"
+                },
+                {
+                    "route": "J",
+                    "direction": "N",
+                    "arrival_time": 1768680360,
+                    "arrival_time_formatted": "8:06:00 PM",
+                    "minutes_away": 25,
+                    "train_id": "1J 1506 BRD/CRE",
+                    "is_assigned": false,
+                    "stop_id": "M23N"
+                },
+                {
+                    "route": "J",
+                    "direction": "N",
+                    "arrival_time": 1768680840,
+                    "arrival_time_formatted": "8:14:00 PM",
+                    "minutes_away": 33,
+                    "train_id": "1J 1514 BRD/CRE",
+                    "is_assigned": false,
+                    "stop_id": "M23N"
+                },
+                {
+                    "route": "J",
+                    "direction": "N",
+                    "arrival_time": 1768681320,
+                    "arrival_time_formatted": "8:22:00 PM",
+                    "minutes_away": 41,
+                    "train_id": "1J 1522 BRD/CRE",
+                    "is_assigned": false,
+                    "stop_id": "M23N"
+                },
+                {
+                    "route": "J",
+                    "direction": "N",
+                    "arrival_time": 1768681800,
+                    "arrival_time_formatted": "8:30:00 PM",
+                    "minutes_away": 49,
+                    "train_id": "1J 1530 BRD/CRE",
+                    "is_assigned": false,
+                    "stop_id": "M23N"
+                },
+                {
+                    "route": "J",
+                    "direction": "N",
+                    "arrival_time": 1768682280,
+                    "arrival_time_formatted": "8:38:00 PM",
+                    "minutes_away": 57,
+                    "train_id": "1J 1538 BRD/CRE",
+                    "is_assigned": false,
+                    "stop_id": "M23N"
+                }
+            ],
+            "southbound_trains": [
+                {
+                    "route": "J",
+                    "direction": "S",
+                    "arrival_time": 1768678991,
+                    "arrival_time_formatted": "7:43:11 PM",
+                    "minutes_away": 2,
+                    "train_id": "1J 1416+ EPY/BRD",
+                    "is_assigned": true,
+                    "stop_id": "M23S"
+                },
+                {
+                    "route": "J",
+                    "direction": "S",
+                    "arrival_time": 1768679568,
+                    "arrival_time_formatted": "7:52:48 PM",
+                    "minutes_away": 12,
+                    "train_id": "1J 1424+ EPY/BRD",
+                    "is_assigned": true,
+                    "stop_id": "M23S"
+                },
+                {
+                    "route": "J",
+                    "direction": "S",
+                    "arrival_time": 1768679921,
+                    "arrival_time_formatted": "7:58:41 PM",
+                    "minutes_away": 18,
+                    "train_id": "1J 1432+ EPY/BRD",
+                    "is_assigned": true,
+                    "stop_id": "M23S"
+                },
+                {
+                    "route": "J",
+                    "direction": "S",
+                    "arrival_time": 1768680480,
+                    "arrival_time_formatted": "8:08:00 PM",
+                    "minutes_away": 27,
+                    "train_id": "1J 1440+ EPY/BRD",
+                    "is_assigned": true,
+                    "stop_id": "M23S"
+                },
+                {
+                    "route": "J",
+                    "direction": "S",
+                    "arrival_time": 1768680960,
+                    "arrival_time_formatted": "8:16:00 PM",
+                    "minutes_away": 35,
+                    "train_id": "1J 1436+ CRE/BRD",
+                    "is_assigned": true,
+                    "stop_id": "M23S"
+                },
+                {
+                    "route": "J",
+                    "direction": "S",
+                    "arrival_time": 1768681440,
+                    "arrival_time_formatted": "8:24:00 PM",
+                    "minutes_away": 43,
+                    "train_id": "1J 1444+ CRE/BRD",
+                    "is_assigned": false,
+                    "stop_id": "M23S"
+                },
+                {
+                    "route": "J",
+                    "direction": "S",
+                    "arrival_time": 1768681920,
+                    "arrival_time_formatted": "8:32:00 PM",
+                    "minutes_away": 51,
+                    "train_id": "1J 1452+ CRE/BRD",
+                    "is_assigned": false,
+                    "stop_id": "M23S"
+                },
+                {
+                    "route": "J",
+                    "direction": "S",
+                    "arrival_time": 1768682400,
+                    "arrival_time_formatted": "8:40:00 PM",
+                    "minutes_away": 59,
+                    "train_id": "1J 1500+ CRE/BRD",
+                    "is_assigned": false,
+                    "stop_id": "M23S"
+                },
+                {
+                    "route": "J",
+                    "direction": "S",
+                    "arrival_time": 1768682880,
+                    "arrival_time_formatted": "8:48:00 PM",
+                    "minutes_away": 67,
+                    "train_id": "1J 1508+ CRE/BRD",
+                    "is_assigned": false,
+                    "stop_id": "M23S"
+                },
+                {
+                    "route": "J",
+                    "direction": "S",
+                    "arrival_time": 1768683360,
+                    "arrival_time_formatted": "8:56:00 PM",
+                    "minutes_away": 75,
+                    "train_id": "1J 1516+ CRE/BRD",
+                    "is_assigned": false,
+                    "stop_id": "M23S"
+                },
+                {
+                    "route": "J",
+                    "direction": "S",
+                    "arrival_time": 1768683840,
+                    "arrival_time_formatted": "9:04:00 PM",
+                    "minutes_away": 83,
+                    "train_id": "1J 1524+ CRE/BRD",
+                    "is_assigned": false,
+                    "stop_id": "M23S"
+                },
+                {
+                    "route": "J",
+                    "direction": "S",
+                    "arrival_time": 1768684320,
+                    "arrival_time_formatted": "9:12:00 PM",
+                    "minutes_away": 91,
+                    "train_id": "1J 1532+ CRE/BRD",
+                    "is_assigned": false,
+                    "stop_id": "M23S"
+                },
+                {
+                    "route": "J",
+                    "direction": "S",
+                    "arrival_time": 1768684800,
+                    "arrival_time_formatted": "9:20:00 PM",
+                    "minutes_away": 99,
+                    "train_id": "1J 1540+ CRE/BRD",
+                    "is_assigned": false,
+                    "stop_id": "M23S"
+                }
+            ]
+        },
+        {
+            "station_id": "419",
+            "station_name": "Wall St",
+            "location": [
+                40.707557,
+                -74.011862
+            ],
+            "distance_meters": 118.97719248603235,
+            "distance_miles": 0.0739289770722384,
+            "northbound_trains": [],
+            "southbound_trains": []
+        },
+        {
+            "station_id": "R26",
+            "station_name": "Rector St",
+            "location": [
+                40.70722,
+                -74.013342
+            ],
+            "distance_meters": 184.3407255546673,
+            "distance_miles": 0.11454398097862918,
+            "northbound_trains": [
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768679089,
+                    "arrival_time_formatted": "7:44:49 PM",
+                    "minutes_away": 4,
+                    "train_id": "1Q 1357 STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R26N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768679195,
+                    "arrival_time_formatted": "7:46:35 PM",
+                    "minutes_away": 6,
+                    "train_id": "1Q 1405 STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R26N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768679825,
+                    "arrival_time_formatted": "7:57:05 PM",
+                    "minutes_away": 16,
+                    "train_id": "1Q 1415 STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R26N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768680120,
+                    "arrival_time_formatted": "8:02:00 PM",
+                    "minutes_away": 21,
+                    "train_id": "1Q 1422+ STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R26N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768680731,
+                    "arrival_time_formatted": "8:12:11 PM",
+                    "minutes_away": 31,
+                    "train_id": "1Q 1429 STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R26N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768681205,
+                    "arrival_time_formatted": "8:20:05 PM",
+                    "minutes_away": 39,
+                    "train_id": "1Q 1437 STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R26N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768681680,
+                    "arrival_time_formatted": "8:28:00 PM",
+                    "minutes_away": 47,
+                    "train_id": "1Q 1445 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R26N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768682280,
+                    "arrival_time_formatted": "8:38:00 PM",
+                    "minutes_away": 57,
+                    "train_id": "1Q 1455 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R26N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768682640,
+                    "arrival_time_formatted": "8:44:00 PM",
+                    "minutes_away": 63,
+                    "train_id": "1Q 1501 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R26N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768683120,
+                    "arrival_time_formatted": "8:52:00 PM",
+                    "minutes_away": 71,
+                    "train_id": "1Q 1509 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R26N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768683600,
+                    "arrival_time_formatted": "9:00:00 PM",
+                    "minutes_away": 79,
+                    "train_id": "1Q 1517 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R26N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768684080,
+                    "arrival_time_formatted": "9:08:00 PM",
+                    "minutes_away": 87,
+                    "train_id": "1Q 1525 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R26N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768684680,
+                    "arrival_time_formatted": "9:18:00 PM",
+                    "minutes_away": 97,
+                    "train_id": "1Q 1535 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R26N"
+                }
+            ],
+            "southbound_trains": [
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768679261,
+                    "arrival_time_formatted": "7:47:41 PM",
+                    "minutes_away": 7,
+                    "train_id": "1R 1354 CTL/95S",
+                    "is_assigned": true,
+                    "stop_id": "R26S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768679651,
+                    "arrival_time_formatted": "7:54:11 PM",
+                    "minutes_away": 13,
+                    "train_id": "1R 1406 CTL/95S",
+                    "is_assigned": true,
+                    "stop_id": "R26S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768680393,
+                    "arrival_time_formatted": "8:06:33 PM",
+                    "minutes_away": 26,
+                    "train_id": "1R 1418 CTL/95S",
+                    "is_assigned": true,
+                    "stop_id": "R26S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768681140,
+                    "arrival_time_formatted": "8:19:00 PM",
+                    "minutes_away": 38,
+                    "train_id": "1R 1429+ CTL/95S",
+                    "is_assigned": true,
+                    "stop_id": "R26S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768681980,
+                    "arrival_time_formatted": "8:33:00 PM",
+                    "minutes_away": 52,
+                    "train_id": "1R 1442 CTL/95S",
+                    "is_assigned": false,
+                    "stop_id": "R26S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768682610,
+                    "arrival_time_formatted": "8:43:30 PM",
+                    "minutes_away": 63,
+                    "train_id": "1R 1454 CTL/95S",
+                    "is_assigned": false,
+                    "stop_id": "R26S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768683330,
+                    "arrival_time_formatted": "8:55:30 PM",
+                    "minutes_away": 75,
+                    "train_id": "1R 1506 CTL/95S",
+                    "is_assigned": false,
+                    "stop_id": "R26S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768684050,
+                    "arrival_time_formatted": "9:07:30 PM",
+                    "minutes_away": 87,
+                    "train_id": "1R 1518 CTL/95S",
+                    "is_assigned": false,
+                    "stop_id": "R26S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768684740,
+                    "arrival_time_formatted": "9:19:00 PM",
+                    "minutes_away": 98,
+                    "train_id": "1R 1529+ CTL/95S",
+                    "is_assigned": false,
+                    "stop_id": "R26S"
+                }
+            ]
+        },
+        {
+            "station_id": "230",
+            "station_name": "Wall St",
+            "location": [
+                40.706821,
+                -74.0091
+            ],
+            "distance_meters": 190.36486307787277,
+            "distance_miles": 0.11828720533556088,
+            "northbound_trains": [
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768678857,
+                    "arrival_time_formatted": "7:40:57 PM",
+                    "minutes_away": 0,
+                    "train_id": "03 1407  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "230N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768679154,
+                    "arrival_time_formatted": "7:45:54 PM",
+                    "minutes_away": 5,
+                    "train_id": "02 1417+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "230N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768679282,
+                    "arrival_time_formatted": "7:48:02 PM",
+                    "minutes_away": 7,
+                    "train_id": "03 1416  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "230N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768679517,
+                    "arrival_time_formatted": "7:51:57 PM",
+                    "minutes_away": 11,
+                    "train_id": "E3 1421  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "230N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768679598,
+                    "arrival_time_formatted": "7:53:18 PM",
+                    "minutes_away": 12,
+                    "train_id": "02 1425+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "230N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768679783,
+                    "arrival_time_formatted": "7:56:23 PM",
+                    "minutes_away": 15,
+                    "train_id": "03 1426  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "230N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768680027,
+                    "arrival_time_formatted": "8:00:27 PM",
+                    "minutes_away": 20,
+                    "train_id": "02 1433+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "230N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768680510,
+                    "arrival_time_formatted": "8:08:30 PM",
+                    "minutes_away": 28,
+                    "train_id": "02 1441+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "230N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768680638,
+                    "arrival_time_formatted": "8:10:38 PM",
+                    "minutes_away": 30,
+                    "train_id": "03 1438  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "230N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768680990,
+                    "arrival_time_formatted": "8:16:30 PM",
+                    "minutes_away": 36,
+                    "train_id": "02 1449+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "230N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768681170,
+                    "arrival_time_formatted": "8:19:30 PM",
+                    "minutes_away": 39,
+                    "train_id": "03 1447  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "230N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768681470,
+                    "arrival_time_formatted": "8:24:30 PM",
+                    "minutes_away": 44,
+                    "train_id": "02 1457+ FLA/241",
+                    "is_assigned": false,
+                    "stop_id": "230N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768681710,
+                    "arrival_time_formatted": "8:28:30 PM",
+                    "minutes_away": 48,
+                    "train_id": "03 1456  NLT/148",
+                    "is_assigned": false,
+                    "stop_id": "230N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768681950,
+                    "arrival_time_formatted": "8:32:30 PM",
+                    "minutes_away": 52,
+                    "train_id": "02 1505+ FLA/241",
+                    "is_assigned": false,
+                    "stop_id": "230N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768682310,
+                    "arrival_time_formatted": "8:38:30 PM",
+                    "minutes_away": 58,
+                    "train_id": "03 1506  NLT/148",
+                    "is_assigned": false,
+                    "stop_id": "230N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768682430,
+                    "arrival_time_formatted": "8:40:30 PM",
+                    "minutes_away": 60,
+                    "train_id": "02 1513+ FLA/241",
+                    "is_assigned": false,
+                    "stop_id": "230N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768682790,
+                    "arrival_time_formatted": "8:46:30 PM",
+                    "minutes_away": 66,
+                    "train_id": "03 1514  NLT/148",
+                    "is_assigned": false,
+                    "stop_id": "230N"
+                }
+            ],
+            "southbound_trains": [
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768678942,
+                    "arrival_time_formatted": "7:42:22 PM",
+                    "minutes_away": 1,
+                    "train_id": "02 1336  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768679231,
+                    "arrival_time_formatted": "7:47:11 PM",
+                    "minutes_away": 6,
+                    "train_id": "03 1412  148/NLT",
+                    "is_assigned": true,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768679415,
+                    "arrival_time_formatted": "7:50:15 PM",
+                    "minutes_away": 9,
+                    "train_id": "02 1345  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768679829,
+                    "arrival_time_formatted": "7:57:09 PM",
+                    "minutes_away": 16,
+                    "train_id": "02 1353  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768680078,
+                    "arrival_time_formatted": "8:01:18 PM",
+                    "minutes_away": 20,
+                    "train_id": "03 1425  148/NLT",
+                    "is_assigned": true,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768680291,
+                    "arrival_time_formatted": "8:04:51 PM",
+                    "minutes_away": 24,
+                    "train_id": "02 1400  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768680437,
+                    "arrival_time_formatted": "8:07:17 PM",
+                    "minutes_away": 26,
+                    "train_id": "03 1434  148/NLT",
+                    "is_assigned": true,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768680795,
+                    "arrival_time_formatted": "8:13:15 PM",
+                    "minutes_away": 32,
+                    "train_id": "02 1409  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768680930,
+                    "arrival_time_formatted": "8:15:30 PM",
+                    "minutes_away": 35,
+                    "train_id": "03 1444  148/NLT",
+                    "is_assigned": true,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768681126,
+                    "arrival_time_formatted": "8:18:46 PM",
+                    "minutes_away": 38,
+                    "train_id": "02 1417  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768681290,
+                    "arrival_time_formatted": "8:21:30 PM",
+                    "minutes_away": 41,
+                    "train_id": "03 1450  148/NLT",
+                    "is_assigned": false,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768681676,
+                    "arrival_time_formatted": "8:27:56 PM",
+                    "minutes_away": 47,
+                    "train_id": "02 1424  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768681950,
+                    "arrival_time_formatted": "8:32:30 PM",
+                    "minutes_away": 52,
+                    "train_id": "03 1501  148/NLT",
+                    "is_assigned": false,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768682115,
+                    "arrival_time_formatted": "8:35:15 PM",
+                    "minutes_away": 54,
+                    "train_id": "02 1433  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768682478,
+                    "arrival_time_formatted": "8:41:18 PM",
+                    "minutes_away": 60,
+                    "train_id": "02 1441  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768682730,
+                    "arrival_time_formatted": "8:45:30 PM",
+                    "minutes_away": 65,
+                    "train_id": "03 1514  148/NLT",
+                    "is_assigned": false,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768682970,
+                    "arrival_time_formatted": "8:49:30 PM",
+                    "minutes_away": 69,
+                    "train_id": "02 1448  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768683510,
+                    "arrival_time_formatted": "8:58:30 PM",
+                    "minutes_away": 78,
+                    "train_id": "02 1457  241/FLA",
+                    "is_assigned": false,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768683990,
+                    "arrival_time_formatted": "9:06:30 PM",
+                    "minutes_away": 86,
+                    "train_id": "02 1505  241/FLA",
+                    "is_assigned": false,
+                    "stop_id": "230S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768684410,
+                    "arrival_time_formatted": "9:13:30 PM",
+                    "minutes_away": 93,
+                    "train_id": "02 1512  241/FLA",
+                    "is_assigned": false,
+                    "stop_id": "230S"
+                }
+            ]
+        },
+        {
+            "station_id": "139",
+            "station_name": "Rector St",
+            "location": [
+                40.707513,
+                -74.013783
+            ],
+            "distance_meters": 231.86256138988566,
+            "distance_miles": 0.14407267163339466,
+            "northbound_trains": [
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768679370,
+                    "arrival_time_formatted": "7:49:30 PM",
+                    "minutes_away": 9,
+                    "train_id": "01 1447  SFT/137",
+                    "is_assigned": true,
+                    "stop_id": "139N"
+                },
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768679850,
+                    "arrival_time_formatted": "7:57:30 PM",
+                    "minutes_away": 17,
+                    "train_id": "01 1455  SFT/137",
+                    "is_assigned": false,
+                    "stop_id": "139N"
+                },
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768680330,
+                    "arrival_time_formatted": "8:05:30 PM",
+                    "minutes_away": 25,
+                    "train_id": "01 1503  SFT/137",
+                    "is_assigned": false,
+                    "stop_id": "139N"
+                },
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768680810,
+                    "arrival_time_formatted": "8:13:30 PM",
+                    "minutes_away": 33,
+                    "train_id": "01 1511  SFT/137",
+                    "is_assigned": false,
+                    "stop_id": "139N"
+                }
+            ],
+            "southbound_trains": [
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768679139,
+                    "arrival_time_formatted": "7:45:39 PM",
+                    "minutes_away": 5,
+                    "train_id": "01 1410  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "139S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768679690,
+                    "arrival_time_formatted": "7:54:50 PM",
+                    "minutes_away": 14,
+                    "train_id": "01 1418  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "139S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768680254,
+                    "arrival_time_formatted": "8:04:14 PM",
+                    "minutes_away": 23,
+                    "train_id": "01 1426  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "139S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768680665,
+                    "arrival_time_formatted": "8:11:05 PM",
+                    "minutes_away": 30,
+                    "train_id": "01 1434  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "139S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768681140,
+                    "arrival_time_formatted": "8:19:00 PM",
+                    "minutes_away": 38,
+                    "train_id": "01 1442  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "139S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768681620,
+                    "arrival_time_formatted": "8:27:00 PM",
+                    "minutes_away": 46,
+                    "train_id": "01 1450  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "139S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768682100,
+                    "arrival_time_formatted": "8:35:00 PM",
+                    "minutes_away": 54,
+                    "train_id": "01 1458  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "139S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768682580,
+                    "arrival_time_formatted": "8:43:00 PM",
+                    "minutes_away": 62,
+                    "train_id": "01 1506  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "139S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768683060,
+                    "arrival_time_formatted": "8:51:00 PM",
+                    "minutes_away": 70,
+                    "train_id": "01 1514  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "139S"
+                }
+            ]
+        },
+        {
+            "station_id": "420",
+            "station_name": "Bowling Green",
+            "location": [
+                40.704817,
+                -74.014065
+            ],
+            "distance_meters": 301.35129291679897,
+            "distance_miles": 0.1872509542310043,
+            "northbound_trains": [],
+            "southbound_trains": []
+        },
+        {
+            "station_id": "R25",
+            "station_name": "Cortlandt St",
+            "location": [
+                40.710668,
+                -74.011029
+            ],
+            "distance_meters": 456.9517999358545,
+            "distance_miles": 0.28393659687794187,
+            "northbound_trains": [
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768679179,
+                    "arrival_time_formatted": "7:46:19 PM",
+                    "minutes_away": 5,
+                    "train_id": "1Q 1357 STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R25N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768679285,
+                    "arrival_time_formatted": "7:48:05 PM",
+                    "minutes_away": 7,
+                    "train_id": "1Q 1405 STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R25N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768679915,
+                    "arrival_time_formatted": "7:58:35 PM",
+                    "minutes_away": 18,
+                    "train_id": "1Q 1415 STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R25N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768680210,
+                    "arrival_time_formatted": "8:03:30 PM",
+                    "minutes_away": 23,
+                    "train_id": "1Q 1422+ STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R25N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768680821,
+                    "arrival_time_formatted": "8:13:41 PM",
+                    "minutes_away": 33,
+                    "train_id": "1Q 1429 STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R25N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768681295,
+                    "arrival_time_formatted": "8:21:35 PM",
+                    "minutes_away": 41,
+                    "train_id": "1Q 1437 STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R25N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768681770,
+                    "arrival_time_formatted": "8:29:30 PM",
+                    "minutes_away": 49,
+                    "train_id": "1Q 1445 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R25N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768682370,
+                    "arrival_time_formatted": "8:39:30 PM",
+                    "minutes_away": 59,
+                    "train_id": "1Q 1455 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R25N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768682730,
+                    "arrival_time_formatted": "8:45:30 PM",
+                    "minutes_away": 65,
+                    "train_id": "1Q 1501 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R25N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768683210,
+                    "arrival_time_formatted": "8:53:30 PM",
+                    "minutes_away": 73,
+                    "train_id": "1Q 1509 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R25N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768683690,
+                    "arrival_time_formatted": "9:01:30 PM",
+                    "minutes_away": 81,
+                    "train_id": "1Q 1517 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R25N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768684170,
+                    "arrival_time_formatted": "9:09:30 PM",
+                    "minutes_away": 89,
+                    "train_id": "1Q 1525 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R25N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768684770,
+                    "arrival_time_formatted": "9:19:30 PM",
+                    "minutes_away": 99,
+                    "train_id": "1Q 1535 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R25N"
+                }
+            ],
+            "southbound_trains": [
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768679171,
+                    "arrival_time_formatted": "7:46:11 PM",
+                    "minutes_away": 5,
+                    "train_id": "1R 1354 CTL/95S",
+                    "is_assigned": true,
+                    "stop_id": "R25S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768679561,
+                    "arrival_time_formatted": "7:52:41 PM",
+                    "minutes_away": 12,
+                    "train_id": "1R 1406 CTL/95S",
+                    "is_assigned": true,
+                    "stop_id": "R25S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768680303,
+                    "arrival_time_formatted": "8:05:03 PM",
+                    "minutes_away": 24,
+                    "train_id": "1R 1418 CTL/95S",
+                    "is_assigned": true,
+                    "stop_id": "R25S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768681050,
+                    "arrival_time_formatted": "8:17:30 PM",
+                    "minutes_away": 37,
+                    "train_id": "1R 1429+ CTL/95S",
+                    "is_assigned": true,
+                    "stop_id": "R25S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768681890,
+                    "arrival_time_formatted": "8:31:30 PM",
+                    "minutes_away": 51,
+                    "train_id": "1R 1442 CTL/95S",
+                    "is_assigned": false,
+                    "stop_id": "R25S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768682520,
+                    "arrival_time_formatted": "8:42:00 PM",
+                    "minutes_away": 61,
+                    "train_id": "1R 1454 CTL/95S",
+                    "is_assigned": false,
+                    "stop_id": "R25S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768683240,
+                    "arrival_time_formatted": "8:54:00 PM",
+                    "minutes_away": 73,
+                    "train_id": "1R 1506 CTL/95S",
+                    "is_assigned": false,
+                    "stop_id": "R25S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768683960,
+                    "arrival_time_formatted": "9:06:00 PM",
+                    "minutes_away": 85,
+                    "train_id": "1R 1518 CTL/95S",
+                    "is_assigned": false,
+                    "stop_id": "R25S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768684650,
+                    "arrival_time_formatted": "9:17:30 PM",
+                    "minutes_away": 97,
+                    "train_id": "1R 1529+ CTL/95S",
+                    "is_assigned": false,
+                    "stop_id": "R25S"
+                }
+            ]
+        },
+        {
+            "station_id": "229",
+            "station_name": "Fulton St",
+            "location": [
+                40.710088750000004,
+                -74.00783825
+            ],
+            "distance_meters": 490.20263055346254,
+            "distance_miles": 0.3045976987496356,
+            "northbound_trains": [
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768678917,
+                    "arrival_time_formatted": "7:41:57 PM",
+                    "minutes_away": 1,
+                    "train_id": "03 1407  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "229N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768679214,
+                    "arrival_time_formatted": "7:46:54 PM",
+                    "minutes_away": 6,
+                    "train_id": "02 1417+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "229N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768679342,
+                    "arrival_time_formatted": "7:49:02 PM",
+                    "minutes_away": 8,
+                    "train_id": "03 1416  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "229N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768679577,
+                    "arrival_time_formatted": "7:52:57 PM",
+                    "minutes_away": 12,
+                    "train_id": "E3 1421  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "229N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768679658,
+                    "arrival_time_formatted": "7:54:18 PM",
+                    "minutes_away": 13,
+                    "train_id": "02 1425+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "229N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768679843,
+                    "arrival_time_formatted": "7:57:23 PM",
+                    "minutes_away": 16,
+                    "train_id": "03 1426  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "229N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768680087,
+                    "arrival_time_formatted": "8:01:27 PM",
+                    "minutes_away": 21,
+                    "train_id": "02 1433+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "229N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768680570,
+                    "arrival_time_formatted": "8:09:30 PM",
+                    "minutes_away": 29,
+                    "train_id": "02 1441+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "229N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768680698,
+                    "arrival_time_formatted": "8:11:38 PM",
+                    "minutes_away": 31,
+                    "train_id": "03 1438  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "229N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768681050,
+                    "arrival_time_formatted": "8:17:30 PM",
+                    "minutes_away": 37,
+                    "train_id": "02 1449+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "229N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768681230,
+                    "arrival_time_formatted": "8:20:30 PM",
+                    "minutes_away": 40,
+                    "train_id": "03 1447  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "229N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768681530,
+                    "arrival_time_formatted": "8:25:30 PM",
+                    "minutes_away": 45,
+                    "train_id": "02 1457+ FLA/241",
+                    "is_assigned": false,
+                    "stop_id": "229N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768681770,
+                    "arrival_time_formatted": "8:29:30 PM",
+                    "minutes_away": 49,
+                    "train_id": "03 1456  NLT/148",
+                    "is_assigned": false,
+                    "stop_id": "229N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768682010,
+                    "arrival_time_formatted": "8:33:30 PM",
+                    "minutes_away": 53,
+                    "train_id": "02 1505+ FLA/241",
+                    "is_assigned": false,
+                    "stop_id": "229N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768682370,
+                    "arrival_time_formatted": "8:39:30 PM",
+                    "minutes_away": 59,
+                    "train_id": "03 1506  NLT/148",
+                    "is_assigned": false,
+                    "stop_id": "229N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768682490,
+                    "arrival_time_formatted": "8:41:30 PM",
+                    "minutes_away": 61,
+                    "train_id": "02 1513+ FLA/241",
+                    "is_assigned": false,
+                    "stop_id": "229N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768682850,
+                    "arrival_time_formatted": "8:47:30 PM",
+                    "minutes_away": 67,
+                    "train_id": "03 1514  NLT/148",
+                    "is_assigned": false,
+                    "stop_id": "229N"
+                }
+            ],
+            "southbound_trains": [
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768678882,
+                    "arrival_time_formatted": "7:41:22 PM",
+                    "minutes_away": 0,
+                    "train_id": "02 1336  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768679171,
+                    "arrival_time_formatted": "7:46:11 PM",
+                    "minutes_away": 5,
+                    "train_id": "03 1412  148/NLT",
+                    "is_assigned": true,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768679355,
+                    "arrival_time_formatted": "7:49:15 PM",
+                    "minutes_away": 8,
+                    "train_id": "02 1345  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768679769,
+                    "arrival_time_formatted": "7:56:09 PM",
+                    "minutes_away": 15,
+                    "train_id": "02 1353  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768680018,
+                    "arrival_time_formatted": "8:00:18 PM",
+                    "minutes_away": 19,
+                    "train_id": "03 1425  148/NLT",
+                    "is_assigned": true,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768680231,
+                    "arrival_time_formatted": "8:03:51 PM",
+                    "minutes_away": 23,
+                    "train_id": "02 1400  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768680377,
+                    "arrival_time_formatted": "8:06:17 PM",
+                    "minutes_away": 25,
+                    "train_id": "03 1434  148/NLT",
+                    "is_assigned": true,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768680735,
+                    "arrival_time_formatted": "8:12:15 PM",
+                    "minutes_away": 31,
+                    "train_id": "02 1409  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768680870,
+                    "arrival_time_formatted": "8:14:30 PM",
+                    "minutes_away": 34,
+                    "train_id": "03 1444  148/NLT",
+                    "is_assigned": true,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768681066,
+                    "arrival_time_formatted": "8:17:46 PM",
+                    "minutes_away": 37,
+                    "train_id": "02 1417  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768681230,
+                    "arrival_time_formatted": "8:20:30 PM",
+                    "minutes_away": 40,
+                    "train_id": "03 1450  148/NLT",
+                    "is_assigned": false,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768681616,
+                    "arrival_time_formatted": "8:26:56 PM",
+                    "minutes_away": 46,
+                    "train_id": "02 1424  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768681890,
+                    "arrival_time_formatted": "8:31:30 PM",
+                    "minutes_away": 51,
+                    "train_id": "03 1501  148/NLT",
+                    "is_assigned": false,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768682055,
+                    "arrival_time_formatted": "8:34:15 PM",
+                    "minutes_away": 53,
+                    "train_id": "02 1433  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768682418,
+                    "arrival_time_formatted": "8:40:18 PM",
+                    "minutes_away": 59,
+                    "train_id": "02 1441  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768682670,
+                    "arrival_time_formatted": "8:44:30 PM",
+                    "minutes_away": 64,
+                    "train_id": "03 1514  148/NLT",
+                    "is_assigned": false,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768682910,
+                    "arrival_time_formatted": "8:48:30 PM",
+                    "minutes_away": 68,
+                    "train_id": "02 1448  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768683450,
+                    "arrival_time_formatted": "8:57:30 PM",
+                    "minutes_away": 77,
+                    "train_id": "02 1457  241/FLA",
+                    "is_assigned": false,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768683930,
+                    "arrival_time_formatted": "9:05:30 PM",
+                    "minutes_away": 85,
+                    "train_id": "02 1505  241/FLA",
+                    "is_assigned": false,
+                    "stop_id": "229S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768684350,
+                    "arrival_time_formatted": "9:12:30 PM",
+                    "minutes_away": 92,
+                    "train_id": "02 1512  241/FLA",
+                    "is_assigned": false,
+                    "stop_id": "229S"
+                }
+            ]
+        },
+        {
+            "station_id": "140",
+            "station_name": "South Ferry / Whitehall St",
+            "location": [
+                40.702248999999995,
+                -74.01309950000001
+            ],
+            "distance_meters": 502.48781866315164,
+            "distance_miles": 0.3122313583705412,
+            "northbound_trains": [],
+            "southbound_trains": []
+        },
+        {
+            "station_id": "142",
+            "station_name": "South Ferry",
+            "location": [
+                40.702068,
+                -74.013664
+            ],
+            "distance_meters": 537.2641466258025,
+            "distance_miles": 0.33384036005302153,
+            "northbound_trains": [],
+            "southbound_trains": [
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768679259,
+                    "arrival_time_formatted": "7:47:39 PM",
+                    "minutes_away": 7,
+                    "train_id": "01 1410  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "142S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768679810,
+                    "arrival_time_formatted": "7:56:50 PM",
+                    "minutes_away": 16,
+                    "train_id": "01 1418  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "142S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768680374,
+                    "arrival_time_formatted": "8:06:14 PM",
+                    "minutes_away": 25,
+                    "train_id": "01 1426  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "142S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768680785,
+                    "arrival_time_formatted": "8:13:05 PM",
+                    "minutes_away": 32,
+                    "train_id": "01 1434  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "142S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768681260,
+                    "arrival_time_formatted": "8:21:00 PM",
+                    "minutes_away": 40,
+                    "train_id": "01 1442  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "142S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768681740,
+                    "arrival_time_formatted": "8:29:00 PM",
+                    "minutes_away": 48,
+                    "train_id": "01 1450  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "142S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768682220,
+                    "arrival_time_formatted": "8:37:00 PM",
+                    "minutes_away": 56,
+                    "train_id": "01 1458  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "142S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768682700,
+                    "arrival_time_formatted": "8:45:00 PM",
+                    "minutes_away": 64,
+                    "train_id": "01 1506  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "142S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768683180,
+                    "arrival_time_formatted": "8:53:00 PM",
+                    "minutes_away": 72,
+                    "train_id": "01 1514  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "142S"
+                }
+            ]
+        },
+        {
+            "station_id": "138",
+            "station_name": "WTC Cortlandt",
+            "location": [
+                40.711835,
+                -74.012188
+            ],
+            "distance_meters": 590.4121143742462,
+            "distance_miles": 0.3668649659208398,
+            "northbound_trains": [
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768678891,
+                    "arrival_time_formatted": "7:41:31 PM",
+                    "minutes_away": 1,
+                    "train_id": "01 1439  SFT/137",
+                    "is_assigned": true,
+                    "stop_id": "138N"
+                },
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768679430,
+                    "arrival_time_formatted": "7:50:30 PM",
+                    "minutes_away": 10,
+                    "train_id": "01 1447  SFT/137",
+                    "is_assigned": true,
+                    "stop_id": "138N"
+                },
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768679910,
+                    "arrival_time_formatted": "7:58:30 PM",
+                    "minutes_away": 18,
+                    "train_id": "01 1455  SFT/137",
+                    "is_assigned": false,
+                    "stop_id": "138N"
+                },
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768680390,
+                    "arrival_time_formatted": "8:06:30 PM",
+                    "minutes_away": 26,
+                    "train_id": "01 1503  SFT/137",
+                    "is_assigned": false,
+                    "stop_id": "138N"
+                },
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768680870,
+                    "arrival_time_formatted": "8:14:30 PM",
+                    "minutes_away": 34,
+                    "train_id": "01 1511  SFT/137",
+                    "is_assigned": false,
+                    "stop_id": "138N"
+                }
+            ],
+            "southbound_trains": [
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768679049,
+                    "arrival_time_formatted": "7:44:09 PM",
+                    "minutes_away": 3,
+                    "train_id": "01 1410  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "138S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768679600,
+                    "arrival_time_formatted": "7:53:20 PM",
+                    "minutes_away": 12,
+                    "train_id": "01 1418  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "138S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768680164,
+                    "arrival_time_formatted": "8:02:44 PM",
+                    "minutes_away": 22,
+                    "train_id": "01 1426  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "138S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768680575,
+                    "arrival_time_formatted": "8:09:35 PM",
+                    "minutes_away": 29,
+                    "train_id": "01 1434  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "138S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768681050,
+                    "arrival_time_formatted": "8:17:30 PM",
+                    "minutes_away": 37,
+                    "train_id": "01 1442  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "138S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768681530,
+                    "arrival_time_formatted": "8:25:30 PM",
+                    "minutes_away": 45,
+                    "train_id": "01 1450  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "138S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768682010,
+                    "arrival_time_formatted": "8:33:30 PM",
+                    "minutes_away": 53,
+                    "train_id": "01 1458  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "138S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768682490,
+                    "arrival_time_formatted": "8:41:30 PM",
+                    "minutes_away": 61,
+                    "train_id": "01 1506  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "138S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768682970,
+                    "arrival_time_formatted": "8:49:30 PM",
+                    "minutes_away": 69,
+                    "train_id": "01 1514  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "138S"
+                }
+            ]
+        },
+        {
+            "station_id": "E01",
+            "station_name": "World Trade Center",
+            "location": [
+                40.712582,
+                -74.009781
+            ],
+            "distance_meters": 681.7286160183033,
+            "distance_miles": 0.4236063918639092,
+            "northbound_trains": [
+                {
+                    "route": "E",
+                    "direction": "N",
+                    "arrival_time": 1768679100,
+                    "arrival_time_formatted": "7:45:00 PM",
+                    "minutes_away": 4,
+                    "train_id": "1E 1445 WTC/P-A",
+                    "is_assigned": false,
+                    "stop_id": "E01N"
+                },
+                {
+                    "route": "E",
+                    "direction": "N",
+                    "arrival_time": 1768679820,
+                    "arrival_time_formatted": "7:57:00 PM",
+                    "minutes_away": 16,
+                    "train_id": "1E 1457 WTC/P-A",
+                    "is_assigned": false,
+                    "stop_id": "E01N"
+                },
+                {
+                    "route": "E",
+                    "direction": "N",
+                    "arrival_time": 1768680540,
+                    "arrival_time_formatted": "8:09:00 PM",
+                    "minutes_away": 28,
+                    "train_id": "1E 1509 WTC/P-A",
+                    "is_assigned": false,
+                    "stop_id": "E01N"
+                },
+                {
+                    "route": "E",
+                    "direction": "N",
+                    "arrival_time": 1768681260,
+                    "arrival_time_formatted": "8:21:00 PM",
+                    "minutes_away": 40,
+                    "train_id": "1E 1521 WTC/P-A",
+                    "is_assigned": false,
+                    "stop_id": "E01N"
+                },
+                {
+                    "route": "E",
+                    "direction": "N",
+                    "arrival_time": 1768681980,
+                    "arrival_time_formatted": "8:33:00 PM",
+                    "minutes_away": 52,
+                    "train_id": "1E 1533 WTC/P-A",
+                    "is_assigned": false,
+                    "stop_id": "E01N"
+                }
+            ],
+            "southbound_trains": [
+                {
+                    "route": "E",
+                    "direction": "S",
+                    "arrival_time": 1768679561,
+                    "arrival_time_formatted": "7:52:41 PM",
+                    "minutes_away": 12,
+                    "train_id": "1E 1405+ P-A/WTC",
+                    "is_assigned": true,
+                    "stop_id": "E01S"
+                },
+                {
+                    "route": "E",
+                    "direction": "S",
+                    "arrival_time": 1768680351,
+                    "arrival_time_formatted": "8:05:51 PM",
+                    "minutes_away": 25,
+                    "train_id": "1E 1417+ P-A/WTC",
+                    "is_assigned": true,
+                    "stop_id": "E01S"
+                },
+                {
+                    "route": "E",
+                    "direction": "S",
+                    "arrival_time": 1768681173,
+                    "arrival_time_formatted": "8:19:33 PM",
+                    "minutes_away": 39,
+                    "train_id": "1E 1429+ P-A/WTC",
+                    "is_assigned": true,
+                    "stop_id": "E01S"
+                },
+                {
+                    "route": "E",
+                    "direction": "S",
+                    "arrival_time": 1768681950,
+                    "arrival_time_formatted": "8:32:30 PM",
+                    "minutes_away": 52,
+                    "train_id": "1E 1441+ P-A/WTC",
+                    "is_assigned": false,
+                    "stop_id": "E01S"
+                },
+                {
+                    "route": "E",
+                    "direction": "S",
+                    "arrival_time": 1768682670,
+                    "arrival_time_formatted": "8:44:30 PM",
+                    "minutes_away": 64,
+                    "train_id": "1E 1453+ P-A/WTC",
+                    "is_assigned": false,
+                    "stop_id": "E01S"
+                },
+                {
+                    "route": "E",
+                    "direction": "S",
+                    "arrival_time": 1768683390,
+                    "arrival_time_formatted": "8:56:30 PM",
+                    "minutes_away": 76,
+                    "train_id": "1E 1505+ P-A/WTC",
+                    "is_assigned": false,
+                    "stop_id": "E01S"
+                },
+                {
+                    "route": "E",
+                    "direction": "S",
+                    "arrival_time": 1768684110,
+                    "arrival_time_formatted": "9:08:30 PM",
+                    "minutes_away": 88,
+                    "train_id": "1E 1517+ P-A/WTC",
+                    "is_assigned": false,
+                    "stop_id": "E01S"
+                },
+                {
+                    "route": "E",
+                    "direction": "S",
+                    "arrival_time": 1768684830,
+                    "arrival_time_formatted": "9:20:30 PM",
+                    "minutes_away": 100,
+                    "train_id": "1E 1529+ P-A/WTC",
+                    "is_assigned": false,
+                    "stop_id": "E01S"
+                }
+            ]
+        },
+        {
+            "station_id": "228",
+            "station_name": "Park Place",
+            "location": [
+                40.713051,
+                -74.008811
+            ],
+            "distance_meters": 751.885918879793,
+            "distance_miles": 0.4672001053002559,
+            "northbound_trains": [
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768679067,
+                    "arrival_time_formatted": "7:44:27 PM",
+                    "minutes_away": 4,
+                    "train_id": "03 1407  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "228N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768679364,
+                    "arrival_time_formatted": "7:49:24 PM",
+                    "minutes_away": 8,
+                    "train_id": "02 1417+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "228N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768679492,
+                    "arrival_time_formatted": "7:51:32 PM",
+                    "minutes_away": 11,
+                    "train_id": "03 1416  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "228N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768679727,
+                    "arrival_time_formatted": "7:55:27 PM",
+                    "minutes_away": 15,
+                    "train_id": "E3 1421  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "228N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768679808,
+                    "arrival_time_formatted": "7:56:48 PM",
+                    "minutes_away": 16,
+                    "train_id": "02 1425+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "228N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768679993,
+                    "arrival_time_formatted": "7:59:53 PM",
+                    "minutes_away": 19,
+                    "train_id": "03 1426  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "228N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768680237,
+                    "arrival_time_formatted": "8:03:57 PM",
+                    "minutes_away": 23,
+                    "train_id": "02 1433+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "228N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768680720,
+                    "arrival_time_formatted": "8:12:00 PM",
+                    "minutes_away": 31,
+                    "train_id": "02 1441+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "228N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768680848,
+                    "arrival_time_formatted": "8:14:08 PM",
+                    "minutes_away": 33,
+                    "train_id": "03 1438  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "228N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768681200,
+                    "arrival_time_formatted": "8:20:00 PM",
+                    "minutes_away": 39,
+                    "train_id": "02 1449+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "228N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768681380,
+                    "arrival_time_formatted": "8:23:00 PM",
+                    "minutes_away": 42,
+                    "train_id": "03 1447  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "228N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768681680,
+                    "arrival_time_formatted": "8:28:00 PM",
+                    "minutes_away": 47,
+                    "train_id": "02 1457+ FLA/241",
+                    "is_assigned": false,
+                    "stop_id": "228N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768681920,
+                    "arrival_time_formatted": "8:32:00 PM",
+                    "minutes_away": 51,
+                    "train_id": "03 1456  NLT/148",
+                    "is_assigned": false,
+                    "stop_id": "228N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768682160,
+                    "arrival_time_formatted": "8:36:00 PM",
+                    "minutes_away": 55,
+                    "train_id": "02 1505+ FLA/241",
+                    "is_assigned": false,
+                    "stop_id": "228N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768682520,
+                    "arrival_time_formatted": "8:42:00 PM",
+                    "minutes_away": 61,
+                    "train_id": "03 1506  NLT/148",
+                    "is_assigned": false,
+                    "stop_id": "228N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768682640,
+                    "arrival_time_formatted": "8:44:00 PM",
+                    "minutes_away": 63,
+                    "train_id": "02 1513+ FLA/241",
+                    "is_assigned": false,
+                    "stop_id": "228N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768683000,
+                    "arrival_time_formatted": "8:50:00 PM",
+                    "minutes_away": 69,
+                    "train_id": "03 1514  NLT/148",
+                    "is_assigned": false,
+                    "stop_id": "228N"
+                }
+            ],
+            "southbound_trains": [
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768679021,
+                    "arrival_time_formatted": "7:43:41 PM",
+                    "minutes_away": 3,
+                    "train_id": "03 1412  148/NLT",
+                    "is_assigned": true,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768679205,
+                    "arrival_time_formatted": "7:46:45 PM",
+                    "minutes_away": 6,
+                    "train_id": "02 1345  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768679619,
+                    "arrival_time_formatted": "7:53:39 PM",
+                    "minutes_away": 13,
+                    "train_id": "02 1353  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768679868,
+                    "arrival_time_formatted": "7:57:48 PM",
+                    "minutes_away": 17,
+                    "train_id": "03 1425  148/NLT",
+                    "is_assigned": true,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768680081,
+                    "arrival_time_formatted": "8:01:21 PM",
+                    "minutes_away": 20,
+                    "train_id": "02 1400  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768680227,
+                    "arrival_time_formatted": "8:03:47 PM",
+                    "minutes_away": 23,
+                    "train_id": "03 1434  148/NLT",
+                    "is_assigned": true,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768680585,
+                    "arrival_time_formatted": "8:09:45 PM",
+                    "minutes_away": 29,
+                    "train_id": "02 1409  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768680720,
+                    "arrival_time_formatted": "8:12:00 PM",
+                    "minutes_away": 31,
+                    "train_id": "03 1444  148/NLT",
+                    "is_assigned": true,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768680916,
+                    "arrival_time_formatted": "8:15:16 PM",
+                    "minutes_away": 34,
+                    "train_id": "02 1417  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768681080,
+                    "arrival_time_formatted": "8:18:00 PM",
+                    "minutes_away": 37,
+                    "train_id": "03 1450  148/NLT",
+                    "is_assigned": false,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768681466,
+                    "arrival_time_formatted": "8:24:26 PM",
+                    "minutes_away": 44,
+                    "train_id": "02 1424  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768681740,
+                    "arrival_time_formatted": "8:29:00 PM",
+                    "minutes_away": 48,
+                    "train_id": "03 1501  148/NLT",
+                    "is_assigned": false,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768681905,
+                    "arrival_time_formatted": "8:31:45 PM",
+                    "minutes_away": 51,
+                    "train_id": "02 1433  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768682268,
+                    "arrival_time_formatted": "8:37:48 PM",
+                    "minutes_away": 57,
+                    "train_id": "02 1441  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768682520,
+                    "arrival_time_formatted": "8:42:00 PM",
+                    "minutes_away": 61,
+                    "train_id": "03 1514  148/NLT",
+                    "is_assigned": false,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768682760,
+                    "arrival_time_formatted": "8:46:00 PM",
+                    "minutes_away": 65,
+                    "train_id": "02 1448  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768683300,
+                    "arrival_time_formatted": "8:55:00 PM",
+                    "minutes_away": 74,
+                    "train_id": "02 1457  241/FLA",
+                    "is_assigned": false,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768683780,
+                    "arrival_time_formatted": "9:03:00 PM",
+                    "minutes_away": 82,
+                    "train_id": "02 1505  241/FLA",
+                    "is_assigned": false,
+                    "stop_id": "228S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768684200,
+                    "arrival_time_formatted": "9:10:00 PM",
+                    "minutes_away": 89,
+                    "train_id": "02 1512  241/FLA",
+                    "is_assigned": false,
+                    "stop_id": "228S"
+                }
+            ]
+        },
+        {
+            "station_id": "R24",
+            "station_name": "City Hall",
+            "location": [
+                40.713282,
+                -74.006978
+            ],
+            "distance_meters": 832.2247506520964,
+            "distance_miles": 0.5171203255374438,
+            "northbound_trains": [
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768679299,
+                    "arrival_time_formatted": "7:48:19 PM",
+                    "minutes_away": 7,
+                    "train_id": "1Q 1357 STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R24N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768679405,
+                    "arrival_time_formatted": "7:50:05 PM",
+                    "minutes_away": 9,
+                    "train_id": "1Q 1405 STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R24N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768680035,
+                    "arrival_time_formatted": "8:00:35 PM",
+                    "minutes_away": 20,
+                    "train_id": "1Q 1415 STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R24N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768680330,
+                    "arrival_time_formatted": "8:05:30 PM",
+                    "minutes_away": 25,
+                    "train_id": "1Q 1422+ STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R24N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768680941,
+                    "arrival_time_formatted": "8:15:41 PM",
+                    "minutes_away": 35,
+                    "train_id": "1Q 1429 STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R24N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768681415,
+                    "arrival_time_formatted": "8:23:35 PM",
+                    "minutes_away": 43,
+                    "train_id": "1Q 1437 STL/962",
+                    "is_assigned": true,
+                    "stop_id": "R24N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768681890,
+                    "arrival_time_formatted": "8:31:30 PM",
+                    "minutes_away": 51,
+                    "train_id": "1Q 1445 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R24N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768682490,
+                    "arrival_time_formatted": "8:41:30 PM",
+                    "minutes_away": 61,
+                    "train_id": "1Q 1455 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R24N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768682850,
+                    "arrival_time_formatted": "8:47:30 PM",
+                    "minutes_away": 67,
+                    "train_id": "1Q 1501 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R24N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768683330,
+                    "arrival_time_formatted": "8:55:30 PM",
+                    "minutes_away": 75,
+                    "train_id": "1Q 1509 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R24N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768683810,
+                    "arrival_time_formatted": "9:03:30 PM",
+                    "minutes_away": 83,
+                    "train_id": "1Q 1517 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R24N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768684290,
+                    "arrival_time_formatted": "9:11:30 PM",
+                    "minutes_away": 91,
+                    "train_id": "1Q 1525 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R24N"
+                },
+                {
+                    "route": "Q",
+                    "direction": "N",
+                    "arrival_time": 1768684890,
+                    "arrival_time_formatted": "9:21:30 PM",
+                    "minutes_away": 101,
+                    "train_id": "1Q 1535 STL/962",
+                    "is_assigned": false,
+                    "stop_id": "R24N"
+                }
+            ],
+            "southbound_trains": [
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768679051,
+                    "arrival_time_formatted": "7:44:11 PM",
+                    "minutes_away": 3,
+                    "train_id": "1R 1354 CTL/95S",
+                    "is_assigned": true,
+                    "stop_id": "R24S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768679441,
+                    "arrival_time_formatted": "7:50:41 PM",
+                    "minutes_away": 10,
+                    "train_id": "1R 1406 CTL/95S",
+                    "is_assigned": true,
+                    "stop_id": "R24S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768680183,
+                    "arrival_time_formatted": "8:03:03 PM",
+                    "minutes_away": 22,
+                    "train_id": "1R 1418 CTL/95S",
+                    "is_assigned": true,
+                    "stop_id": "R24S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768680930,
+                    "arrival_time_formatted": "8:15:30 PM",
+                    "minutes_away": 35,
+                    "train_id": "1R 1429+ CTL/95S",
+                    "is_assigned": true,
+                    "stop_id": "R24S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768681770,
+                    "arrival_time_formatted": "8:29:30 PM",
+                    "minutes_away": 49,
+                    "train_id": "1R 1442 CTL/95S",
+                    "is_assigned": false,
+                    "stop_id": "R24S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768682400,
+                    "arrival_time_formatted": "8:40:00 PM",
+                    "minutes_away": 59,
+                    "train_id": "1R 1454 CTL/95S",
+                    "is_assigned": false,
+                    "stop_id": "R24S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768683120,
+                    "arrival_time_formatted": "8:52:00 PM",
+                    "minutes_away": 71,
+                    "train_id": "1R 1506 CTL/95S",
+                    "is_assigned": false,
+                    "stop_id": "R24S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768683840,
+                    "arrival_time_formatted": "9:04:00 PM",
+                    "minutes_away": 83,
+                    "train_id": "1R 1518 CTL/95S",
+                    "is_assigned": false,
+                    "stop_id": "R24S"
+                },
+                {
+                    "route": "R",
+                    "direction": "S",
+                    "arrival_time": 1768684530,
+                    "arrival_time_formatted": "9:15:30 PM",
+                    "minutes_away": 95,
+                    "train_id": "1R 1529+ CTL/95S",
+                    "is_assigned": false,
+                    "stop_id": "R24S"
+                }
+            ]
+        },
+        {
+            "station_id": "A36",
+            "station_name": "Chambers St",
+            "location": [
+                40.714111,
+                -74.008585
+            ],
+            "distance_meters": 870.459064076235,
+            "distance_miles": 0.5408780191041143,
+            "northbound_trains": [
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768679415,
+                    "arrival_time_formatted": "7:50:15 PM",
+                    "minutes_away": 9,
+                    "train_id": "1A 1351 FAR/207",
+                    "is_assigned": true,
+                    "stop_id": "A36N"
+                },
+                {
+                    "route": "C",
+                    "direction": "N",
+                    "arrival_time": 1768679861,
+                    "arrival_time_formatted": "7:57:41 PM",
+                    "minutes_away": 17,
+                    "train_id": "1C 1423+ EUC/168",
+                    "is_assigned": true,
+                    "stop_id": "A36N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768680021,
+                    "arrival_time_formatted": "8:00:21 PM",
+                    "minutes_away": 19,
+                    "train_id": "1A 1422+ LEF/207",
+                    "is_assigned": true,
+                    "stop_id": "A36N"
+                },
+                {
+                    "route": "C",
+                    "direction": "N",
+                    "arrival_time": 1768680161,
+                    "arrival_time_formatted": "8:02:41 PM",
+                    "minutes_away": 22,
+                    "train_id": "1C 1435+ EUC/168",
+                    "is_assigned": true,
+                    "stop_id": "A36N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768680471,
+                    "arrival_time_formatted": "8:07:51 PM",
+                    "minutes_away": 27,
+                    "train_id": "1A 1411 FAR/207",
+                    "is_assigned": true,
+                    "stop_id": "A36N"
+                },
+                {
+                    "route": "C",
+                    "direction": "N",
+                    "arrival_time": 1768681110,
+                    "arrival_time_formatted": "8:18:30 PM",
+                    "minutes_away": 38,
+                    "train_id": "1C 1447+ EUC/168",
+                    "is_assigned": false,
+                    "stop_id": "A36N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768681230,
+                    "arrival_time_formatted": "8:20:30 PM",
+                    "minutes_away": 40,
+                    "train_id": "1A 1442+ LEF/207",
+                    "is_assigned": false,
+                    "stop_id": "A36N"
+                },
+                {
+                    "route": "C",
+                    "direction": "N",
+                    "arrival_time": 1768681710,
+                    "arrival_time_formatted": "8:28:30 PM",
+                    "minutes_away": 48,
+                    "train_id": "1C 1459+ EUC/168",
+                    "is_assigned": false,
+                    "stop_id": "A36N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768682061,
+                    "arrival_time_formatted": "8:34:21 PM",
+                    "minutes_away": 53,
+                    "train_id": "1A 1431 FAR/207",
+                    "is_assigned": true,
+                    "stop_id": "A36N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768682394,
+                    "arrival_time_formatted": "8:39:54 PM",
+                    "minutes_away": 59,
+                    "train_id": "1A 1502+ LEF/207",
+                    "is_assigned": false,
+                    "stop_id": "A36N"
+                },
+                {
+                    "route": "C",
+                    "direction": "N",
+                    "arrival_time": 1768682430,
+                    "arrival_time_formatted": "8:40:30 PM",
+                    "minutes_away": 60,
+                    "train_id": "1C 1511+ EUC/168",
+                    "is_assigned": false,
+                    "stop_id": "A36N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768682890,
+                    "arrival_time_formatted": "8:48:10 PM",
+                    "minutes_away": 67,
+                    "train_id": "1A 1451 FAR/207",
+                    "is_assigned": false,
+                    "stop_id": "A36N"
+                },
+                {
+                    "route": "C",
+                    "direction": "N",
+                    "arrival_time": 1768683150,
+                    "arrival_time_formatted": "8:52:30 PM",
+                    "minutes_away": 72,
+                    "train_id": "1C 1523+ EUC/168",
+                    "is_assigned": false,
+                    "stop_id": "A36N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768683520,
+                    "arrival_time_formatted": "8:58:40 PM",
+                    "minutes_away": 78,
+                    "train_id": "1A 1522+ LEF/207",
+                    "is_assigned": false,
+                    "stop_id": "A36N"
+                },
+                {
+                    "route": "C",
+                    "direction": "N",
+                    "arrival_time": 1768683870,
+                    "arrival_time_formatted": "9:04:30 PM",
+                    "minutes_away": 84,
+                    "train_id": "1C 1535+ EUC/168",
+                    "is_assigned": false,
+                    "stop_id": "A36N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768684120,
+                    "arrival_time_formatted": "9:08:40 PM",
+                    "minutes_away": 88,
+                    "train_id": "1A 1511 FAR/207",
+                    "is_assigned": false,
+                    "stop_id": "A36N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768685320,
+                    "arrival_time_formatted": "9:28:40 PM",
+                    "minutes_away": 108,
+                    "train_id": "1A 1531 FAR/207",
+                    "is_assigned": false,
+                    "stop_id": "A36N"
+                }
+            ],
+            "southbound_trains": [
+                {
+                    "route": "C",
+                    "direction": "S",
+                    "arrival_time": 1768679036,
+                    "arrival_time_formatted": "7:43:56 PM",
+                    "minutes_away": 3,
+                    "train_id": "1C 1408 168/EUC",
+                    "is_assigned": true,
+                    "stop_id": "A36S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768679203,
+                    "arrival_time_formatted": "7:46:43 PM",
+                    "minutes_away": 6,
+                    "train_id": "1A 1408+ 207/FAR",
+                    "is_assigned": true,
+                    "stop_id": "A36S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768679651,
+                    "arrival_time_formatted": "7:54:11 PM",
+                    "minutes_away": 13,
+                    "train_id": "1A 1418+ 207/LEF",
+                    "is_assigned": true,
+                    "stop_id": "A36S"
+                },
+                {
+                    "route": "C",
+                    "direction": "S",
+                    "arrival_time": 1768680001,
+                    "arrival_time_formatted": "8:00:01 PM",
+                    "minutes_away": 19,
+                    "train_id": "1C 1420 168/EUC",
+                    "is_assigned": true,
+                    "stop_id": "A36S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768680341,
+                    "arrival_time_formatted": "8:05:41 PM",
+                    "minutes_away": 25,
+                    "train_id": "1A 1428+ 207/FAR",
+                    "is_assigned": true,
+                    "stop_id": "A36S"
+                },
+                {
+                    "route": "C",
+                    "direction": "S",
+                    "arrival_time": 1768680541,
+                    "arrival_time_formatted": "8:09:01 PM",
+                    "minutes_away": 28,
+                    "train_id": "1C 1432 168/EUC",
+                    "is_assigned": true,
+                    "stop_id": "A36S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768680941,
+                    "arrival_time_formatted": "8:15:41 PM",
+                    "minutes_away": 35,
+                    "train_id": "1A 1438+ 207/LEF",
+                    "is_assigned": true,
+                    "stop_id": "A36S"
+                },
+                {
+                    "route": "C",
+                    "direction": "S",
+                    "arrival_time": 1768681115,
+                    "arrival_time_formatted": "8:18:35 PM",
+                    "minutes_away": 38,
+                    "train_id": "1C 1444 168/EUC",
+                    "is_assigned": false,
+                    "stop_id": "A36S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768681350,
+                    "arrival_time_formatted": "8:22:30 PM",
+                    "minutes_away": 42,
+                    "train_id": "1A 1446+ 207/FAR",
+                    "is_assigned": false,
+                    "stop_id": "A36S"
+                },
+                {
+                    "route": "C",
+                    "direction": "S",
+                    "arrival_time": 1768681820,
+                    "arrival_time_formatted": "8:30:20 PM",
+                    "minutes_away": 49,
+                    "train_id": "1C 1456 168/EUC",
+                    "is_assigned": false,
+                    "stop_id": "A36S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768682070,
+                    "arrival_time_formatted": "8:34:30 PM",
+                    "minutes_away": 54,
+                    "train_id": "1A 1458+ 207/LEF",
+                    "is_assigned": false,
+                    "stop_id": "A36S"
+                },
+                {
+                    "route": "C",
+                    "direction": "S",
+                    "arrival_time": 1768682540,
+                    "arrival_time_formatted": "8:42:20 PM",
+                    "minutes_away": 61,
+                    "train_id": "1C 1508 168/EUC",
+                    "is_assigned": false,
+                    "stop_id": "A36S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768682670,
+                    "arrival_time_formatted": "8:44:30 PM",
+                    "minutes_away": 64,
+                    "train_id": "1A 1508+ 207/FAR",
+                    "is_assigned": false,
+                    "stop_id": "A36S"
+                },
+                {
+                    "route": "C",
+                    "direction": "S",
+                    "arrival_time": 1768683260,
+                    "arrival_time_formatted": "8:54:20 PM",
+                    "minutes_away": 73,
+                    "train_id": "1C 1520 168/EUC",
+                    "is_assigned": false,
+                    "stop_id": "A36S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768683330,
+                    "arrival_time_formatted": "8:55:30 PM",
+                    "minutes_away": 75,
+                    "train_id": "1A 1518+ 207/LEF",
+                    "is_assigned": false,
+                    "stop_id": "A36S"
+                },
+                {
+                    "route": "C",
+                    "direction": "S",
+                    "arrival_time": 1768683980,
+                    "arrival_time_formatted": "9:06:20 PM",
+                    "minutes_away": 85,
+                    "train_id": "1C 1532 168/EUC",
+                    "is_assigned": false,
+                    "stop_id": "A36S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768684050,
+                    "arrival_time_formatted": "9:07:30 PM",
+                    "minutes_away": 87,
+                    "train_id": "1A 1528+ 207/FAR",
+                    "is_assigned": false,
+                    "stop_id": "A36S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768684560,
+                    "arrival_time_formatted": "9:16:00 PM",
+                    "minutes_away": 95,
+                    "train_id": "1A 1538+ 207/LEF",
+                    "is_assigned": false,
+                    "stop_id": "A36S"
+                }
+            ]
+        },
+        {
+            "station_id": "640",
+            "station_name": "Brooklyn Bridge-City Hall / Chambers St",
+            "location": [
+                40.713154,
+                -74.003766
+            ],
+            "distance_meters": 971.3886029828874,
+            "distance_miles": 0.6035927076240797,
+            "northbound_trains": [],
+            "southbound_trains": [
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768679101,
+                    "arrival_time_formatted": "7:45:01 PM",
+                    "minutes_away": 4,
+                    "train_id": "/4 1338  WDL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768679263,
+                    "arrival_time_formatted": "7:47:43 PM",
+                    "minutes_away": 7,
+                    "train_id": "/6 1335  PEL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768679396,
+                    "arrival_time_formatted": "7:49:56 PM",
+                    "minutes_away": 9,
+                    "train_id": "04 1408+ 3AB/BBR",
+                    "is_assigned": true,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768679575,
+                    "arrival_time_formatted": "7:52:55 PM",
+                    "minutes_away": 12,
+                    "train_id": "06 1343  PEL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768679761,
+                    "arrival_time_formatted": "7:56:01 PM",
+                    "minutes_away": 15,
+                    "train_id": "04 1354  WDL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768679839,
+                    "arrival_time_formatted": "7:57:19 PM",
+                    "minutes_away": 16,
+                    "train_id": "06 1351  PEL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768680063,
+                    "arrival_time_formatted": "8:01:03 PM",
+                    "minutes_away": 20,
+                    "train_id": "04 1424+ 3AB/BBR",
+                    "is_assigned": true,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768680187,
+                    "arrival_time_formatted": "8:03:07 PM",
+                    "minutes_away": 22,
+                    "train_id": "04 1408+ WDL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768680316,
+                    "arrival_time_formatted": "8:05:16 PM",
+                    "minutes_away": 24,
+                    "train_id": "06 1359  PEL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768680690,
+                    "arrival_time_formatted": "8:11:30 PM",
+                    "minutes_away": 31,
+                    "train_id": "06 1407  PEL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768681129,
+                    "arrival_time_formatted": "8:18:49 PM",
+                    "minutes_away": 38,
+                    "train_id": "06 1415  PEL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768681612,
+                    "arrival_time_formatted": "8:26:52 PM",
+                    "minutes_away": 46,
+                    "train_id": "06 1423  PEL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768681712,
+                    "arrival_time_formatted": "8:28:32 PM",
+                    "minutes_away": 48,
+                    "train_id": "04 1426  WDL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768681770,
+                    "arrival_time_formatted": "8:29:30 PM",
+                    "minutes_away": 49,
+                    "train_id": "04 1456+ 3AB/BBR",
+                    "is_assigned": false,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768682244,
+                    "arrival_time_formatted": "8:37:24 PM",
+                    "minutes_away": 56,
+                    "train_id": "06 1431  PEL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768682250,
+                    "arrival_time_formatted": "8:37:30 PM",
+                    "minutes_away": 57,
+                    "train_id": "04 1442  WDL/BBR",
+                    "is_assigned": false,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768682345,
+                    "arrival_time_formatted": "8:39:05 PM",
+                    "minutes_away": 58,
+                    "train_id": "06 1439  PEL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768682730,
+                    "arrival_time_formatted": "8:45:30 PM",
+                    "minutes_away": 65,
+                    "train_id": "04 1512+ 3AB/BBR",
+                    "is_assigned": false,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768682820,
+                    "arrival_time_formatted": "8:47:00 PM",
+                    "minutes_away": 66,
+                    "train_id": "06 1447  PEL/BBR",
+                    "is_assigned": false,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768683120,
+                    "arrival_time_formatted": "8:52:00 PM",
+                    "minutes_away": 71,
+                    "train_id": "04 1456+ WDL/BBR",
+                    "is_assigned": false,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768683390,
+                    "arrival_time_formatted": "8:56:30 PM",
+                    "minutes_away": 76,
+                    "train_id": "06 1455  PEL/BBR",
+                    "is_assigned": false,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768683780,
+                    "arrival_time_formatted": "9:03:00 PM",
+                    "minutes_away": 82,
+                    "train_id": "06 1503  PEL/BBR",
+                    "is_assigned": false,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768684170,
+                    "arrival_time_formatted": "9:09:30 PM",
+                    "minutes_away": 89,
+                    "train_id": "04 1514  WDL/BBR",
+                    "is_assigned": false,
+                    "stop_id": "640S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768684260,
+                    "arrival_time_formatted": "9:11:00 PM",
+                    "minutes_away": 90,
+                    "train_id": "06 1511  PEL/BBR",
+                    "is_assigned": false,
+                    "stop_id": "640S"
+                }
+            ]
+        },
+        {
+            "station_id": "137",
+            "station_name": "Chambers St",
+            "location": [
+                40.715478,
+                -74.009266
+            ],
+            "distance_meters": 1006.2768867112314,
+            "distance_miles": 0.6252712753726446,
+            "northbound_trains": [
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768678888,
+                    "arrival_time_formatted": "7:41:28 PM",
+                    "minutes_away": 1,
+                    "train_id": "02 1409+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768678951,
+                    "arrival_time_formatted": "7:42:31 PM",
+                    "minutes_away": 2,
+                    "train_id": "01 1439  SFT/137",
+                    "is_assigned": true,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768679127,
+                    "arrival_time_formatted": "7:45:27 PM",
+                    "minutes_away": 5,
+                    "train_id": "03 1407  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768679424,
+                    "arrival_time_formatted": "7:50:24 PM",
+                    "minutes_away": 9,
+                    "train_id": "02 1417+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768679490,
+                    "arrival_time_formatted": "7:51:30 PM",
+                    "minutes_away": 11,
+                    "train_id": "01 1447  SFT/137",
+                    "is_assigned": true,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768679552,
+                    "arrival_time_formatted": "7:52:32 PM",
+                    "minutes_away": 12,
+                    "train_id": "03 1416  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768679787,
+                    "arrival_time_formatted": "7:56:27 PM",
+                    "minutes_away": 16,
+                    "train_id": "E3 1421  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768679868,
+                    "arrival_time_formatted": "7:57:48 PM",
+                    "minutes_away": 17,
+                    "train_id": "02 1425+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768679970,
+                    "arrival_time_formatted": "7:59:30 PM",
+                    "minutes_away": 19,
+                    "train_id": "01 1455  SFT/137",
+                    "is_assigned": false,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768680053,
+                    "arrival_time_formatted": "8:00:53 PM",
+                    "minutes_away": 20,
+                    "train_id": "03 1426  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768680297,
+                    "arrival_time_formatted": "8:04:57 PM",
+                    "minutes_away": 24,
+                    "train_id": "02 1433+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768680450,
+                    "arrival_time_formatted": "8:07:30 PM",
+                    "minutes_away": 27,
+                    "train_id": "01 1503  SFT/137",
+                    "is_assigned": false,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768680780,
+                    "arrival_time_formatted": "8:13:00 PM",
+                    "minutes_away": 32,
+                    "train_id": "02 1441+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768680908,
+                    "arrival_time_formatted": "8:15:08 PM",
+                    "minutes_away": 34,
+                    "train_id": "03 1438  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768680930,
+                    "arrival_time_formatted": "8:15:30 PM",
+                    "minutes_away": 35,
+                    "train_id": "01 1511  SFT/137",
+                    "is_assigned": false,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768681260,
+                    "arrival_time_formatted": "8:21:00 PM",
+                    "minutes_away": 40,
+                    "train_id": "02 1449+ FLA/241",
+                    "is_assigned": true,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768681440,
+                    "arrival_time_formatted": "8:24:00 PM",
+                    "minutes_away": 43,
+                    "train_id": "03 1447  NLT/148",
+                    "is_assigned": true,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768681740,
+                    "arrival_time_formatted": "8:29:00 PM",
+                    "minutes_away": 48,
+                    "train_id": "02 1457+ FLA/241",
+                    "is_assigned": false,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768681980,
+                    "arrival_time_formatted": "8:33:00 PM",
+                    "minutes_away": 52,
+                    "train_id": "03 1456  NLT/148",
+                    "is_assigned": false,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768682220,
+                    "arrival_time_formatted": "8:37:00 PM",
+                    "minutes_away": 56,
+                    "train_id": "02 1505+ FLA/241",
+                    "is_assigned": false,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768682580,
+                    "arrival_time_formatted": "8:43:00 PM",
+                    "minutes_away": 62,
+                    "train_id": "03 1506  NLT/148",
+                    "is_assigned": false,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "2",
+                    "direction": "N",
+                    "arrival_time": 1768682700,
+                    "arrival_time_formatted": "8:45:00 PM",
+                    "minutes_away": 64,
+                    "train_id": "02 1513+ FLA/241",
+                    "is_assigned": false,
+                    "stop_id": "137N"
+                },
+                {
+                    "route": "3",
+                    "direction": "N",
+                    "arrival_time": 1768683060,
+                    "arrival_time_formatted": "8:51:00 PM",
+                    "minutes_away": 70,
+                    "train_id": "03 1514  NLT/148",
+                    "is_assigned": false,
+                    "stop_id": "137N"
+                }
+            ],
+            "southbound_trains": [
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768678961,
+                    "arrival_time_formatted": "7:42:41 PM",
+                    "minutes_away": 2,
+                    "train_id": "03 1412  148/NLT",
+                    "is_assigned": true,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768679145,
+                    "arrival_time_formatted": "7:45:45 PM",
+                    "minutes_away": 5,
+                    "train_id": "02 1345  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768679390,
+                    "arrival_time_formatted": "7:49:50 PM",
+                    "minutes_away": 9,
+                    "train_id": "01 1418  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768679559,
+                    "arrival_time_formatted": "7:52:39 PM",
+                    "minutes_away": 12,
+                    "train_id": "02 1353  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768679808,
+                    "arrival_time_formatted": "7:56:48 PM",
+                    "minutes_away": 16,
+                    "train_id": "03 1425  148/NLT",
+                    "is_assigned": true,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768679954,
+                    "arrival_time_formatted": "7:59:14 PM",
+                    "minutes_away": 18,
+                    "train_id": "01 1426  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768680021,
+                    "arrival_time_formatted": "8:00:21 PM",
+                    "minutes_away": 19,
+                    "train_id": "02 1400  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768680167,
+                    "arrival_time_formatted": "8:02:47 PM",
+                    "minutes_away": 22,
+                    "train_id": "03 1434  148/NLT",
+                    "is_assigned": true,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768680365,
+                    "arrival_time_formatted": "8:06:05 PM",
+                    "minutes_away": 25,
+                    "train_id": "01 1434  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768680525,
+                    "arrival_time_formatted": "8:08:45 PM",
+                    "minutes_away": 28,
+                    "train_id": "02 1409  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768680660,
+                    "arrival_time_formatted": "8:11:00 PM",
+                    "minutes_away": 30,
+                    "train_id": "03 1444  148/NLT",
+                    "is_assigned": true,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768680840,
+                    "arrival_time_formatted": "8:14:00 PM",
+                    "minutes_away": 33,
+                    "train_id": "01 1442  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768680856,
+                    "arrival_time_formatted": "8:14:16 PM",
+                    "minutes_away": 33,
+                    "train_id": "02 1417  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768681020,
+                    "arrival_time_formatted": "8:17:00 PM",
+                    "minutes_away": 36,
+                    "train_id": "03 1450  148/NLT",
+                    "is_assigned": false,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768681320,
+                    "arrival_time_formatted": "8:22:00 PM",
+                    "minutes_away": 41,
+                    "train_id": "01 1450  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768681406,
+                    "arrival_time_formatted": "8:23:26 PM",
+                    "minutes_away": 43,
+                    "train_id": "02 1424  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768681680,
+                    "arrival_time_formatted": "8:28:00 PM",
+                    "minutes_away": 47,
+                    "train_id": "03 1501  148/NLT",
+                    "is_assigned": false,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768681800,
+                    "arrival_time_formatted": "8:30:00 PM",
+                    "minutes_away": 49,
+                    "train_id": "01 1458  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768681845,
+                    "arrival_time_formatted": "8:30:45 PM",
+                    "minutes_away": 50,
+                    "train_id": "02 1433  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768682208,
+                    "arrival_time_formatted": "8:36:48 PM",
+                    "minutes_away": 56,
+                    "train_id": "02 1441  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768682280,
+                    "arrival_time_formatted": "8:38:00 PM",
+                    "minutes_away": 57,
+                    "train_id": "01 1506  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "3",
+                    "direction": "S",
+                    "arrival_time": 1768682460,
+                    "arrival_time_formatted": "8:41:00 PM",
+                    "minutes_away": 60,
+                    "train_id": "03 1514  148/NLT",
+                    "is_assigned": false,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768682700,
+                    "arrival_time_formatted": "8:45:00 PM",
+                    "minutes_away": 64,
+                    "train_id": "02 1448  241/FLA",
+                    "is_assigned": true,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768682760,
+                    "arrival_time_formatted": "8:46:00 PM",
+                    "minutes_away": 65,
+                    "train_id": "01 1514  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768683240,
+                    "arrival_time_formatted": "8:54:00 PM",
+                    "minutes_away": 73,
+                    "train_id": "02 1457  241/FLA",
+                    "is_assigned": false,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768683720,
+                    "arrival_time_formatted": "9:02:00 PM",
+                    "minutes_away": 81,
+                    "train_id": "02 1505  241/FLA",
+                    "is_assigned": false,
+                    "stop_id": "137S"
+                },
+                {
+                    "route": "2",
+                    "direction": "S",
+                    "arrival_time": 1768684140,
+                    "arrival_time_formatted": "9:09:00 PM",
+                    "minutes_away": 88,
+                    "train_id": "02 1512  241/FLA",
+                    "is_assigned": false,
+                    "stop_id": "137S"
+                }
+            ]
+        },
+        {
+            "station_id": "136",
+            "station_name": "Franklin St",
+            "location": [
+                40.719318,
+                -74.006886
+            ],
+            "distance_meters": 1466.7664053644307,
+            "distance_miles": 0.9114061080677017,
+            "northbound_trains": [
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768679041,
+                    "arrival_time_formatted": "7:44:01 PM",
+                    "minutes_away": 3,
+                    "train_id": "01 1439  SFT/137",
+                    "is_assigned": true,
+                    "stop_id": "136N"
+                },
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768679580,
+                    "arrival_time_formatted": "7:53:00 PM",
+                    "minutes_away": 12,
+                    "train_id": "01 1447  SFT/137",
+                    "is_assigned": true,
+                    "stop_id": "136N"
+                },
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768680060,
+                    "arrival_time_formatted": "8:01:00 PM",
+                    "minutes_away": 20,
+                    "train_id": "01 1455  SFT/137",
+                    "is_assigned": false,
+                    "stop_id": "136N"
+                },
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768680540,
+                    "arrival_time_formatted": "8:09:00 PM",
+                    "minutes_away": 28,
+                    "train_id": "01 1503  SFT/137",
+                    "is_assigned": false,
+                    "stop_id": "136N"
+                },
+                {
+                    "route": "1",
+                    "direction": "N",
+                    "arrival_time": 1768681020,
+                    "arrival_time_formatted": "8:17:00 PM",
+                    "minutes_away": 36,
+                    "train_id": "01 1511  SFT/137",
+                    "is_assigned": false,
+                    "stop_id": "136N"
+                }
+            ],
+            "southbound_trains": [
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768679300,
+                    "arrival_time_formatted": "7:48:20 PM",
+                    "minutes_away": 7,
+                    "train_id": "01 1418  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "136S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768679864,
+                    "arrival_time_formatted": "7:57:44 PM",
+                    "minutes_away": 17,
+                    "train_id": "01 1426  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "136S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768680275,
+                    "arrival_time_formatted": "8:04:35 PM",
+                    "minutes_away": 24,
+                    "train_id": "01 1434  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "136S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768680750,
+                    "arrival_time_formatted": "8:12:30 PM",
+                    "minutes_away": 32,
+                    "train_id": "01 1442  137/SFT",
+                    "is_assigned": true,
+                    "stop_id": "136S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768681230,
+                    "arrival_time_formatted": "8:20:30 PM",
+                    "minutes_away": 40,
+                    "train_id": "01 1450  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "136S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768681710,
+                    "arrival_time_formatted": "8:28:30 PM",
+                    "minutes_away": 48,
+                    "train_id": "01 1458  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "136S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768682190,
+                    "arrival_time_formatted": "8:36:30 PM",
+                    "minutes_away": 56,
+                    "train_id": "01 1506  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "136S"
+                },
+                {
+                    "route": "1",
+                    "direction": "S",
+                    "arrival_time": 1768682670,
+                    "arrival_time_formatted": "8:44:30 PM",
+                    "minutes_away": 64,
+                    "train_id": "01 1514  137/SFT",
+                    "is_assigned": false,
+                    "stop_id": "136S"
+                }
+            ]
+        },
+        {
+            "station_id": "639",
+            "station_name": "Canal St",
+            "location": [
+                40.718701249999995,
+                -74.00058
+            ],
+            "distance_meters": 1625.5847223534197,
+            "distance_miles": 1.0100912045134667,
+            "northbound_trains": [
+                {
+                    "route": "4",
+                    "direction": "N",
+                    "arrival_time": 1768679040,
+                    "arrival_time_formatted": "7:44:00 PM",
+                    "minutes_away": 3,
+                    "train_id": "04 1442  BBR/3AB",
+                    "is_assigned": false,
+                    "stop_id": "639N"
+                },
+                {
+                    "route": "6",
+                    "direction": "N",
+                    "arrival_time": 1768679220,
+                    "arrival_time_formatted": "7:47:00 PM",
+                    "minutes_away": 6,
+                    "train_id": "06 1445  BBR/PEL",
+                    "is_assigned": false,
+                    "stop_id": "639N"
+                },
+                {
+                    "route": "4",
+                    "direction": "N",
+                    "arrival_time": 1768679520,
+                    "arrival_time_formatted": "7:52:00 PM",
+                    "minutes_away": 11,
+                    "train_id": "04 1450  BBR/WDL",
+                    "is_assigned": false,
+                    "stop_id": "639N"
+                },
+                {
+                    "route": "6",
+                    "direction": "N",
+                    "arrival_time": 1768679700,
+                    "arrival_time_formatted": "7:55:00 PM",
+                    "minutes_away": 14,
+                    "train_id": "06 1453  BBR/PEL",
+                    "is_assigned": false,
+                    "stop_id": "639N"
+                },
+                {
+                    "route": "4",
+                    "direction": "N",
+                    "arrival_time": 1768680000,
+                    "arrival_time_formatted": "8:00:00 PM",
+                    "minutes_away": 19,
+                    "train_id": "04 1458  BBR/3AB",
+                    "is_assigned": false,
+                    "stop_id": "639N"
+                },
+                {
+                    "route": "6",
+                    "direction": "N",
+                    "arrival_time": 1768680180,
+                    "arrival_time_formatted": "8:03:00 PM",
+                    "minutes_away": 22,
+                    "train_id": "06 1501  BBR/PEL",
+                    "is_assigned": false,
+                    "stop_id": "639N"
+                },
+                {
+                    "route": "4",
+                    "direction": "N",
+                    "arrival_time": 1768680480,
+                    "arrival_time_formatted": "8:08:00 PM",
+                    "minutes_away": 27,
+                    "train_id": "04 1506  BBR/WDL",
+                    "is_assigned": false,
+                    "stop_id": "639N"
+                },
+                {
+                    "route": "6",
+                    "direction": "N",
+                    "arrival_time": 1768680660,
+                    "arrival_time_formatted": "8:11:00 PM",
+                    "minutes_away": 30,
+                    "train_id": "06 1509  BBR/PEL",
+                    "is_assigned": false,
+                    "stop_id": "639N"
+                },
+                {
+                    "route": "4",
+                    "direction": "N",
+                    "arrival_time": 1768680960,
+                    "arrival_time_formatted": "8:16:00 PM",
+                    "minutes_away": 35,
+                    "train_id": "04 1514  BBR/3AB",
+                    "is_assigned": false,
+                    "stop_id": "639N"
+                }
+            ],
+            "southbound_trains": [
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768679276,
+                    "arrival_time_formatted": "7:47:56 PM",
+                    "minutes_away": 7,
+                    "train_id": "04 1408+ 3AB/BBR",
+                    "is_assigned": true,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768679455,
+                    "arrival_time_formatted": "7:50:55 PM",
+                    "minutes_away": 10,
+                    "train_id": "06 1343  PEL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768679641,
+                    "arrival_time_formatted": "7:54:01 PM",
+                    "minutes_away": 13,
+                    "train_id": "04 1354  WDL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768679719,
+                    "arrival_time_formatted": "7:55:19 PM",
+                    "minutes_away": 14,
+                    "train_id": "06 1351  PEL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768679943,
+                    "arrival_time_formatted": "7:59:03 PM",
+                    "minutes_away": 18,
+                    "train_id": "04 1424+ 3AB/BBR",
+                    "is_assigned": true,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768680067,
+                    "arrival_time_formatted": "8:01:07 PM",
+                    "minutes_away": 20,
+                    "train_id": "04 1408+ WDL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768680196,
+                    "arrival_time_formatted": "8:03:16 PM",
+                    "minutes_away": 22,
+                    "train_id": "06 1359  PEL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768680570,
+                    "arrival_time_formatted": "8:09:30 PM",
+                    "minutes_away": 29,
+                    "train_id": "06 1407  PEL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768681009,
+                    "arrival_time_formatted": "8:16:49 PM",
+                    "minutes_away": 36,
+                    "train_id": "06 1415  PEL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768681492,
+                    "arrival_time_formatted": "8:24:52 PM",
+                    "minutes_away": 44,
+                    "train_id": "06 1423  PEL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768681592,
+                    "arrival_time_formatted": "8:26:32 PM",
+                    "minutes_away": 46,
+                    "train_id": "04 1426  WDL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768681650,
+                    "arrival_time_formatted": "8:27:30 PM",
+                    "minutes_away": 47,
+                    "train_id": "04 1456+ 3AB/BBR",
+                    "is_assigned": false,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768682124,
+                    "arrival_time_formatted": "8:35:24 PM",
+                    "minutes_away": 54,
+                    "train_id": "06 1431  PEL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768682130,
+                    "arrival_time_formatted": "8:35:30 PM",
+                    "minutes_away": 55,
+                    "train_id": "04 1442  WDL/BBR",
+                    "is_assigned": false,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768682225,
+                    "arrival_time_formatted": "8:37:05 PM",
+                    "minutes_away": 56,
+                    "train_id": "06 1439  PEL/BBR",
+                    "is_assigned": true,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768682610,
+                    "arrival_time_formatted": "8:43:30 PM",
+                    "minutes_away": 63,
+                    "train_id": "04 1512+ 3AB/BBR",
+                    "is_assigned": false,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768682700,
+                    "arrival_time_formatted": "8:45:00 PM",
+                    "minutes_away": 64,
+                    "train_id": "06 1447  PEL/BBR",
+                    "is_assigned": false,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768683000,
+                    "arrival_time_formatted": "8:50:00 PM",
+                    "minutes_away": 69,
+                    "train_id": "04 1456+ WDL/BBR",
+                    "is_assigned": false,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768683270,
+                    "arrival_time_formatted": "8:54:30 PM",
+                    "minutes_away": 74,
+                    "train_id": "06 1455  PEL/BBR",
+                    "is_assigned": false,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768683660,
+                    "arrival_time_formatted": "9:01:00 PM",
+                    "minutes_away": 80,
+                    "train_id": "06 1503  PEL/BBR",
+                    "is_assigned": false,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "4",
+                    "direction": "S",
+                    "arrival_time": 1768684050,
+                    "arrival_time_formatted": "9:07:30 PM",
+                    "minutes_away": 87,
+                    "train_id": "04 1514  WDL/BBR",
+                    "is_assigned": false,
+                    "stop_id": "639S"
+                },
+                {
+                    "route": "6",
+                    "direction": "S",
+                    "arrival_time": 1768684140,
+                    "arrival_time_formatted": "9:09:00 PM",
+                    "minutes_away": 88,
+                    "train_id": "06 1511  PEL/BBR",
+                    "is_assigned": false,
+                    "stop_id": "639S"
+                }
+            ]
+        },
+        {
+            "station_id": "A34",
+            "station_name": "Canal St",
+            "location": [
+                40.720824,
+                -74.005229
+            ],
+            "distance_meters": 1666.9059255907107,
+            "distance_miles": 1.0357670018902254,
+            "northbound_trains": [
+                {
+                    "route": "E",
+                    "direction": "N",
+                    "arrival_time": 1768679220,
+                    "arrival_time_formatted": "7:47:00 PM",
+                    "minutes_away": 6,
+                    "train_id": "1E 1445 WTC/P-A",
+                    "is_assigned": false,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768679505,
+                    "arrival_time_formatted": "7:51:45 PM",
+                    "minutes_away": 11,
+                    "train_id": "1A 1351 FAR/207",
+                    "is_assigned": true,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "E",
+                    "direction": "N",
+                    "arrival_time": 1768679940,
+                    "arrival_time_formatted": "7:59:00 PM",
+                    "minutes_away": 18,
+                    "train_id": "1E 1457 WTC/P-A",
+                    "is_assigned": false,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "C",
+                    "direction": "N",
+                    "arrival_time": 1768679951,
+                    "arrival_time_formatted": "7:59:11 PM",
+                    "minutes_away": 18,
+                    "train_id": "1C 1423+ EUC/168",
+                    "is_assigned": true,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768680111,
+                    "arrival_time_formatted": "8:01:51 PM",
+                    "minutes_away": 21,
+                    "train_id": "1A 1422+ LEF/207",
+                    "is_assigned": true,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "C",
+                    "direction": "N",
+                    "arrival_time": 1768680251,
+                    "arrival_time_formatted": "8:04:11 PM",
+                    "minutes_away": 23,
+                    "train_id": "1C 1435+ EUC/168",
+                    "is_assigned": true,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768680591,
+                    "arrival_time_formatted": "8:09:51 PM",
+                    "minutes_away": 29,
+                    "train_id": "1A 1411 FAR/207",
+                    "is_assigned": true,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "E",
+                    "direction": "N",
+                    "arrival_time": 1768680660,
+                    "arrival_time_formatted": "8:11:00 PM",
+                    "minutes_away": 30,
+                    "train_id": "1E 1509 WTC/P-A",
+                    "is_assigned": false,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "C",
+                    "direction": "N",
+                    "arrival_time": 1768681200,
+                    "arrival_time_formatted": "8:20:00 PM",
+                    "minutes_away": 39,
+                    "train_id": "1C 1447+ EUC/168",
+                    "is_assigned": false,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768681365,
+                    "arrival_time_formatted": "8:22:45 PM",
+                    "minutes_away": 42,
+                    "train_id": "1A 1442+ LEF/207",
+                    "is_assigned": false,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "E",
+                    "direction": "N",
+                    "arrival_time": 1768681380,
+                    "arrival_time_formatted": "8:23:00 PM",
+                    "minutes_away": 42,
+                    "train_id": "1E 1521 WTC/P-A",
+                    "is_assigned": false,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "C",
+                    "direction": "N",
+                    "arrival_time": 1768681800,
+                    "arrival_time_formatted": "8:30:00 PM",
+                    "minutes_away": 49,
+                    "train_id": "1C 1459+ EUC/168",
+                    "is_assigned": false,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "E",
+                    "direction": "N",
+                    "arrival_time": 1768682100,
+                    "arrival_time_formatted": "8:35:00 PM",
+                    "minutes_away": 54,
+                    "train_id": "1E 1533 WTC/P-A",
+                    "is_assigned": false,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768682151,
+                    "arrival_time_formatted": "8:35:51 PM",
+                    "minutes_away": 55,
+                    "train_id": "1A 1431 FAR/207",
+                    "is_assigned": true,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768682484,
+                    "arrival_time_formatted": "8:41:24 PM",
+                    "minutes_away": 60,
+                    "train_id": "1A 1502+ LEF/207",
+                    "is_assigned": false,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "C",
+                    "direction": "N",
+                    "arrival_time": 1768682520,
+                    "arrival_time_formatted": "8:42:00 PM",
+                    "minutes_away": 61,
+                    "train_id": "1C 1511+ EUC/168",
+                    "is_assigned": false,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768682980,
+                    "arrival_time_formatted": "8:49:40 PM",
+                    "minutes_away": 69,
+                    "train_id": "1A 1451 FAR/207",
+                    "is_assigned": false,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "C",
+                    "direction": "N",
+                    "arrival_time": 1768683240,
+                    "arrival_time_formatted": "8:54:00 PM",
+                    "minutes_away": 73,
+                    "train_id": "1C 1523+ EUC/168",
+                    "is_assigned": false,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768683610,
+                    "arrival_time_formatted": "9:00:10 PM",
+                    "minutes_away": 79,
+                    "train_id": "1A 1522+ LEF/207",
+                    "is_assigned": false,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "C",
+                    "direction": "N",
+                    "arrival_time": 1768683960,
+                    "arrival_time_formatted": "9:06:00 PM",
+                    "minutes_away": 85,
+                    "train_id": "1C 1535+ EUC/168",
+                    "is_assigned": false,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768684240,
+                    "arrival_time_formatted": "9:10:40 PM",
+                    "minutes_away": 90,
+                    "train_id": "1A 1511 FAR/207",
+                    "is_assigned": false,
+                    "stop_id": "A34N"
+                },
+                {
+                    "route": "A",
+                    "direction": "N",
+                    "arrival_time": 1768685410,
+                    "arrival_time_formatted": "9:30:10 PM",
+                    "minutes_away": 109,
+                    "train_id": "1A 1531 FAR/207",
+                    "is_assigned": false,
+                    "stop_id": "A34N"
+                }
+            ],
+            "southbound_trains": [
+                {
+                    "route": "C",
+                    "direction": "S",
+                    "arrival_time": 1768678916,
+                    "arrival_time_formatted": "7:41:56 PM",
+                    "minutes_away": 1,
+                    "train_id": "1C 1408 168/EUC",
+                    "is_assigned": true,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768679083,
+                    "arrival_time_formatted": "7:44:43 PM",
+                    "minutes_away": 4,
+                    "train_id": "1A 1408+ 207/FAR",
+                    "is_assigned": true,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "E",
+                    "direction": "S",
+                    "arrival_time": 1768679426,
+                    "arrival_time_formatted": "7:50:26 PM",
+                    "minutes_away": 10,
+                    "train_id": "1E 1405+ P-A/WTC",
+                    "is_assigned": true,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768679531,
+                    "arrival_time_formatted": "7:52:11 PM",
+                    "minutes_away": 11,
+                    "train_id": "1A 1418+ 207/LEF",
+                    "is_assigned": true,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "C",
+                    "direction": "S",
+                    "arrival_time": 1768679881,
+                    "arrival_time_formatted": "7:58:01 PM",
+                    "minutes_away": 17,
+                    "train_id": "1C 1420 168/EUC",
+                    "is_assigned": true,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768680191,
+                    "arrival_time_formatted": "8:03:11 PM",
+                    "minutes_away": 22,
+                    "train_id": "1A 1428+ 207/FAR",
+                    "is_assigned": true,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "E",
+                    "direction": "S",
+                    "arrival_time": 1768680216,
+                    "arrival_time_formatted": "8:03:36 PM",
+                    "minutes_away": 23,
+                    "train_id": "1E 1417+ P-A/WTC",
+                    "is_assigned": true,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "C",
+                    "direction": "S",
+                    "arrival_time": 1768680421,
+                    "arrival_time_formatted": "8:07:01 PM",
+                    "minutes_away": 26,
+                    "train_id": "1C 1432 168/EUC",
+                    "is_assigned": true,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768680821,
+                    "arrival_time_formatted": "8:13:41 PM",
+                    "minutes_away": 33,
+                    "train_id": "1A 1438+ 207/LEF",
+                    "is_assigned": true,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "C",
+                    "direction": "S",
+                    "arrival_time": 1768680980,
+                    "arrival_time_formatted": "8:16:20 PM",
+                    "minutes_away": 35,
+                    "train_id": "1C 1444 168/EUC",
+                    "is_assigned": false,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "E",
+                    "direction": "S",
+                    "arrival_time": 1768681038,
+                    "arrival_time_formatted": "8:17:18 PM",
+                    "minutes_away": 36,
+                    "train_id": "1E 1429+ P-A/WTC",
+                    "is_assigned": true,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768681230,
+                    "arrival_time_formatted": "8:20:30 PM",
+                    "minutes_away": 40,
+                    "train_id": "1A 1446+ 207/FAR",
+                    "is_assigned": false,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "C",
+                    "direction": "S",
+                    "arrival_time": 1768681700,
+                    "arrival_time_formatted": "8:28:20 PM",
+                    "minutes_away": 47,
+                    "train_id": "1C 1456 168/EUC",
+                    "is_assigned": false,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "E",
+                    "direction": "S",
+                    "arrival_time": 1768681815,
+                    "arrival_time_formatted": "8:30:15 PM",
+                    "minutes_away": 49,
+                    "train_id": "1E 1441+ P-A/WTC",
+                    "is_assigned": false,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768681950,
+                    "arrival_time_formatted": "8:32:30 PM",
+                    "minutes_away": 52,
+                    "train_id": "1A 1458+ 207/LEF",
+                    "is_assigned": false,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "C",
+                    "direction": "S",
+                    "arrival_time": 1768682420,
+                    "arrival_time_formatted": "8:40:20 PM",
+                    "minutes_away": 59,
+                    "train_id": "1C 1508 168/EUC",
+                    "is_assigned": false,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "E",
+                    "direction": "S",
+                    "arrival_time": 1768682535,
+                    "arrival_time_formatted": "8:42:15 PM",
+                    "minutes_away": 61,
+                    "train_id": "1E 1453+ P-A/WTC",
+                    "is_assigned": false,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768682550,
+                    "arrival_time_formatted": "8:42:30 PM",
+                    "minutes_away": 62,
+                    "train_id": "1A 1508+ 207/FAR",
+                    "is_assigned": false,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "C",
+                    "direction": "S",
+                    "arrival_time": 1768683140,
+                    "arrival_time_formatted": "8:52:20 PM",
+                    "minutes_away": 71,
+                    "train_id": "1C 1520 168/EUC",
+                    "is_assigned": false,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768683210,
+                    "arrival_time_formatted": "8:53:30 PM",
+                    "minutes_away": 73,
+                    "train_id": "1A 1518+ 207/LEF",
+                    "is_assigned": false,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "E",
+                    "direction": "S",
+                    "arrival_time": 1768683255,
+                    "arrival_time_formatted": "8:54:15 PM",
+                    "minutes_away": 73,
+                    "train_id": "1E 1505+ P-A/WTC",
+                    "is_assigned": false,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "C",
+                    "direction": "S",
+                    "arrival_time": 1768683860,
+                    "arrival_time_formatted": "9:04:20 PM",
+                    "minutes_away": 83,
+                    "train_id": "1C 1532 168/EUC",
+                    "is_assigned": false,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768683900,
+                    "arrival_time_formatted": "9:05:00 PM",
+                    "minutes_away": 84,
+                    "train_id": "1A 1528+ 207/FAR",
+                    "is_assigned": false,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "E",
+                    "direction": "S",
+                    "arrival_time": 1768683975,
+                    "arrival_time_formatted": "9:06:15 PM",
+                    "minutes_away": 85,
+                    "train_id": "1E 1517+ P-A/WTC",
+                    "is_assigned": false,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "A",
+                    "direction": "S",
+                    "arrival_time": 1768684440,
+                    "arrival_time_formatted": "9:14:00 PM",
+                    "minutes_away": 93,
+                    "train_id": "1A 1538+ 207/LEF",
+                    "is_assigned": false,
+                    "stop_id": "A34S"
+                },
+                {
+                    "route": "E",
+                    "direction": "S",
+                    "arrival_time": 1768684695,
+                    "arrival_time_formatted": "9:18:15 PM",
+                    "minutes_away": 97,
+                    "train_id": "1E 1529+ P-A/WTC",
+                    "is_assigned": false,
+                    "stop_id": "A34S"
+                }
+            ]
+        }
+    ]
+}

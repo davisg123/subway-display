@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(brew install:*)",
+      "Bash(pipx install:*)",
+      "Bash(protoc:*)",
+      "Bash(ls:*)",
+      "Bash(~/.platformio/penv/bin/pio run:*)",
+      "Bash(pio run:*)",
+      "Bash(~/.platformio/penv/bin/pio:*)",
+      "Bash(python3:*)"
+    ]
+  }
+}
