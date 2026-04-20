@@ -8,7 +8,10 @@ HWCDC USBSerial;
 #include "display.h"
 #include "kalshi_display.h"
 #include "config_portal.h"
+#include "ota.h"
 const unsigned long POLL_INTERVAL_MS = 60000;
+const unsigned long OTA_CHECK_INTERVAL_MS = 3600000;  // 1 hour
+unsigned long lastOTACheck = 0;
 
 // Kalshi API configuration
 const char* KALSHI_API_URL = "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLGAME-26JAN18HOUNE-NE";
@@ -261,7 +264,7 @@ void setup() {
 
   // Connect to WiFi using config portal
   if (!startWiFi()) {
-    Serial.println("In AP config mode - connect to SubwaySign-Setup WiFi");
+    Serial.println("In AP config mode - connect to Sign Setup WiFi");
     return;  // Stay in config mode
   }
 
@@ -278,12 +281,15 @@ void setup() {
 
   // Connect to WiFi using config portal
   if (!startWiFi()) {
-    Serial.println("In AP config mode - connect to SubwaySign-Setup WiFi");
+    Serial.println("In AP config mode - connect to Sign Setup WiFi");
     return;  // Stay in config mode, loop will handle portal
   }
 
   // Start config server for settings changes
   startConfigServer();
+
+  checkForOTAUpdate();
+  lastOTACheck = millis();
 
   fetchSubwayTimes();
   lastPollTime = millis();
@@ -293,6 +299,7 @@ void loop() {
   // Handle config portal if in AP mode
   if (isInConfigMode()) {
     handleConfigPortal();
+    updateAPModeDisplay();
     delay(10);
     return;
   }
@@ -305,6 +312,11 @@ void loop() {
   delay(10);
   return;
   #endif
+
+  if (millis() - lastOTACheck >= OTA_CHECK_INTERVAL_MS) {
+    checkForOTAUpdate();
+    lastOTACheck = millis();
+  }
 
   if (millis() - lastPollTime >= POLL_INTERVAL_MS) {
     fetchSubwayTimes();

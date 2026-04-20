@@ -25,35 +25,59 @@ const unsigned long ANIMATION_STEP_MS = 62;       // ~16fps during animation
 const int ANIMATION_SPEED = 1;                    // Pixels per step (16 steps * 62ms ≈ 1 second)
 
 void initDisplay() {
+  Serial.println("initDisplay: start");
+
   HUB75_I2S_CFG mxconfig(PANEL_RES_X, PANEL_RES_Y, PANEL_CHAIN);
 
   // MatrixPortal ESP32-S3 specific pin configuration
-  mxconfig.gpio.r1 = 42;
-  mxconfig.gpio.g1 = 41;
-  mxconfig.gpio.b1 = 40;
-  mxconfig.gpio.r2 = 38;
-  mxconfig.gpio.g2 = 39;
-  mxconfig.gpio.b2 = 37;
-  mxconfig.gpio.a = 45;
-  mxconfig.gpio.b = 36;
-  mxconfig.gpio.c = 48;
-  mxconfig.gpio.d = 35;
-  mxconfig.gpio.e = 21;
-  mxconfig.gpio.lat = 47;
-  mxconfig.gpio.oe = 14;
-  mxconfig.gpio.clk = 2;
+  // mxconfig.gpio.r1 = 42;
+  // mxconfig.gpio.g1 = 41;
+  // mxconfig.gpio.b1 = 40;
+  // mxconfig.gpio.r2 = 38;
+  // mxconfig.gpio.g2 = 39;
+  // mxconfig.gpio.b2 = 37;
+  // mxconfig.gpio.a = 45;
+  // mxconfig.gpio.b = 36;
+  // mxconfig.gpio.c = 48;
+  // mxconfig.gpio.d = 35;
+  // mxconfig.gpio.e = 21;
+  // mxconfig.gpio.lat = 47;
+  // mxconfig.gpio.oe = 14;
+  // mxconfig.gpio.clk = 2;
 
-  mxconfig.driver = HUB75_I2S_CFG::ICN2038S;
+  // Huidu WF2 ESP32-S3 pin configuration (75EX1 connector)
+  mxconfig.gpio.r1  = 2;
+  mxconfig.gpio.r2  = 3;
+  mxconfig.gpio.g1  = 6;
+  mxconfig.gpio.g2  = 7;
+  mxconfig.gpio.b1  = 10;
+  mxconfig.gpio.b2  = 11;
+  mxconfig.gpio.a   = 39;
+  mxconfig.gpio.b   = 38;
+  mxconfig.gpio.c   = 37;
+  mxconfig.gpio.d   = 36;
+  mxconfig.gpio.e   = 21;
+  mxconfig.gpio.lat = 33;
+  mxconfig.gpio.oe  = 35;
+  mxconfig.gpio.clk = 34;
+
+  // Use SHIFTREG (generic) driver — avoids ICN2038S init sequence corrupting panels
+  // that don't need it. Switch back to ICN2038S if colors are wrong.
+  mxconfig.driver = HUB75_I2S_CFG::SHIFTREG;
   mxconfig.clkphase = false;
   mxconfig.latch_blanking = 1;
-  mxconfig.double_buff = true;  // Enable double buffering for flicker-free animation
+  mxconfig.double_buff = true;
 
   dma_display = new MatrixPanel_I2S_DMA(mxconfig);
-  dma_display->begin();
+  bool ok = dma_display->begin();
+  Serial.printf("initDisplay: begin() returned %s\n", ok ? "true" : "false");
+
   dma_display->setBrightness8(90);
   dma_display->clearScreen();
   dma_display->flipDMABuffer();
   dma_display->clearScreen();
+
+  Serial.println("initDisplay: done");
 }
 
 uint16_t getRouteColor(char route) {
@@ -267,14 +291,37 @@ void updateDisplay() {
   }
 }
 
+static unsigned long lastAPScrollTime = 0;
+void updateAPModeDisplay() {
+  unsigned long now = millis();
+  if (now - lastAPScrollTime < 500) return;
+  lastAPScrollTime = now;
+
+  dma_display->clearScreen();
+
+  dma_display->setTextSize(1);
+  dma_display->setTextColor(dma_display->color565(255, 200, 0));
+  dma_display->setCursor(2, 4);
+  dma_display->print("WiFi: Sign Setup");
+
+  dma_display->setTextColor(dma_display->color565(0, 255, 255));
+  dma_display->setCursor(2, 20);
+  dma_display->print("Visit: sign.local");
+
+  dma_display->flipDMABuffer();
+}
+
 void runLampTest() {
+  const char* colors[] = {"RED", "GREEN", "BLUE"};
   int colorIndex = 0;
   while (true) {
+    Serial.printf("runLampTest: %s\n", colors[colorIndex]);
     dma_display->fillScreenRGB888(
-      colorIndex == 0 ? 255 : 0,  // R
-      colorIndex == 1 ? 255 : 0,  // G
-      colorIndex == 2 ? 255 : 0   // B
+      colorIndex == 0 ? 255 : 0,
+      colorIndex == 1 ? 255 : 0,
+      colorIndex == 2 ? 255 : 0
     );
+    dma_display->flipDMABuffer();
     delay(1000);
     colorIndex = (colorIndex + 1) % 3;
   }

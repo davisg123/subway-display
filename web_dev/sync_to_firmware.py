@@ -32,8 +32,9 @@ def update_progmem(cpp_source, var_name, new_html):
         r'(.*?)'
         r'(\)rawliteral";)'
     )
-    replacement = rf'\g<1>\n{new_html}\g<3>'
-    result, count = re.subn(pattern, replacement, cpp_source, flags=re.DOTALL)
+    def replacer(m):
+        return m.group(1) + '\n' + new_html + m.group(3)
+    result, count = re.subn(pattern, replacer, cpp_source, flags=re.DOTALL)
     if count == 0:
         print(f"WARNING: Could not find {var_name} in config_portal.cpp")
     return result
@@ -43,9 +44,11 @@ def main():
     with open(CPP_FILE) as f:
         cpp = f.read()
 
+    wifi_html = read_html("wifi_setup.html")
     config_html = read_html("index.html")
     success_html = read_html("success.html")
 
+    cpp = update_progmem(cpp, "WIFI_HTML", wifi_html)
     cpp = update_progmem(cpp, "CONFIG_HTML", config_html)
     cpp = update_progmem(cpp, "SUCCESS_HTML", success_html)
 

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Subway Sign Setup</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, sans-serif; max-width: 420px; margin: 0 auto; padding: 40px 20px; background: #f5f5f7; color: #1d1d1f; min-height: 100vh; }
+    h1 { color: #0071e3; font-size: 22px; margin: 0 0 4px 0; }
+    .subtitle { color: #86868b; font-size: 14px; margin-bottom: 40px; }
+    label { color: #6e6e73; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    input[type="text"], input[type="password"] {
+      width: 100%; padding: 14px; margin: 0 0 24px 0; border: 1px solid #d2d2d7; border-radius: 10px;
+      background: #fff; color: #1d1d1f; font-size: 18px; transition: border-color 0.2s;
+    }
+    input:focus { border-color: #0071e3; outline: none; box-shadow: 0 0 0 3px rgba(0,113,227,0.15); }
+    input::placeholder { color: #aeaeb2; }
+    .btn { width: 100%; padding: 16px; border: none; border-radius: 10px; cursor: pointer; font-size: 16px; font-weight: 600; background: #0071e3; color: #fff; transition: background 0.2s; }
+    .btn:hover { background: #0077ed; }
+    .skip-btn { display: block; text-align: center; background: none; border: none; color: #aeaeb2; font-size: 13px; cursor: pointer; padding: 12px 0 0 0; width: 100%; }
+    .skip-btn:hover { color: #6e6e73; }
+    .hint { color: #86868b; font-size: 13px; line-height: 1.5; margin-bottom: 24px; padding: 14px; background: #fff; border-radius: 10px; }
+    .hint strong { color: #1d1d1f; }
+  </style>
+</head>
+<body>
+  <h1>Subway Sign Setup</h1>
+  <p class="subtitle">Step 1 of 2 &mdash; Connect to WiFi</p>
+
+  <div class="hint">
+    On your iPhone, go to <strong>Settings &rarr; Wi-Fi</strong>. Your current network is shown at the top with a checkmark.
+  </div>
+
+  <form action="/save" method="POST">
+    <label>Network Name (SSID)</label>
+    <input type="text" name="ssid" placeholder="Your WiFi network" value="{{SSID}}" required autocomplete="off" autocorrect="off" autocapitalize="none">
+
+    <label>Password</label>
+    <input type="password" name="password" placeholder="WiFi password" value="{{PASSWORD}}">
+
+    <button type="submit" class="btn">Connect &amp; Continue</button>
+    <button type="submit" class="skip-btn" formnovalidate onclick="document.querySelector('[name=password]').value=''">No password? Connect to open network</button>
+  </form>
+</body>
+</html>

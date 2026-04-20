@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Settings Saved</title>
   <style>
-    body { font-family: -apple-system, sans-serif; max-width: 400px; margin: 40px auto; padding: 20px; background: #1a1a2e; color: #eee; text-align: center; }
-    h1 { color: #00d4ff; }
-    .success { background: #1e4620; padding: 20px; border-radius: 8px; margin: 20px 0; }
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, sans-serif; max-width: 420px; margin: 0 auto; padding: 40px 20px; background: #f5f5f7; color: #1d1d1f; text-align: center; }
+    h1 { color: #0071e3; font-size: 22px; }
+    .card { background: #fff; border-radius: 16px; padding: 28px 24px; margin-top: 24px; }
+    .icon { font-size: 48px; margin-bottom: 12px; }
+    p { color: #6e6e73; font-size: 15px; line-height: 1.6; margin: 8px 0; }
+    strong { color: #1d1d1f; }
   </style>
 </head>
 <body>
   <h1>Settings Saved!</h1>
-  <div class="success">
-    <p>The subway sign is now restarting...</p>
-    <p>It will connect to <strong>{{SSID}}</strong></p>
-    <p>Once connected, access it at:<br><strong>http://subway-sign.local</strong></p>
+  <div class="card">
+    <div class="icon">&#9989;</div>
+    <p>Your sign is restarting with the new settings.</p>
+    <p>It will be available at<br><strong>http://sign.local</strong></p>
   </div>
 </body>
 </html>

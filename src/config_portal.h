@@ -10,6 +10,7 @@ struct DeviceConfig {
   double latitude;
   double longitude;
   int train_limit;
+  char station_ids[512];
 };
 
 // Initialize the config portal system (loads saved config from flash)

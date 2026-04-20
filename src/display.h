@@ -24,6 +24,7 @@ struct TrainArrival {
 void initDisplay();
 void setTrainArrivals(TrainArrival* trains, int count);
 void updateDisplay();  // Call from loop() to animate
+void updateAPModeDisplay();  // Call from loop() when in AP mode
 uint16_t getRouteColor(char route);
 void runLampTest();
 

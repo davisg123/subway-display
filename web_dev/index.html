@@ -17,7 +17,7 @@
     .page.active { display: block; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     label { color: #6e6e73; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
-    input[type="text"], input[type="password"], input[type="number"] {
+    input[type="text"], input[type="number"] {
       width: 100%; padding: 14px; margin: 0 0 20px 0; border: 1px solid #d2d2d7; border-radius: 10px;
       background: #fff; color: #1d1d1f; font-size: 18px; transition: border-color 0.2s;
     }
@@ -28,16 +28,14 @@
     .btn-primary:hover { background: #0077ed; transform: translateY(-1px); }
     .btn-secondary { background: #e8e8ed; color: #1d1d1f; }
     .btn-secondary:hover { background: #d2d2d7; }
-    .btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
     .btn-row { display: flex; gap: 10px; margin-top: 10px; }
     .btn-row .btn-primary { flex: 1; }
     #map { width: 100%; height: 260px; border-radius: 10px; margin: 0 0 12px 0; border: 1px solid #d2d2d7; }
+    #map-section { display: none; }
     .coords { color: #aeaeb2; font-size: 12px; margin-bottom: 20px; }
     .page-icon { font-size: 40px; margin-bottom: 16px; display: block; }
     .page-title { font-size: 20px; font-weight: 600; color: #1d1d1f; margin-bottom: 6px; }
     .page-desc { color: #6e6e73; font-size: 14px; margin-bottom: 24px; line-height: 1.5; }
-    .skip-btn { background: none; border: none; color: #aeaeb2; font-size: 13px; cursor: pointer; padding: 8px 0; }
-    .skip-btn:hover { color: #6e6e73; }
     .pac-container { background: #fff !important; border: 1px solid #d2d2d7 !important; border-radius: 0 0 10px 10px !important; box-shadow: 0 4px 16px rgba(0,0,0,0.1) !important; margin-top: -2px !important; }
     .pac-item { background: #fff !important; color: #1d1d1f !important; border-top: 1px solid #f0f0f0 !important; padding: 10px 14px !important; cursor: pointer !important; line-height: 1.4 !important; }
     .pac-item:hover, .pac-item-selected { background: #f5f5f7 !important; }
@@ -48,99 +46,117 @@
     .review-label { color: #86868b; font-size: 13px; }
     .review-value { color: #1d1d1f; font-size: 15px; font-weight: 500; }
     .review-edit { color: #0071e3; background: none; border: none; font-size: 13px; cursor: pointer; font-weight: 500; }
+
+    /* Station selection */
+    .stations-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .stations-toolbar span { color: #86868b; font-size: 13px; }
+    .stations-quick-btns { display: flex; gap: 12px; }
+    .quick-btn { background: none; border: none; color: #0071e3; font-size: 13px; font-weight: 500; cursor: pointer; padding: 0; }
+    .station-card { display: flex; align-items: center; padding: 12px 14px; margin-bottom: 8px; border-radius: 12px; cursor: pointer; transition: background 0.15s; background: #fff; border: 2px solid transparent; user-select: none; }
+    .station-card.selected { background: #e8f1fd; border-color: #0071e3; }
+    .station-info { flex: 1; }
+    .station-name { font-size: 16px; font-weight: 600; color: #1d1d1f; margin-bottom: 6px; }
+    .station-routes { display: flex; gap: 5px; margin-bottom: 4px; flex-wrap: wrap; }
+    .route-badge { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+    .station-dist { color: #aeaeb2; font-size: 12px; }
+    .stations-loading { text-align: center; padding: 40px 0; color: #86868b; font-size: 14px; }
+    .stations-spinner { width: 32px; height: 32px; border: 3px solid #d2d2d7; border-top-color: #0071e3; border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 12px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .stations-error { background: #fff2f2; border: 1px solid #ffc7c7; border-radius: 10px; padding: 16px; text-align: center; color: #c00; font-size: 14px; }
+    .stations-error button { margin-top: 10px; background: #c00; color: #fff; border: none; border-radius: 8px; padding: 8px 16px; cursor: pointer; font-size: 13px; }
   </style>
 </head>
 <body>
   <h1>Subway Sign Setup</h1>
-  <p class="subtitle">Let's get your sign connected</p>
+  <p class="subtitle">Step 2 of 2 &mdash; Configure your sign</p>
 
   <div class="step-dots">
     <div class="dot active" id="dot-0"></div>
     <div class="dot" id="dot-1"></div>
     <div class="dot" id="dot-2"></div>
-    <div class="dot" id="dot-3"></div>
   </div>
 
   <form action="/save" method="POST" id="setup-form">
 
-    <!-- Step 1: WiFi Network -->
+    <!-- Step 1: Location -->
     <div class="page active" id="page-0">
-      <div class="page-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="#0071e3"/></svg></div>
-      <div class="page-title">WiFi Network</div>
-      <div class="page-desc">Enter the name of the WiFi network your sign will connect to.<br><br>On your iPhone, go to <strong>Settings &rarr; Wi-Fi</strong>. The network you're connected to will be shown at the top with a checkmark. Tap the <strong>(i)</strong> icon next to it to see the full network name.</div>
-      <label>Network Name (SSID)</label>
-      <input type="text" name="ssid" id="ssid" placeholder="e.g. MyHomeWiFi" value="{{SSID}}" required>
-      <div class="btn-row">
-        <button type="button" class="btn btn-primary" onclick="nextPage()">Continue</button>
-      </div>
-    </div>
-
-    <!-- Step 2: WiFi Password -->
-    <div class="page" id="page-1">
-      <div class="page-icon">&#128274;</div>
-      <div class="page-title">WiFi Password</div>
-      <div class="page-desc">Enter the password for your WiFi network.<br><br>On your iPhone, go to <strong>Settings &rarr; Wi-Fi</strong>, tap the <strong>(i)</strong> icon next to your network, then tap <strong>Password</strong>. Authenticate with Face ID or your passcode to reveal it.</div>
-      <label>Password</label>
-      <input type="password" name="password" id="password" placeholder="WiFi password" value="{{PASSWORD}}">
-      <div class="btn-row">
-        <button type="button" class="btn btn-secondary" onclick="prevPage()">Back</button>
-        <button type="button" class="btn btn-primary" onclick="nextPage()">Continue</button>
-      </div>
-      <center><button type="button" class="skip-btn" onclick="nextPage()">No password? Skip</button></center>
-    </div>
-
-    <!-- Step 3: Location -->
-    <div class="page" id="page-2">
       <div class="page-icon">&#128205;</div>
       <div class="page-title">Your Location</div>
       <div class="page-desc">Search for an address or tap the map to set where your sign is located.</div>
-      <label>Search address</label>
-      <input type="text" id="address" placeholder="e.g. 123 Broadway, New York" autocomplete="off">
-      <div id="map"></div>
-      <div class="coords">Lat: <span id="lat-display">{{LAT}}</span>, Lon: <span id="lon-display">{{LON}}</span></div>
+      <div id="map-section">
+        <label>Search address</label>
+        <input type="text" id="address" placeholder="e.g. 123 Broadway, New York" autocomplete="off">
+        <div id="map"></div>
+        <div class="coords">Lat: <span id="lat-display">{{LAT}}</span>, Lon: <span id="lon-display">{{LON}}</span></div>
+      </div>
+      <div id="manual-coords" style="display:none">
+        <label>Latitude</label>
+        <input type="text" id="lat-manual" placeholder="40.706565" value="{{LAT}}" oninput="updateCoords(parseFloat(this.value)||0, parseFloat(document.getElementById('lon-manual').value)||0)">
+        <label>Longitude</label>
+        <input type="text" id="lon-manual" placeholder="-74.011333" value="{{LON}}" oninput="updateCoords(parseFloat(document.getElementById('lat-manual').value)||0, parseFloat(this.value)||0)">
+      </div>
       <input type="hidden" name="lat" id="lat" value="{{LAT}}" required>
       <input type="hidden" name="lon" id="lon" value="{{LON}}" required>
       <label>Nearby trains to fetch</label>
       <input type="number" name="limit" id="limit" min="1" max="50" value="{{LIMIT}}">
       <div class="btn-row">
+        <button type="button" class="btn btn-primary" onclick="nextPage()">Continue</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Station Selection -->
+    <div class="page" id="page-1">
+      <div class="page-icon">&#128644;</div>
+      <div class="page-title">Nearby Stations</div>
+      <div class="page-desc">Choose which stations to display on your sign.</div>
+
+      <div id="stations-loading" class="stations-loading">
+        <div class="stations-spinner"></div>
+        Looking up nearby stations&hellip;
+      </div>
+      <div id="stations-error" class="stations-error" style="display:none">
+        Could not load nearby stations.
+        <br><button type="button" onclick="fetchStations()">Try again</button>
+      </div>
+      <div id="stations-list" style="display:none"></div>
+
+      <input type="hidden" name="station_ids" id="station_ids" value="">
+
+      <div class="btn-row" style="margin-top: 24px;">
         <button type="button" class="btn btn-secondary" onclick="prevPage()">Back</button>
         <button type="button" class="btn btn-primary" onclick="nextPage()">Continue</button>
       </div>
     </div>
 
-    <!-- Step 4: Review -->
-    <div class="page" id="page-3">
+    <!-- Step 3: Review -->
+    <div class="page" id="page-2">
       <div class="page-icon">&#9989;</div>
       <div class="page-title">Review &amp; Save</div>
       <div class="page-desc">Make sure everything looks right before saving.</div>
 
       <div class="review-item">
-        <div><div class="review-label">WiFi Network</div><div class="review-value" id="r-ssid"></div></div>
+        <div><div class="review-label">Location</div><div class="review-value" id="r-location"></div></div>
         <button type="button" class="review-edit" onclick="goToPage(0)">Edit</button>
       </div>
       <div class="review-item">
-        <div><div class="review-label">Password</div><div class="review-value" id="r-password"></div></div>
-        <button type="button" class="review-edit" onclick="goToPage(1)">Edit</button>
-      </div>
-      <div class="review-item">
-        <div><div class="review-label">Location</div><div class="review-value" id="r-location"></div></div>
-        <button type="button" class="review-edit" onclick="goToPage(2)">Edit</button>
-      </div>
-      <div class="review-item">
         <div><div class="review-label">Train Limit</div><div class="review-value" id="r-limit"></div></div>
-        <button type="button" class="review-edit" onclick="goToPage(2)">Edit</button>
+        <button type="button" class="review-edit" onclick="goToPage(0)">Edit</button>
+      </div>
+      <div class="review-item">
+        <div><div class="review-label">Stations</div><div class="review-value" id="r-stations"></div></div>
+        <button type="button" class="review-edit" onclick="goToPage(1)">Edit</button>
       </div>
 
       <div class="btn-row" style="margin-top: 24px;">
         <button type="button" class="btn btn-secondary" onclick="prevPage()">Back</button>
-        <button type="submit" class="btn btn-primary">Save &amp; Connect</button>
+        <button type="submit" class="btn btn-primary">Save &amp; Restart</button>
       </div>
     </div>
   </form>
 
   <script>
     var currentPage = 0;
-    var totalPages = 4;
+    var totalPages = 3;
 
     function goToPage(n) {
       document.getElementById('page-' + currentPage).classList.remove('active');
@@ -152,14 +168,11 @@
         if (i === n) dot.classList.add('active');
       }
       currentPage = n;
-      if (n === 3) populateReview();
+      if (n === 2) populateReview();
     }
 
     function nextPage() {
-      if (currentPage === 0) {
-        var ssid = document.getElementById('ssid').value.trim();
-        if (!ssid) { document.getElementById('ssid').focus(); return; }
-      }
+      if (currentPage === 0) fetchStations();
       if (currentPage < totalPages - 1) goToPage(currentPage + 1);
     }
 
@@ -168,36 +181,169 @@
     }
 
     function populateReview() {
-      document.getElementById('r-ssid').textContent = document.getElementById('ssid').value || '\u2014';
-      var pw = document.getElementById('password').value;
-      document.getElementById('r-password').textContent = pw ? '\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022' : '(none)';
       var lat = document.getElementById('lat').value;
       var lon = document.getElementById('lon').value;
       document.getElementById('r-location').textContent = lat + ', ' + lon;
       document.getElementById('r-limit').textContent = document.getElementById('limit').value || '20';
+
+      var total = stationData.length;
+      var selected = selectedStations.size;
+      if (total === 0) {
+        document.getElementById('r-stations').textContent = 'All nearby';
+      } else if (selected === total) {
+        document.getElementById('r-stations').textContent = 'All ' + total + ' stations';
+      } else {
+        document.getElementById('r-stations').textContent = selected + ' of ' + total + ' stations';
+      }
     }
 
-    // Google Maps
+    // ── Station selection ─────────────────────────────────────────────────────
+
+    var stationData = [];
+    var selectedStations = new Set();
+
+    var ROUTE_COLORS = {
+      '1': '#EE352E', '2': '#EE352E', '3': '#EE352E',
+      '4': '#00933C', '5': '#00933C', '6': '#00933C',
+      '7': '#B933AD',
+      'A': '#0039A6', 'C': '#0039A6', 'E': '#0039A6',
+      'B': '#FF6319', 'D': '#FF6319', 'F': '#FF6319', 'M': '#FF6319',
+      'G': '#6CBE45',
+      'J': '#996633', 'Z': '#996633',
+      'L': '#A7A9AC',
+      'N': '#FCCC0A', 'Q': '#FCCC0A', 'R': '#FCCC0A', 'W': '#FCCC0A',
+      'S': '#808183'
+    };
+    var DARK_TEXT_ROUTES = { 'N': 1, 'Q': 1, 'R': 1, 'W': 1, 'L': 1, 'S': 1 };
+
+    function fetchStations() {
+      var lat = document.getElementById('lat').value;
+      var lon = document.getElementById('lon').value;
+      var limit = document.getElementById('limit').value || 20;
+
+      document.getElementById('stations-loading').style.display = 'block';
+      document.getElementById('stations-error').style.display = 'none';
+      document.getElementById('stations-list').style.display = 'none';
+
+      fetch('/api/stations?lat=' + lat + '&lon=' + lon + '&limit=' + limit)
+        .then(function(r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.json();
+        })
+        .then(function(data) {
+          stationData = data.stations || [];
+          selectedStations = new Set();
+          updateStationIds();
+          renderStations();
+          document.getElementById('stations-loading').style.display = 'none';
+          document.getElementById('stations-list').style.display = 'block';
+        })
+        .catch(function() {
+          document.getElementById('stations-loading').style.display = 'none';
+          document.getElementById('stations-error').style.display = 'block';
+        });
+    }
+
+    function getRoutes(station) {
+      var routes = station.routes || [];
+      if (routes.length) return routes;
+      var seen = {};
+      var out = [];
+      var trains = (station.northbound_trains || []).concat(station.southbound_trains || []);
+      trains.forEach(function(t) { if (!seen[t.route]) { seen[t.route] = 1; out.push(t.route); } });
+      return out.sort();
+    }
+
+    function formatDist(meters) {
+      var feet = meters * 3.28084;
+      if (feet < 1000) return Math.round(feet) + ' ft';
+      return (feet / 5280).toFixed(1) + ' mi';
+    }
+
+    function renderStations() {
+      var list = document.getElementById('stations-list');
+      if (stationData.length === 0) {
+        list.innerHTML = '<p style="color:#86868b;text-align:center;padding:24px 0;">No stations found near this location.</p>';
+        return;
+      }
+
+      var html = '<div class="stations-toolbar">' +
+        '<span>' + stationData.length + ' stations found</span>' +
+        '<div class="stations-quick-btns">' +
+          '<button type="button" class="quick-btn" onclick="selectAllStations(true)">Select all</button>' +
+          '<button type="button" class="quick-btn" onclick="selectAllStations(false)">None</button>' +
+        '</div></div>';
+
+      stationData.forEach(function(station) {
+        var id = station.station_id || station.id;
+        var name = station.station_name || station.name;
+        var routes = getRoutes(station);
+        var badges = routes.map(function(r) {
+          var bg = ROUTE_COLORS[r] || '#808183';
+          var color = DARK_TEXT_ROUTES[r] ? '#000' : '#fff';
+          return '<span class="route-badge" style="background:' + bg + ';color:' + color + '">' + r + '</span>';
+        }).join('');
+
+        html += '<div class="station-card" id="card-' + id + '" onclick="toggleStation(\'' + id + '\')">' +
+          '<div class="station-info">' +
+            '<div class="station-name">' + name + '</div>' +
+            '<div class="station-routes">' + badges + '</div>' +
+            '<div class="station-dist">' + formatDist(station.distance_meters) + ' away</div>' +
+          '</div></div>';
+      });
+
+      list.innerHTML = html;
+    }
+
+    function toggleStation(id) {
+      var card = document.getElementById('card-' + id);
+      if (selectedStations.has(id)) {
+        selectedStations.delete(id);
+        card.classList.remove('selected');
+      } else {
+        selectedStations.add(id);
+        card.classList.add('selected');
+      }
+      updateStationIds();
+    }
+
+    function selectAllStations(select) {
+      stationData.forEach(function(s) {
+        var id = s.station_id || s.id;
+        var card = document.getElementById('card-' + id);
+        if (select) {
+          selectedStations.add(id);
+          if (card) card.classList.add('selected');
+        } else {
+          selectedStations.delete(id);
+          if (card) card.classList.remove('selected');
+        }
+      });
+      updateStationIds();
+    }
+
+    function updateStationIds() {
+      document.getElementById('station_ids').value = Array.from(selectedStations).join(',');
+    }
+
+    // ── Google Maps ───────────────────────────────────────────────────────────
+
     var map, marker;
 
     function initMap() {
       var lat = parseFloat(document.getElementById('lat').value) || 40.706565;
       var lng = parseFloat(document.getElementById('lon').value) || -74.011333;
       var pos = { lat: lat, lng: lng };
+      document.getElementById('map-section').style.display = 'block';
+      document.getElementById('manual-coords').style.display = 'none';
 
       map = new google.maps.Map(document.getElementById('map'), {
-        center: pos,
-        zoom: 15,
-        disableDefaultUI: true,
-        zoomControl: true
+        center: pos, zoom: 15, disableDefaultUI: true, zoomControl: true
       });
-
       marker = new google.maps.Marker({ position: pos, map: map, draggable: true });
-
       marker.addListener('dragend', function() {
         updateCoords(marker.getPosition().lat(), marker.getPosition().lng());
       });
-
       map.addListener('click', function(e) {
         marker.setPosition({ lat: e.latLng.lat(), lng: e.latLng.lng() });
         updateCoords(e.latLng.lat(), e.latLng.lng());
@@ -205,17 +351,14 @@
 
       var input = document.getElementById('address');
       var autocomplete = new google.maps.places.Autocomplete(input, {
-        types: ['geocode'],
-        componentRestrictions: { country: 'us' }
+        types: ['geocode'], componentRestrictions: { country: 'us' }
       });
       autocomplete.bindTo('bounds', map);
-
       autocomplete.addListener('place_changed', function() {
         var place = autocomplete.getPlace();
         if (!place.geometry) return;
         var loc = place.geometry.location;
-        map.setCenter(loc);
-        map.setZoom(16);
+        map.setCenter(loc); map.setZoom(16);
         marker.setPosition(loc);
         updateCoords(loc.lat(), loc.lng());
       });
@@ -228,6 +371,15 @@
       document.getElementById('lon').value = lngStr;
       document.getElementById('lat-display').textContent = latStr;
       document.getElementById('lon-display').textContent = lngStr;
+    }
+
+    window.gm_authFailure = showManualCoords;
+    window.setTimeout(function() {
+      if (typeof google === 'undefined') showManualCoords();
+    }, 5000);
+    function showManualCoords() {
+      document.getElementById('map-section').style.display = 'none';
+      document.getElementById('manual-coords').style.display = 'block';
     }
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEEwRPO5vH7aom3xblwKXZu73a_NOC4aw&libraries=places&callback=initMap" async defer></script>
