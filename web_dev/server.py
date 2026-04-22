@@ -20,6 +20,22 @@ import urllib.error
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.parse import parse_qs, urlparse
 
+
+def load_env():
+    env = {}
+    env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
+    if os.path.exists(env_path):
+        with open(env_path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    k, v = line.split("=", 1)
+                    env[k.strip()] = v.strip()
+    return env
+
+
+ENV = load_env()
+
 PORT = 8080
 DIR = os.path.dirname(os.path.abspath(__file__))
 CONFIG_FILE = os.path.join(DIR, "config.json")
@@ -54,6 +70,7 @@ def render(template_name, config):
     html = html.replace("{{LAT}}", config.get("lat", ""))
     html = html.replace("{{LON}}", config.get("lon", ""))
     html = html.replace("{{LIMIT}}", config.get("limit", "20"))
+    html = html.replace("{{GOOGLE_MAPS_API_KEY}}", ENV.get("GOOGLE_MAPS_API_KEY", ""))
     return html
 
 

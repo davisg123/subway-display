@@ -3,3 +3,6 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
+sim/subway_sim
+web_dev/.env
+web_dev/config.json
