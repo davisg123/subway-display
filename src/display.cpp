@@ -306,7 +306,26 @@ void updateAPModeDisplay() {
 
   dma_display->setTextColor(dma_display->color565(0, 255, 255));
   dma_display->setCursor(2, 20);
-  dma_display->print("Visit: sign.local");
+  dma_display->print("192.168.4.1");
+
+  dma_display->flipDMABuffer();
+}
+
+void showConnectedDisplay(const char* ipAddr) {
+  dma_display->clearScreen();
+
+  dma_display->setTextSize(1);
+  dma_display->setTextColor(dma_display->color565(0, 255, 100));
+  dma_display->setCursor(2, 4);
+  dma_display->print("WiFi connected!");
+
+  dma_display->setTextColor(dma_display->color565(0, 255, 255));
+  dma_display->setCursor(2, 13);
+  dma_display->print("Visit sign.local");
+
+  dma_display->setTextColor(dma_display->color565(150, 150, 150));
+  dma_display->setCursor(2, 23);
+  dma_display->print(ipAddr);
 
   dma_display->flipDMABuffer();
 }

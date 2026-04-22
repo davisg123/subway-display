@@ -25,6 +25,7 @@ void initDisplay();
 void setTrainArrivals(TrainArrival* trains, int count);
 void updateDisplay();  // Call from loop() to animate
 void updateAPModeDisplay();  // Call from loop() when in AP mode
+void showConnectedDisplay(const char* ipAddr);  // Show after WiFi connects, before trains load
 uint16_t getRouteColor(char route);
 void runLampTest();
 

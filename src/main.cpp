@@ -288,6 +288,8 @@ void setup() {
   // Start config server for settings changes
   startConfigServer();
 
+  showConnectedDisplay(WiFi.localIP().toString().c_str());
+
   checkForOTAUpdate();
   lastOTACheck = millis();
 

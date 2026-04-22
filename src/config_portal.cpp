@@ -2,8 +2,11 @@
 #include <WiFi.h>
 #include <ESPAsyncWebServer.h>
 #include <ESPmDNS.h>
-#include <Preferences.h>
+#include <LittleFS.h>
+#include <ArduinoJson.h>
 #include <DNSServer.h>
+#include <HTTPClient.h>
+#include <WiFiClientSecure.h>
 
 // AP configuration
 static const char* AP_SSID = "Sign Setup";
@@ -21,10 +24,13 @@ static const unsigned long WIFI_CONNECT_TIMEOUT = 15000;
 // State
 static bool configMode = false;
 static DeviceConfig config;
-static Preferences preferences;
 static AsyncWebServer server(80);
 static DNSServer dnsServer;
 static bool serverStarted = false;
+static unsigned long restartAt = 0; // non-zero means restart is pending
+static volatile bool pendingSave = false;
+
+static const char* CONFIG_PATH = "/config.json";
 
 // Default configuration
 static const double DEFAULT_LAT = 40.706565;
@@ -502,38 +508,60 @@ static const char SUCCESS_HTML[] PROGMEM = R"rawliteral(
 
 // Load configuration from flash
 static void loadConfig() {
-  // Open read-write so the namespace is created on first boot if it doesn't exist yet
-  preferences.begin("subway", false);
+  if (!LittleFS.begin(true)) {
+    Serial.println("LittleFS mount failed, using defaults");
+    config.latitude = DEFAULT_LAT;
+    config.longitude = DEFAULT_LON;
+    config.train_limit = DEFAULT_LIMIT;
+    return;
+  }
 
-  String ssid = preferences.getString("ssid", "");
-  String password = preferences.getString("password", "");
+  if (LittleFS.exists(CONFIG_PATH)) {
+    File f = LittleFS.open(CONFIG_PATH, "r");
+    JsonDocument doc;
+    DeserializationError err = deserializeJson(doc, f);
+    f.close();
+    if (!err) {
+      strncpy(config.wifi_ssid,      doc["ssid"]       | "", sizeof(config.wifi_ssid) - 1);
+      strncpy(config.wifi_password,  doc["password"]   | "", sizeof(config.wifi_password) - 1);
+      config.latitude    = doc["lat"]    | DEFAULT_LAT;
+      config.longitude   = doc["lon"]    | DEFAULT_LON;
+      config.train_limit = doc["limit"]  | DEFAULT_LIMIT;
+      strncpy(config.station_ids,    doc["station_ids"] | "", sizeof(config.station_ids) - 1);
+    } else {
+      Serial.printf("Config parse error: %s\n", err.c_str());
+    }
+  } else {
+    Serial.println("No config file, using defaults");
+    config.latitude = DEFAULT_LAT;
+    config.longitude = DEFAULT_LON;
+    config.train_limit = DEFAULT_LIMIT;
+  }
 
-  strncpy(config.wifi_ssid, ssid.c_str(), sizeof(config.wifi_ssid) - 1);
-  strncpy(config.wifi_password, password.c_str(), sizeof(config.wifi_password) - 1);
-  config.latitude = preferences.getDouble("lat", DEFAULT_LAT);
-  config.longitude = preferences.getDouble("lon", DEFAULT_LON);
-  config.train_limit = preferences.getInt("limit", DEFAULT_LIMIT);
-  String stationIds = preferences.getString("station_ids", "");
-  strncpy(config.station_ids, stationIds.c_str(), sizeof(config.station_ids) - 1);
-
-  preferences.end();
-
+  LittleFS.end();
   Serial.printf("Loaded config - SSID: %s, Lat: %.6f, Lon: %.6f\n",
                 config.wifi_ssid, config.latitude, config.longitude);
 }
 
 // Save configuration to flash
 static void saveConfig() {
-  preferences.begin("subway", false); // read-write
+  if (!LittleFS.begin(true)) {
+    Serial.println("LittleFS mount failed, cannot save");
+    return;
+  }
 
-  preferences.putString("ssid", config.wifi_ssid);
-  preferences.putString("password", config.wifi_password);
-  preferences.putDouble("lat", config.latitude);
-  preferences.putDouble("lon", config.longitude);
-  preferences.putInt("limit", config.train_limit);
-  preferences.putString("station_ids", config.station_ids);
+  JsonDocument doc;
+  doc["ssid"]       = config.wifi_ssid;
+  doc["password"]   = config.wifi_password;
+  doc["lat"]        = config.latitude;
+  doc["lon"]        = config.longitude;
+  doc["limit"]      = config.train_limit;
+  doc["station_ids"]= config.station_ids;
 
-  preferences.end();
+  File f = LittleFS.open(CONFIG_PATH, "w");
+  serializeJson(doc, f);
+  f.close();
+  LittleFS.end();
 
   Serial.println("Configuration saved to flash");
 }
@@ -587,13 +615,10 @@ static void setupAPRoutes() {
     if (request->hasParam("password", true)) {
       strncpy(config.wifi_password, request->getParam("password", true)->value().c_str(), sizeof(config.wifi_password) - 1);
     }
-    saveConfig();
+    pendingSave = true;
 
     String html = FPSTR(SUCCESS_HTML);
     request->send(200, "text/html", html);
-
-    delay(2000);
-    ESP.restart();
   });
 
   server.onNotFound([](AsyncWebServerRequest *request) { request->redirect("/"); });
@@ -609,6 +634,26 @@ static void setupConfigRoutes() {
     request->send(200, "text/html", html);
   });
 
+  server.on("/api/stations", HTTP_GET, [](AsyncWebServerRequest *request) {
+    String lat = request->hasParam("lat") ? request->getParam("lat")->value() : String(config.latitude, 6);
+    String lon = request->hasParam("lon") ? request->getParam("lon")->value() : String(config.longitude, 6);
+    String limit = request->hasParam("limit") ? request->getParam("limit")->value() : "20";
+
+    String url = "https://7vwbvo32dk.execute-api.us-east-1.amazonaws.com/stations/nearby?lat=" + lat + "&lon=" + lon + "&limit=" + limit;
+
+    WiFiClientSecure client;
+    client.setInsecure(); // skip cert verification — internal API call
+    HTTPClient http;
+    http.begin(client, url);
+    int code = http.GET();
+    if (code == 200) {
+      request->send(200, "application/json", http.getString());
+    } else {
+      request->send(502, "application/json", "{\"error\":\"upstream " + String(code) + "\"}");
+    }
+    http.end();
+  });
+
   server.on("/save", HTTP_POST, [](AsyncWebServerRequest *request) {
     if (request->hasParam("lat", true)) {
       config.latitude = request->getParam("lat", true)->value().toDouble();
@@ -622,13 +667,10 @@ static void setupConfigRoutes() {
     if (request->hasParam("station_ids", true)) {
       strncpy(config.station_ids, request->getParam("station_ids", true)->value().c_str(), sizeof(config.station_ids) - 1);
     }
-    saveConfig();
+    pendingSave = true;
 
     String html = FPSTR(SUCCESS_HTML);
     request->send(200, "text/html", html);
-
-    delay(2000);
-    ESP.restart();
   });
 }
 
@@ -685,6 +727,15 @@ bool startWiFi() {
 }
 
 void handleConfigPortal() {
+  if (pendingSave) {
+    pendingSave = false;
+    saveConfig();
+    restartAt = millis() + 1000;
+  }
+  if (restartAt != 0 && millis() >= restartAt) {
+    restartAt = 0;
+    ESP.restart();
+  }
   if (configMode) {
     dnsServer.processNextRequest();
   }
