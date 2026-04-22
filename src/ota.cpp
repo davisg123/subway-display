@@ -5,8 +5,12 @@
 #include <WiFiClientSecure.h>
 #include <ArduinoJson.h>
 
-#define OTA_REPO        "davisgossage/subway_sign"
-#define OTA_API_URL     "https://api.github.com/repos/" OTA_REPO "/releases/latest"
+#define OTA_REPO        "davisg123/subway-display"
+#if OTA_INCLUDE_PRERELEASES
+#define OTA_API_URL "https://api.github.com/repos/" OTA_REPO "/releases"
+#else
+#define OTA_API_URL "https://api.github.com/repos/" OTA_REPO "/releases/latest"
+#endif
 
 static void showOTAMessage(const char* line1, const char* line2) {
   MatrixPanel_I2S_DMA* display = getDisplay();
@@ -46,8 +50,18 @@ void checkForOTAUpdate() {
     return;
   }
 
+#if OTA_INCLUDE_PRERELEASES
+  JsonObject release = doc[0].as<JsonObject>();
+  if (release.isNull()) {
+    Serial.println("OTA: no releases found");
+    return;
+  }
+#else
+  JsonObject release = doc.as<JsonObject>();
+#endif
+
   // tag_name is e.g. "v1.0.1" — strip leading 'v'
-  String tag = doc["tag_name"].as<String>();
+  String tag = release["tag_name"].as<String>();
   if (tag.startsWith("v")) tag = tag.substring(1);
 
   if (tag == FIRMWARE_VERSION) {
@@ -57,7 +71,7 @@ void checkForOTAUpdate() {
 
   // Find firmware.bin asset download URL
   String downloadUrl;
-  for (JsonObject asset : doc["assets"].as<JsonArray>()) {
+  for (JsonObject asset : release["assets"].as<JsonArray>()) {
     String name = asset["name"].as<String>();
     if (name == "firmware.bin") {
       downloadUrl = asset["browser_download_url"].as<String>();
