@@ -46,6 +46,14 @@
     .toggle input:checked + .slider { background: #34c759; }
     .toggle input:checked + .slider::before { transform: translateX(18px); }
 
+    /* Brightness slider */
+    .bright-row { display: flex; align-items: center; gap: 14px; }
+    .bright-icon { font-size: 18px; line-height: 1; }
+    .bright-row input[type=range] { flex: 1; -webkit-appearance: none; appearance: none; height: 6px; border-radius: 3px; background: #d2d2d7; outline: none; }
+    .bright-row input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 26px; height: 26px; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.3); cursor: pointer; }
+    .bright-row input[type=range]::-moz-range-thumb { width: 26px; height: 26px; border: none; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.3); cursor: pointer; }
+    .bright-val { font-size: 15px; font-weight: 600; color: #1d1d1f; width: 44px; text-align: right; }
+
     /* Schedule */
     .sched-toolbar { display: flex; justify-content: flex-end; margin-bottom: 4px; }
     .quick-btn { background: none; border: none; color: #0071e3; font-size: 13px; font-weight: 500; cursor: pointer; padding: 0; }
@@ -122,6 +130,16 @@
           </div>
           <label class="toggle"><input type="checkbox" id="auto-toggle" onchange="onAutoToggle(this.checked)"><span class="slider"></span></label>
         </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Brightness</div>
+      <div class="bright-row">
+        <span class="bright-icon">☀</span>
+        <input type="range" id="brightness" min="10" max="255" step="5" value="90"
+               oninput="onBrightnessInput(this.value)" onchange="onBrightnessCommit(this.value)">
+        <span class="bright-val" id="bright-val">&mdash;</span>
       </div>
     </div>
 
@@ -226,6 +244,10 @@
           if (p.lat) { document.getElementById('lat').value = p.lat; document.getElementById('lat-display').textContent = p.lat; var lm = document.getElementById('lat-manual'); if (lm) lm.value = p.lat; }
           if (p.lon) { document.getElementById('lon').value = p.lon; document.getElementById('lon-display').textContent = p.lon; var om = document.getElementById('lon-manual'); if (om) om.value = p.lon; }
           if (p.limit) document.getElementById('limit').value = p.limit;
+          if (p.brightness != null) {
+            document.getElementById('brightness').value = p.brightness;
+            onBrightnessInput(p.brightness);
+          }
           savedStationIds = p.station_ids || '';
           if (data.firmware) document.getElementById('fw-version').textContent = 'Firmware v' + data.firmware;
           renderSchedule();
@@ -249,6 +271,12 @@
         ? 'Following schedule — ' + (currentOn ? 'on now' : 'off now')
         : 'Manual override — turn on Automatic to use the schedule';
     }
+
+    // ── Brightness ──────────────────────────────────────────────────────────
+    function onBrightnessInput(v) {
+      document.getElementById('bright-val').textContent = Math.round(v / 255 * 100) + '%';
+    }
+    function onBrightnessCommit(v) { postPrefs({ brightness: parseInt(v, 10) }); }
 
     function onBigSwitch(checked) { setMode(checked ? 'on' : 'off'); }
     function onAutoToggle(checked) { setMode(checked ? 'auto' : (currentOn ? 'on' : 'off')); }

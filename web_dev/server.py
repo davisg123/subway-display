@@ -56,6 +56,7 @@ DEFAULT_CONFIG = {
     "station_ids": "",
     "schedule": default_schedule(),
     "override": "auto",
+    "brightness": 90,
 }
 
 
@@ -106,6 +107,7 @@ def preferences_payload(cfg):
             "station_ids": cfg.get("station_ids", ""),
             "schedule": cfg.get("schedule") or default_schedule(),
             "override": cfg.get("override", "auto"),
+            "brightness": cfg.get("brightness", 90),
         },
         "state": {"on": effective_on(cfg), "mode": cfg.get("override", "auto")},
         "firmware": FIRMWARE_VERSION,
@@ -132,6 +134,7 @@ def render(template_name, config):
     html = html.replace("{{LAT}}", config.get("lat", ""))
     html = html.replace("{{LON}}", config.get("lon", ""))
     html = html.replace("{{LIMIT}}", config.get("limit", "20"))
+    html = html.replace("{{BRIGHTNESS}}", str(config.get("brightness", 90)))
     html = html.replace("{{GOOGLE_MAPS_API_KEY}}", ENV.get("GOOGLE_MAPS_API_KEY", ""))
     return html
 
@@ -233,6 +236,8 @@ class Handler(BaseHTTPRequestHandler):
                     config[key] = str(patch[key])
             if patch.get("override") is not None:
                 config["override"] = patch["override"]
+            if patch.get("brightness") is not None:
+                config["brightness"] = max(0, min(255, int(patch["brightness"])))
             if isinstance(patch.get("schedule"), dict):
                 config["schedule"] = patch["schedule"]
             save_config(config)
@@ -248,6 +253,8 @@ class Handler(BaseHTTPRequestHandler):
                 for key in ("ssid", "password"):
                     if key in params:
                         config[key] = params[key][0]
+                if "brightness" in params:
+                    config["brightness"] = max(0, min(255, int(params["brightness"][0])))
                 print(f"[wifi] saved ssid={config.get('ssid')}")
             else:
                 for key in ("lat", "lon", "limit", "station_ids"):

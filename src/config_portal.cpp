@@ -1,6 +1,7 @@
 #include "config_portal.h"
 #include "schedule.h"
 #include "version.h"
+#include "display.h"
 #include <WiFi.h>
 #include <ESPAsyncWebServer.h>
 #include <AsyncJson.h>
@@ -47,6 +48,7 @@ static const char* CONFIG_PATH = "/config.json";
 static const double DEFAULT_LAT = 40.706565;
 static const double DEFAULT_LON = -74.011333;
 static const int DEFAULT_LIMIT = 20;
+static const int DEFAULT_BRIGHTNESS = 90;  // 0-255
 
 // HTML for AP mode WiFi setup (no internet available)
 static const char WIFI_HTML[] PROGMEM = R"rawliteral(
@@ -74,7 +76,12 @@ static const char WIFI_HTML[] PROGMEM = R"rawliteral(
     .skip-btn:hover { color: #6e6e73; }
     .hint { color: #86868b; font-size: 13px; line-height: 1.5; margin-bottom: 24px; padding: 14px; background: #fff; border-radius: 10px; }
     .hint strong { color: #1d1d1f; }
-  </style>
+    .bright-row { display: flex; align-items: center; gap: 12px; margin: 0 0 24px 0; }
+    .bright-row input[type=range] { flex: 1; -webkit-appearance: none; appearance: none; height: 6px; border-radius: 3px; background: #d2d2d7; outline: none; }
+    .bright-row input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 26px; height: 26px; border-radius: 50%; background: #0071e3; cursor: pointer; }
+    .bright-row input[type=range]::-moz-range-thumb { width: 26px; height: 26px; border: none; border-radius: 50%; background: #0071e3; cursor: pointer; }
+    .bright-val { font-size: 15px; font-weight: 600; width: 44px; text-align: right; }
+</style>
 </head>
 <body>
   <h1>Subway Sign Setup</h1>
@@ -91,9 +98,23 @@ static const char WIFI_HTML[] PROGMEM = R"rawliteral(
     <label>Password</label>
     <input type="password" name="password" placeholder="WiFi password" value="%PASSWORD%">
 
+    <label>Brightness</label>
+    <div class="bright-row">
+      <span>&#9728;</span>
+      <input type="range" name="brightness" id="brightness" min="10" max="255" step="5" value="%BRIGHTNESS%"
+             oninput="document.getElementById('bright-val').textContent = Math.round(this.value/255*100)+'%'">
+      <span class="bright-val" id="bright-val"></span>
+    </div>
+
     <button type="submit" class="btn">Connect &amp; Continue</button>
     <button type="submit" class="skip-btn" formnovalidate onclick="document.querySelector('[name=password]').value=''">No password? Connect to open network</button>
   </form>
+  <script>
+    (function () {
+      var b = document.getElementById('brightness');
+      document.getElementById('bright-val').textContent = Math.round(b.value / 255 * 100) + '%';
+    })();
+  </script>
 </body>
 </html>
 )rawliteral";
@@ -148,6 +169,14 @@ static const char DASHBOARD_HTML[] PROGMEM = R"rawliteral(
     .toggle .slider::before { content: ""; position: absolute; height: 22px; width: 22px; left: 2px; top: 2px; background: #fff; border-radius: 50%; transition: 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
     .toggle input:checked + .slider { background: #34c759; }
     .toggle input:checked + .slider::before { transform: translateX(18px); }
+
+    /* Brightness slider */
+    .bright-row { display: flex; align-items: center; gap: 14px; }
+    .bright-icon { font-size: 18px; line-height: 1; }
+    .bright-row input[type=range] { flex: 1; -webkit-appearance: none; appearance: none; height: 6px; border-radius: 3px; background: #d2d2d7; outline: none; }
+    .bright-row input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 26px; height: 26px; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.3); cursor: pointer; }
+    .bright-row input[type=range]::-moz-range-thumb { width: 26px; height: 26px; border: none; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.3); cursor: pointer; }
+    .bright-val { font-size: 15px; font-weight: 600; color: #1d1d1f; width: 44px; text-align: right; }
 
     /* Schedule */
     .sched-toolbar { display: flex; justify-content: flex-end; margin-bottom: 4px; }
@@ -225,6 +254,16 @@ static const char DASHBOARD_HTML[] PROGMEM = R"rawliteral(
           </div>
           <label class="toggle"><input type="checkbox" id="auto-toggle" onchange="onAutoToggle(this.checked)"><span class="slider"></span></label>
         </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Brightness</div>
+      <div class="bright-row">
+        <span class="bright-icon">☀</span>
+        <input type="range" id="brightness" min="10" max="255" step="5" value="90"
+               oninput="onBrightnessInput(this.value)" onchange="onBrightnessCommit(this.value)">
+        <span class="bright-val" id="bright-val">&mdash;</span>
       </div>
     </div>
 
@@ -329,6 +368,10 @@ static const char DASHBOARD_HTML[] PROGMEM = R"rawliteral(
           if (p.lat) { document.getElementById('lat').value = p.lat; document.getElementById('lat-display').textContent = p.lat; var lm = document.getElementById('lat-manual'); if (lm) lm.value = p.lat; }
           if (p.lon) { document.getElementById('lon').value = p.lon; document.getElementById('lon-display').textContent = p.lon; var om = document.getElementById('lon-manual'); if (om) om.value = p.lon; }
           if (p.limit) document.getElementById('limit').value = p.limit;
+          if (p.brightness != null) {
+            document.getElementById('brightness').value = p.brightness;
+            onBrightnessInput(p.brightness);
+          }
           savedStationIds = p.station_ids || '';
           if (data.firmware) document.getElementById('fw-version').textContent = 'Firmware v' + data.firmware;
           renderSchedule();
@@ -352,6 +395,12 @@ static const char DASHBOARD_HTML[] PROGMEM = R"rawliteral(
         ? 'Following schedule — ' + (currentOn ? 'on now' : 'off now')
         : 'Manual override — turn on Automatic to use the schedule';
     }
+
+    // ── Brightness ──────────────────────────────────────────────────────────
+    function onBrightnessInput(v) {
+      document.getElementById('bright-val').textContent = Math.round(v / 255 * 100) + '%';
+    }
+    function onBrightnessCommit(v) { postPrefs({ brightness: parseInt(v, 10) }); }
 
     function onBigSwitch(checked) { setMode(checked ? 'on' : 'off'); }
     function onAutoToggle(checked) { setMode(checked ? 'auto' : (currentOn ? 'on' : 'off')); }
@@ -609,6 +658,7 @@ static void loadConfig() {
   // Defaults for all paths below
   config.schedule = defaultSchedule();
   config.power_override = POWER_AUTO;
+  config.brightness = DEFAULT_BRIGHTNESS;
 
   if (!LittleFS.begin(true)) {
     Serial.println("LittleFS mount failed, using defaults");
@@ -632,6 +682,7 @@ static void loadConfig() {
       strncpy(config.station_ids,    doc["station_ids"] | "", sizeof(config.station_ids) - 1);
       if (doc["schedule"].is<JsonObject>()) scheduleFromJson(doc["schedule"], config.schedule);
       config.power_override = parsePowerMode(doc["override"] | "auto");
+      config.brightness = doc["brightness"] | DEFAULT_BRIGHTNESS;
     } else {
       Serial.printf("Config parse error: %s\n", err.c_str());
     }
@@ -662,6 +713,7 @@ static void saveConfig() {
   doc["limit"]      = config.train_limit;
   doc["station_ids"]= config.station_ids;
   doc["override"]   = powerModeStr(config.power_override);
+  doc["brightness"] = config.brightness;
   scheduleToJson(config.schedule, doc["schedule"].to<JsonObject>());
 
   File f = LittleFS.open(CONFIG_PATH, "w");
@@ -705,6 +757,7 @@ static void setupAPRoutes() {
     String html = FPSTR(WIFI_HTML);
     html.replace(F("%SSID%"), String(config.wifi_ssid));
     html.replace(F("%PASSWORD%"), String(config.wifi_password));
+    html.replace(F("%BRIGHTNESS%"), String(config.brightness));
     request->send(200, "text/html", html);
   });
 
@@ -720,6 +773,9 @@ static void setupAPRoutes() {
     }
     if (request->hasParam("password", true)) {
       strncpy(config.wifi_password, request->getParam("password", true)->value().c_str(), sizeof(config.wifi_password) - 1);
+    }
+    if (request->hasParam("brightness", true)) {
+      config.brightness = constrain(request->getParam("brightness", true)->value().toInt(), 0, 255);
     }
     pendingSave = true;
     pendingRestart = true;  // reboot to connect with the new credentials
@@ -752,6 +808,7 @@ static void writePreferencesJson(JsonDocument& doc) {
   prefs["limit"] = config.train_limit;
   prefs["station_ids"] = config.station_ids;
   prefs["override"] = powerModeStr(config.power_override);
+  prefs["brightness"] = config.brightness;
   scheduleToJson(config.schedule, prefs["schedule"].to<JsonObject>());
 
   JsonObject state = doc["state"].to<JsonObject>();
@@ -822,6 +879,11 @@ static void setupConfigRoutes() {
         strncpy(config.station_ids, body["station_ids"], sizeof(config.station_ids) - 1);
       if (body["override"].is<const char*>())
         config.power_override = parsePowerMode(body["override"]);
+      if (!body["brightness"].isNull()) {
+        int b = body["brightness"].is<const char*>() ? atoi(body["brightness"]) : body["brightness"].as<int>();
+        config.brightness = constrain(b, 0, 255);
+        setDisplayBrightness((uint8_t)config.brightness);
+      }
       if (body["schedule"].is<JsonObject>())
         scheduleFromJson(body["schedule"], config.schedule);
 

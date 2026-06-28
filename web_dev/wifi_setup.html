@@ -22,7 +22,12 @@
     .skip-btn:hover { color: #6e6e73; }
     .hint { color: #86868b; font-size: 13px; line-height: 1.5; margin-bottom: 24px; padding: 14px; background: #fff; border-radius: 10px; }
     .hint strong { color: #1d1d1f; }
-  </style>
+    .bright-row { display: flex; align-items: center; gap: 12px; margin: 0 0 24px 0; }
+    .bright-row input[type=range] { flex: 1; -webkit-appearance: none; appearance: none; height: 6px; border-radius: 3px; background: #d2d2d7; outline: none; }
+    .bright-row input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 26px; height: 26px; border-radius: 50%; background: #0071e3; cursor: pointer; }
+    .bright-row input[type=range]::-moz-range-thumb { width: 26px; height: 26px; border: none; border-radius: 50%; background: #0071e3; cursor: pointer; }
+    .bright-val { font-size: 15px; font-weight: 600; width: 44px; text-align: right; }
+</style>
 </head>
 <body>
   <h1>Subway Sign Setup</h1>
@@ -39,8 +44,22 @@
     <label>Password</label>
     <input type="password" name="password" placeholder="WiFi password" value="{{PASSWORD}}">
 
+    <label>Brightness</label>
+    <div class="bright-row">
+      <span>&#9728;</span>
+      <input type="range" name="brightness" id="brightness" min="10" max="255" step="5" value="{{BRIGHTNESS}}"
+             oninput="document.getElementById('bright-val').textContent = Math.round(this.value/255*100)+'%'">
+      <span class="bright-val" id="bright-val"></span>
+    </div>
+
     <button type="submit" class="btn">Connect &amp; Continue</button>
     <button type="submit" class="skip-btn" formnovalidate onclick="document.querySelector('[name=password]').value=''">No password? Connect to open network</button>
   </form>
+  <script>
+    (function () {
+      var b = document.getElementById('brightness');
+      document.getElementById('bright-val').textContent = Math.round(b.value / 255 * 100) + '%';
+    })();
+  </script>
 </body>
 </html>

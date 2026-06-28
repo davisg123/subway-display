@@ -14,6 +14,7 @@ struct DeviceConfig {
   char station_ids[512];
   WeeklySchedule schedule;
   PowerMode power_override;
+  int brightness;  // 0-255 panel brightness
 };
 
 // Initialize the config portal system (loads saved config from flash)

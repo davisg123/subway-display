@@ -12,7 +12,7 @@ HWCDC USBSerial;
 #include "config_portal.h"
 #include "ota.h"
 const unsigned long POLL_INTERVAL_MS = 60000;
-const unsigned long OTA_CHECK_INTERVAL_MS = 3600000;  // 1 hour
+const unsigned long OTA_CHECK_INTERVAL_MS = 600000;  // 10 minutes
 unsigned long lastOTACheck = 0;
 
 // Kalshi API configuration
@@ -212,6 +212,7 @@ void setup() {
 
   initDisplay();
   initConfigPortal();
+  setDisplayBrightness((uint8_t)getConfig()->brightness);
 
   #if LAMP_TEST_ENABLED
   runLampTest();  // Never returns

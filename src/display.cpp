@@ -21,6 +21,7 @@ bool isAnimating = false;
 unsigned long lastAnimationTime = 0;
 unsigned long lastTrainSwitch = 0;
 static bool displayOn = true;    // false when the schedule/override powers the sign off
+static uint8_t currentBrightness = 90;  // 0-255; overridden by saved config at boot
 
 const unsigned long DISPLAY_DURATION_MS = 15000;  // dwell before scrolling to next train
 const unsigned long ANIMATION_STEP_MS = 100;  // ~10fps — 16 steps * 100ms ≈ 1.6s wipe
@@ -82,12 +83,19 @@ void initDisplay() {
   bool ok = dma_display->begin();
   Serial.printf("initDisplay: begin() returned %s\n", ok ? "true" : "false");
 
-  dma_display->setBrightness8(90);
+  dma_display->setBrightness8(currentBrightness);
   dma_display->clearScreen();
   dma_display->flipDMABuffer();
   dma_display->clearScreen();
 
   Serial.println("initDisplay: done");
+}
+
+// Set panel brightness (0-255). Persists across power on/off since the value
+// lives in the driver's refresh; reapplied here so dashboard changes are live.
+void setDisplayBrightness(uint8_t value) {
+  currentBrightness = value;
+  if (dma_display) dma_display->setBrightness8(value);
 }
 
 uint16_t getRouteColor(char route) {
