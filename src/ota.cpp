@@ -12,6 +12,39 @@
 #define OTA_API_URL "https://api.github.com/repos/" OTA_REPO "/releases/latest"
 #endif
 
+// Parse "major.minor.patch" (ignoring any trailing pre-release/build suffix).
+// Returns false if the string doesn't start with three dotted numbers.
+static bool parseSemver(const String& v, long out[3]) {
+  out[0] = out[1] = out[2] = 0;
+  int start = 0;
+  for (int i = 0; i < 3; i++) {
+    if (start >= (int)v.length() || !isDigit(v[start])) return false;
+    long n = 0;
+    while (start < (int)v.length() && isDigit(v[start])) {
+      n = n * 10 + (v[start] - '0');
+      start++;
+    }
+    out[i] = n;
+    if (i < 2) {
+      if (start >= (int)v.length() || v[start] != '.') return false;
+      start++;  // skip '.'
+    }
+  }
+  return true;
+}
+
+// True only when `remote` is a strictly newer semver than `local`. If either
+// version can't be parsed (e.g. a "dev" / git-describe build), returns false so
+// we never auto-flash an unversioned unit or downgrade it.
+static bool isNewerVersion(const String& remote, const String& local) {
+  long r[3], l[3];
+  if (!parseSemver(remote, r) || !parseSemver(local, l)) return false;
+  for (int i = 0; i < 3; i++) {
+    if (r[i] != l[i]) return r[i] > l[i];
+  }
+  return false;
+}
+
 static void showOTAMessage(const char* line1, const char* line2) {
   MatrixPanel_I2S_DMA* display = getDisplay();
   display->clearScreen();
@@ -64,8 +97,9 @@ void checkForOTAUpdate() {
   String tag = release["tag_name"].as<String>();
   if (tag.startsWith("v")) tag = tag.substring(1);
 
-  if (tag == FIRMWARE_VERSION) {
-    Serial.printf("OTA: up to date (%s)\n", FIRMWARE_VERSION);
+  if (!isNewerVersion(tag, FIRMWARE_VERSION)) {
+    Serial.printf("OTA: up to date (running %s, latest %s)\n",
+      FIRMWARE_VERSION, tag.c_str());
     return;
   }
 

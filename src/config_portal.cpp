@@ -1,5 +1,6 @@
 #include "config_portal.h"
 #include "schedule.h"
+#include "version.h"
 #include <WiFi.h>
 #include <ESPAsyncWebServer.h>
 #include <AsyncJson.h>
@@ -11,8 +12,8 @@
 #include <WiFiClientSecure.h>
 #include <time.h>
 
-// Firmware version (shown subtly on the dashboard)
-static const char* FIRMWARE_VERSION = "1.0.0";
+// Firmware version (FIRMWARE_VERSION) comes from version.h, injected at build
+// time from the git tag. Shown subtly on the dashboard.
 
 // POSIX timezone for America/New_York (used by the on/off schedule)
 static const char* TZ_AMERICA_NEW_YORK = "EST5EDT,M3.2.0,M11.1.0";
