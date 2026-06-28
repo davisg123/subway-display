@@ -40,6 +40,13 @@ PORT = 8080
 DIR = os.path.dirname(os.path.abspath(__file__))
 CONFIG_FILE = os.path.join(DIR, "config.json")
 
+FIRMWARE_VERSION = "1.0.0"
+
+
+def default_schedule():
+    return {str(d): {"enabled": True, "on": "06:00", "off": "00:00"} for d in range(7)}
+
+
 DEFAULT_CONFIG = {
     "ssid": "",
     "password": "",
@@ -47,7 +54,62 @@ DEFAULT_CONFIG = {
     "lon": "-74.011333",
     "limit": "20",
     "station_ids": "",
+    "schedule": default_schedule(),
+    "override": "auto",
 }
+
+
+def _to_min(s):
+    try:
+        h, m = str(s).split(":")
+        return int(h) * 60 + int(m)
+    except Exception:
+        return 0
+
+
+def is_sign_on(schedule, now):
+    """schedule keyed '0'(Sun)..'6'(Sat) to match JS Date.getDay()."""
+    minutes = now.hour * 60 + now.minute
+    today = (now.weekday() + 1) % 7  # python Mon=0 -> Sun=0 convention
+    for offset in (0, -1):
+        d = (schedule or {}).get(str((today + offset + 7) % 7))
+        if not d or not d.get("enabled"):
+            continue
+        on, off = _to_min(d.get("on", "06:00")), _to_min(d.get("off", "00:00"))
+        if off > on:
+            if offset == 0 and on <= minutes < off:
+                return True
+        else:
+            if offset == 0 and minutes >= on:
+                return True
+            if offset == -1 and minutes < off:
+                return True
+    return False
+
+
+def effective_on(cfg):
+    import datetime
+    mode = cfg.get("override", "auto")
+    if mode == "on":
+        return True
+    if mode == "off":
+        return False
+    return is_sign_on(cfg.get("schedule") or default_schedule(), datetime.datetime.now())
+
+
+def preferences_payload(cfg):
+    return {
+        "preferences": {
+            "lat": cfg.get("lat", ""),
+            "lon": cfg.get("lon", ""),
+            "limit": cfg.get("limit", "20"),
+            "station_ids": cfg.get("station_ids", ""),
+            "schedule": cfg.get("schedule") or default_schedule(),
+            "override": cfg.get("override", "auto"),
+        },
+        "state": {"on": effective_on(cfg), "mode": cfg.get("override", "auto")},
+        "firmware": FIRMWARE_VERSION,
+    }
 
 
 def load_config():
@@ -75,6 +137,13 @@ def render(template_name, config):
 
 
 class Handler(BaseHTTPRequestHandler):
+    def _send_json(self, obj, status=200):
+        body = json.dumps(obj).encode()
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json")
+        self.end_headers()
+        self.wfile.write(body)
+
     def do_GET(self):
         parsed = urlparse(self.path)
         path = parsed.path
@@ -89,13 +158,25 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(html.encode())
 
         elif path == "/" or path == "":
-            # Simulate sign.local full config wizard
+            # Simulate sign.local connected dashboard
             config = load_config()
-            html = render("index.html", config)
+            html = render("dashboard.html", config)
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.end_headers()
             self.wfile.write(html.encode())
+
+        elif path == "/api/preferences":
+            self._send_json(preferences_payload(load_config()))
+
+        elif path == "/sign/state":
+            import datetime
+            cfg = load_config()
+            self._send_json({
+                "on": effective_on(cfg),
+                "mode": cfg.get("override", "auto"),
+                "now": datetime.datetime.now().isoformat(),
+            })
 
         elif path == "/api/stations":
             params = parse_qs(parsed.query)
@@ -140,6 +221,25 @@ class Handler(BaseHTTPRequestHandler):
         length = int(self.headers.get("Content-Length", 0))
         body = self.rfile.read(length).decode()
         params = parse_qs(body)
+
+        if path == "/api/preferences":
+            config = load_config()
+            try:
+                patch = json.loads(body) if body else {}
+            except Exception:
+                patch = {}
+            for key in ("lat", "lon", "limit", "station_ids"):
+                if patch.get(key) is not None:
+                    config[key] = str(patch[key])
+            if patch.get("override") is not None:
+                config["override"] = patch["override"]
+            if isinstance(patch.get("schedule"), dict):
+                config["schedule"] = patch["schedule"]
+            save_config(config)
+            print(f"Prefs updated: override={config.get('override')}, "
+                  f"lat={config.get('lat')}, stations={config.get('station_ids')}")
+            self._send_json(preferences_payload(config))
+            return
 
         if path == "/save":
             config = load_config()

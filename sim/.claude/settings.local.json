@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/davis/Documents/PlatformIO/Projects/subway_sign/web_dev/**)",
+      "Read(//Users/davis/Documents/PlatformIO/Projects/subway_sign/**)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Read(//usr/local/include/**)",
+      "Read(//opt/homebrew/Cellar/nlohmann-json/3.11.3/include/nlohmann/**)",
+      "Bash(curl --version)",
+      "Bash(pkg-config --cflags --libs libcurl)",
+      "Read(//opt/homebrew/**)",
+      "Bash(pkg-config --cflags libcurl)",
+      "Bash(brew --prefix nlohmann-json)",
+      "Bash(make clean *)",
+      "Bash(make)",
+      "Bash(curl -s \"https://7vwbvo32dk.execute-api.us-east-1.amazonaws.com/trains/nearby?lat=40.706400&lon=-74.011400&limit=4\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); [print\\(f\\\\\"{t['route']} {t['direction']} {s['station_name']} {t['minutes_away']}m\\\\\"\\) for s in d['stations'] for k in ['northbound_trains','southbound_trains'] for t in s[k]]\")"
+    ]
+  }
+}

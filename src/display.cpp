@@ -1,15 +1,16 @@
 #include "display.h"
+#include <cmath>
 #include <cstring>
 
 MatrixPanel_I2S_DMA* dma_display = nullptr;
 
-const int DISPLAY_WIDTH = PANEL_RES_X * PANEL_CHAIN;  // 128
-const int DISPLAY_HEIGHT = PANEL_RES_Y;               // 32
+const int DISPLAY_WIDTH = PANEL_RES_X * PANEL_CHAIN;  // 80 * 2 = 160
+const int DISPLAY_HEIGHT = PANEL_RES_Y;               // 40
 const int ROW_HEIGHT = 16;
 
 const int CIRCLE_RADIUS = 6;
 const int CIRCLE_X = 8;
-const int MINUTES_WIDTH = 42;  // "XX min" right-justified
+const int MINUTES_WIDTH = 40;  // covers "XX min" with fixed label position
 
 // Animation state
 TrainArrival storedArrivals[MAX_TRAINS];
@@ -19,10 +20,19 @@ int animationOffset = 0;         // Current Y offset for wipe animation (0 to RO
 bool isAnimating = false;
 unsigned long lastAnimationTime = 0;
 unsigned long lastTrainSwitch = 0;
+static bool displayOn = true;    // false when the schedule/override powers the sign off
 
-const unsigned long DISPLAY_DURATION_MS = 10000;  // Show each train for 10 seconds
-const unsigned long ANIMATION_STEP_MS = 62;       // ~16fps during animation
-const int ANIMATION_SPEED = 1;                    // Pixels per step (16 steps * 62ms ≈ 1 second)
+const unsigned long DISPLAY_DURATION_MS = 15000;  // dwell before scrolling to next train
+const unsigned long ANIMATION_STEP_MS = 100;  // ~10fps — 16 steps * 100ms ≈ 1.6s wipe
+const int ANIMATION_SPEED = 1;
+
+// Pulse state for dual-time arrivals
+static float pulsePhase = 0.0f;
+static unsigned long lastPulseUpdate = 0;
+static const float PULSE_SPEED = 0.25f;        // cycles/sec — drives redraw cadence
+static const unsigned long PULSE_STEP_MS = 50; // 20fps pulse update
+static const unsigned long PULSE_FADE_MS = 400;   // crossfade in/out duration
+static const unsigned long PULSE_HOLD_MS = 5000;  // hold each time steady for 5s
 
 void initDisplay() {
   Serial.println("initDisplay: start");
@@ -132,6 +142,58 @@ void drawRouteCircle(int centerX, int centerY, char route) {
   dma_display->print(route);
 }
 
+// " min" is always drawn at this fixed x so the label never shifts
+static const int MIN_LABEL_X = DISPLAY_WIDTH - 4 * 6 - 2;  // 4 chars: " min"
+
+// A second arrival is only worth pulsing if it exists and differs from the first.
+static inline bool hasSecondTime(const TrainArrival& a) {
+  return a.minutesAway2 != -1 && a.minutesAway2 != a.minutesAway;
+}
+
+static void drawMinutes(int y, const TrainArrival& arrival) {
+  const int charWidth = 6;
+
+  if (hasSecondTime(arrival)) {
+    // Show one number at a time: fade in, hold steady, fade out, then the other.
+    const unsigned long half = PULSE_FADE_MS + PULSE_HOLD_MS + PULSE_FADE_MS;
+    const unsigned long cycle = 2 * half;
+    unsigned long t = millis() % cycle;
+    bool showFirst = t < half;
+    unsigned long u = showFirst ? t : t - half;  // position within this time's window
+
+    float brightness;
+    if (u < PULSE_FADE_MS)
+      brightness = (float)u / PULSE_FADE_MS;                                       // fade in
+    else if (u < PULSE_FADE_MS + PULSE_HOLD_MS)
+      brightness = 1.0f;                                                            // hold
+    else
+      brightness = 1.0f - (float)(u - PULSE_FADE_MS - PULSE_HOLD_MS) / PULSE_FADE_MS; // fade out
+
+    int minutes = showFirst ? arrival.minutesAway : arrival.minutesAway2;
+    int v = (int)(brightness * 255);
+
+    char numStr[4];
+    int numLen = snprintf(numStr, sizeof(numStr), "%d", minutes);
+    int numX = MIN_LABEL_X - numLen * charWidth;
+
+    dma_display->setTextColor(dma_display->color565(v, v, v));
+    dma_display->setCursor(numX, y);
+    dma_display->print(numStr);
+
+    // " min" label always at full brightness, fixed position
+    dma_display->setTextColor(dma_display->color565(255, 255, 255));
+    dma_display->setCursor(MIN_LABEL_X, y);
+    dma_display->print(" min");
+  } else {
+    char minStr[10];
+    snprintf(minStr, sizeof(minStr), "%d min", arrival.minutesAway);
+    int minX = DISPLAY_WIDTH - (int)strlen(minStr) * charWidth - 2;
+    dma_display->setTextColor(dma_display->color565(255, 255, 255));
+    dma_display->setCursor(minX, y);
+    dma_display->print(minStr);
+  }
+}
+
 void drawTrainRow(int yOffset, TrainArrival arrival) {
   int centerY = yOffset + ROW_HEIGHT / 2;
 
@@ -160,14 +222,7 @@ void drawTrainRow(int yOffset, TrainArrival arrival) {
     }
   }
 
-  // Draw minutes right-justified
-  char minStr[10];
-  snprintf(minStr, sizeof(minStr), "%d min", arrival.minutesAway);
-  int minStrLen = strlen(minStr);
-  int minX = DISPLAY_WIDTH - (minStrLen * charWidth) - 2;
-
-  dma_display->setCursor(minX, centerY - 4);
-  dma_display->print(minStr);
+  drawMinutes(centerY - 4, arrival);
 }
 
 // Draw a train row at the given Y offset (no clipping - draws full row)
@@ -200,14 +255,7 @@ void drawTrainRowAt(int yOffset, TrainArrival arrival) {
     }
   }
 
-  // Draw minutes right-justified
-  char minStr[10];
-  snprintf(minStr, sizeof(minStr), "%d min", arrival.minutesAway);
-  int minStrLen = strlen(minStr);
-  int minX = DISPLAY_WIDTH - (minStrLen * charWidth) - 2;
-
-  dma_display->setCursor(minX, textY);
-  dma_display->print(minStr);
+  drawMinutes(textY, arrival);
 }
 
 void setTrainArrivals(TrainArrival* trains, int count) {
@@ -222,6 +270,9 @@ void setTrainArrivals(TrainArrival* trains, int count) {
   isAnimating = false;
   lastTrainSwitch = millis();
 
+  // Keep the panel dark if powered off; data is stored for when it turns back on.
+  if (!displayOn) return;
+
   // Draw initial state
   dma_display->clearScreen();
   if (storedArrivalCount >= 1) {
@@ -233,11 +284,56 @@ void setTrainArrivals(TrainArrival* trains, int count) {
   dma_display->flipDMABuffer();
 }
 
-void updateDisplay() {
-  // Only animate if we have more than 2 trains
-  if (storedArrivalCount <= 2) return;
+// Power the panel on/off without losing the stored arrivals.
+void setDisplayPower(bool on) {
+  if (on == displayOn) return;
+  displayOn = on;
+  if (!on) {
+    // Clear both DMA buffers so nothing remains lit.
+    dma_display->clearScreen();
+    dma_display->flipDMABuffer();
+    dma_display->clearScreen();
+    dma_display->flipDMABuffer();
+  } else {
+    // Redraw the current arrivals immediately.
+    currentRow2Index = 1;
+    animationOffset = 0;
+    isAnimating = false;
+    lastTrainSwitch = millis();
+    dma_display->clearScreen();
+    if (storedArrivalCount >= 1) drawTrainRow(0, storedArrivals[0]);
+    if (storedArrivalCount >= 2) drawTrainRow(ROW_HEIGHT, storedArrivals[1]);
+    dma_display->flipDMABuffer();
+  }
+}
 
+void updateDisplay() {
+  if (!displayOn) return;
   unsigned long now = millis();
+
+  // Advance pulse phase whenever any arrival has two times
+  bool pulseAdvanced = false;
+  if (now - lastPulseUpdate >= PULSE_STEP_MS) {
+    for (int i = 0; i < storedArrivalCount; i++) {
+      if (hasSecondTime(storedArrivals[i])) {
+        float dt = (now - lastPulseUpdate) / 1000.0f;
+        pulsePhase = fmodf(pulsePhase + dt * PULSE_SPEED, 1.0f);
+        lastPulseUpdate = now;
+        pulseAdvanced = true;
+        break;
+      }
+    }
+  }
+
+  if (storedArrivalCount <= 2) {
+    if (pulseAdvanced) {
+      dma_display->clearScreen();
+      if (storedArrivalCount >= 1) drawTrainRow(0, storedArrivals[0]);
+      if (storedArrivalCount >= 2) drawTrainRow(ROW_HEIGHT, storedArrivals[1]);
+      dma_display->flipDMABuffer();
+    }
+    return;
+  }
 
   // Check if it's time to start animating to next train
   if (!isAnimating && (now - lastTrainSwitch >= DISPLAY_DURATION_MS)) {
@@ -288,6 +384,11 @@ void updateDisplay() {
       currentRow2Index = nextIndex;
       lastTrainSwitch = now;
     }
+  } else if (!isAnimating && pulseAdvanced) {
+    dma_display->clearScreen();
+    drawTrainRow(0, storedArrivals[0]);
+    drawTrainRow(ROW_HEIGHT, storedArrivals[currentRow2Index]);
+    dma_display->flipDMABuffer();
   }
 }
 

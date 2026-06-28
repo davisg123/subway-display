@@ -65,11 +65,11 @@ def main():
         cpp = f.read()
 
     wifi_html = read_html("wifi_setup.html", env)
-    config_html = read_html("index.html", env)
+    dashboard_html = read_html("dashboard.html", env)
     success_html = read_html("success.html", env)
 
     cpp = update_progmem(cpp, "WIFI_HTML", wifi_html)
-    cpp = update_progmem(cpp, "CONFIG_HTML", config_html)
+    cpp = update_progmem(cpp, "DASHBOARD_HTML", dashboard_html)
     cpp = update_progmem(cpp, "SUCCESS_HTML", success_html)
 
     with open(CPP_FILE, "w") as f:

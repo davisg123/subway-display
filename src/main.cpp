@@ -4,8 +4,10 @@
 
 HWCDC USBSerial;
 #include <HTTPClient.h>
+#include <WiFiClientSecure.h>
 #include <ArduinoJson.h>
 #include "display.h"
+#include "train_parser.h"
 #include "kalshi_display.h"
 #include "config_portal.h"
 #include "ota.h"
@@ -33,19 +35,27 @@ const uint16_t PATRIOTS_COLOR = 0x0013;  // Patriots blue (darker so pulse shows
 
 unsigned long lastPollTime = 0;
 
-char titleBuffers[4][20];
+char titleBuffers[4][TITLE_BUF_LEN];
 
 TrainArrival arrivals[4] = {
-  {'?', "Loading...", 0},
-  {'?', "Loading...", 0},
-  {'?', "Loading...", 0},
-  {'?', "Loading...", 0}
+  {'?', "Loading...", 0, -1},
+  {'?', "Loading...", 0, -1},
+  {'?', "Loading...", 0, -1},
+  {'?', "Loading...", 0, -1}
 };
 int arrivalCount = 0;
 
-void parseTrainArrivals(const String& payload) {
+void parseTrainArrivals(Stream& stream) {
+  JsonDocument filter;
+  JsonObject trainFilter = filter["stations"][0]["northbound_trains"][0].to<JsonObject>();
+  trainFilter["route"] = true;
+  trainFilter["direction"] = true;
+  trainFilter["minutes_away"] = true;
+  filter["stations"][0]["station_name"] = true;
+  filter["stations"][0]["southbound_trains"] = filter["stations"][0]["northbound_trains"];
+
   JsonDocument doc;
-  DeserializationError error = deserializeJson(doc, payload);
+  DeserializationError error = deserializeJson(doc, stream, DeserializationOption::Filter(filter));
 
   if (error) {
     Serial.printf("JSON parse error: %s\n", error.c_str());
@@ -58,76 +68,27 @@ void parseTrainArrivals(const String& payload) {
     return;
   }
 
-  // Collect trains from all nearby stations
-  struct Train {
-    char route;
-    char direction;
-    const char* stationName;
-    int minutesAway;
-  };
+  std::vector<ParsedTrain> allTrains;
 
-  Train allTrains[40];
-  int trainCount = 0;
-
-  // Iterate through all stations
   for (JsonObject station : stations) {
-    if (trainCount >= 40) break;
+    std::string stationName = station["station_name"].as<const char*>();
 
-    const char* stationName = station["station_name"];
-
-    // Get northbound trains
-    JsonArray northbound = station["northbound_trains"];
-    for (JsonObject train : northbound) {
-      if (trainCount >= 40) break;
+    for (JsonObject train : station["northbound_trains"].as<JsonArray>()) {
       const char* route = train["route"];
       const char* dir = train["direction"];
-      allTrains[trainCount].route = route[0];
-      allTrains[trainCount].direction = dir[0];
-      allTrains[trainCount].stationName = stationName;
-      allTrains[trainCount].minutesAway = train["minutes_away"];
-      trainCount++;
+      allTrains.push_back({route[0], dir[0], stationName, train["minutes_away"]});
     }
 
-    // Get southbound trains
-    JsonArray southbound = station["southbound_trains"];
-    for (JsonObject train : southbound) {
-      if (trainCount >= 40) break;
+    for (JsonObject train : station["southbound_trains"].as<JsonArray>()) {
       const char* route = train["route"];
       const char* dir = train["direction"];
-
-      // Skip J southbound at Broad St - it's the last stop
-      if (route[0] == 'J' && dir[0] == 'S') continue;
-
-      allTrains[trainCount].route = route[0];
-      allTrains[trainCount].direction = dir[0];
-      allTrains[trainCount].stationName = stationName;
-      allTrains[trainCount].minutesAway = train["minutes_away"];
-      trainCount++;
+      allTrains.push_back({route[0], dir[0], stationName, train["minutes_away"]});
     }
   }
 
-  // Sort by minutes_away (simple bubble sort)
-  for (int i = 0; i < trainCount - 1; i++) {
-    for (int j = 0; j < trainCount - i - 1; j++) {
-      if (allTrains[j].minutesAway > allTrains[j + 1].minutesAway) {
-        Train temp = allTrains[j];
-        allTrains[j] = allTrains[j + 1];
-        allTrains[j + 1] = temp;
-      }
-    }
-  }
+  Serial.printf("Collected %d trains from %d stations\n", (int)allTrains.size(), (int)stations.size());
 
-  Serial.printf("Collected %d trains from %d stations\n", trainCount, stations.size());
-
-  // Update arrivals with up to 4 soonest trains
-  arrivalCount = trainCount > 4 ? 4 : trainCount;
-  for (int i = 0; i < arrivalCount; i++) {
-    const char* dirStr = allTrains[i].direction == 'N' ? "N" : "S";
-    snprintf(titleBuffers[i], sizeof(titleBuffers[i]), "%s (%s)", allTrains[i].stationName, dirStr);
-    arrivals[i].route = allTrains[i].route;
-    arrivals[i].title = titleBuffers[i];
-    arrivals[i].minutesAway = allTrains[i].minutesAway;
-  }
+  processTrains(allTrains, arrivals, titleBuffers, arrivalCount);
 
   Serial.printf("Found %d trains for display\n", arrivalCount);
   for (int i = 0; i < arrivalCount; i++) {
@@ -221,16 +182,19 @@ void fetchSubwayTimes() {
     return;
   }
 
+  WiFiClientSecure client;
+  client.setInsecure();
   HTTPClient http;
-  http.begin(getApiUrl());
+  String url = getApiUrl();
+  Serial.printf("Fetching: %s\n", url.c_str());
+  http.begin(client, url);
 
   int httpCode = http.GET();
+  Serial.printf("HTTP code: %d\n", httpCode);
 
   if (httpCode > 0) {
     if (httpCode == HTTP_CODE_OK) {
-      String payload = http.getString();
-      Serial.println("Received subway times");
-      parseTrainArrivals(payload);
+      parseTrainArrivals(http.getStream());
     } else {
       Serial.printf("HTTP error: %d\n", httpCode);
     }
@@ -290,17 +254,19 @@ void setup() {
 
   showConnectedDisplay(WiFi.localIP().toString().c_str());
 
-  checkForOTAUpdate();
-  lastOTACheck = millis();
+  // checkForOTAUpdate();
+  // lastOTACheck = millis();
 
   fetchSubwayTimes();
   lastPollTime = millis();
 }
 
 void loop() {
+  // Process deferred config saves/restarts (live dashboard saves + AP reboots)
+  handleConfigPortal();
+
   // Handle config portal if in AP mode
   if (isInConfigMode()) {
-    handleConfigPortal();
     updateAPModeDisplay();
     delay(10);
     return;
@@ -325,7 +291,8 @@ void loop() {
     lastPollTime = millis();
   }
 
-  // Update display animation
+  // Apply the on/off schedule (manual override + weekly schedule), then animate
+  setDisplayPower(isSignPoweredOn());
   updateDisplay();
 
   delay(10);  // Small delay for animation smoothness

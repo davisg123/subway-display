@@ -2,6 +2,7 @@
 #define CONFIG_PORTAL_H
 
 #include <Arduino.h>
+#include "schedule.h"
 
 // Configuration structure
 struct DeviceConfig {
@@ -11,6 +12,8 @@ struct DeviceConfig {
   double longitude;
   int train_limit;
   char station_ids[512];
+  WeeklySchedule schedule;
+  PowerMode power_override;
 };
 
 // Initialize the config portal system (loads saved config from flash)
@@ -34,5 +37,9 @@ void startConfigServer();
 
 // Get the configured API URL with lat/lon/limit
 String getApiUrl();
+
+// Whether the sign should currently be powered on (manual override + schedule).
+// Defaults to on if the clock has not yet been set via NTP.
+bool isSignPoweredOn();
 
 #endif

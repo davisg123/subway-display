@@ -38,7 +38,19 @@
       "Bash(curl -s \"https://7vwbvo32dk.execute-api.us-east-1.amazonaws.com/stations/nearby?lat=40.706714&lon=-74.011376&limit=5\")",
       "Bash(curl -s \"https://7vwbvo32dk.execute-api.us-east-1.amazonaws.com/trains/nearby?lat=40.706714&lon=-74.011376&limit=10&station_ids=419,420\")",
       "Bash(python sync_to_firmware.py)",
-      "Bash(xargs cat *)"
+      "Bash(xargs cat *)",
+      "Bash(git remote *)",
+      "Bash(git push *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git tag *)",
+      "Bash(sdl2-config --version)",
+      "Bash(make)",
+      "Bash(timeout 3 ./subway_sim)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(gtimeout 3 ./subway_sim)",
+      "Bash(perl -e 'alarm 3; exec \"./subway_sim\"')",
+      "Bash(open *)"
     ]
   }
 }
