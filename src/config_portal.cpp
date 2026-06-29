@@ -16,6 +16,12 @@
 // Firmware version (FIRMWARE_VERSION) comes from version.h, injected at build
 // time from the git tag. Shown subtly on the dashboard.
 
+// Google Maps key is injected at build time by secrets.py (from web_dev/.env)
+// and substituted into the dashboard page at request time — never in source.
+#ifndef GOOGLE_MAPS_API_KEY
+#define GOOGLE_MAPS_API_KEY ""
+#endif
+
 // POSIX timezone for America/New_York (used by the on/off schedule)
 static const char* TZ_AMERICA_NEW_YORK = "EST5EDT,M3.2.0,M11.1.0";
 
@@ -620,7 +626,7 @@ static const char DASHBOARD_HTML[] PROGMEM = R"rawliteral(
 
     load();
   </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZnkygHQWq2dD_9873k9a3IJgJ2jueIg4&libraries=places&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=%GOOGLE_MAPS_API_KEY%&libraries=places&callback=initMap" async defer></script>
 </body>
 </html>
 )rawliteral";
@@ -821,7 +827,9 @@ static void writePreferencesJson(JsonDocument& doc) {
 // Connected mode routes: tabbed dashboard at sign.local
 static void setupConfigRoutes() {
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
-    request->send_P(200, "text/html", DASHBOARD_HTML);
+    String html = FPSTR(DASHBOARD_HTML);
+    html.replace(F("%GOOGLE_MAPS_API_KEY%"), F(GOOGLE_MAPS_API_KEY));
+    request->send(200, "text/html", html);
   });
 
   server.on("/api/stations", HTTP_GET, [](AsyncWebServerRequest *request) {

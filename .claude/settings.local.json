@@ -50,7 +50,15 @@
       "Bash(echo \"exit: $?\")",
       "Bash(gtimeout 3 ./subway_sim)",
       "Bash(perl -e 'alarm 3; exec \"./subway_sim\"')",
-      "Bash(open *)"
+      "Bash(open *)",
+      "Bash(gh release *)",
+      "Bash(curl -s -H \"User-Agent: SubwaySign\" \"https://api.github.com/repos/davisg123/subway-display/releases\")",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" -H \"User-Agent: SubwaySign\" \"https://api.github.com/repos/davisgossage/subway_sign/releases/latest\")",
+      "Bash(curl -s -H \"User-Agent: SubwaySign\" \"https://api.github.com/repos/davisgossage/subway_sign/releases/latest\")",
+      "Read(//dev/**)",
+      "Bash(pio device *)",
+      "Bash(command -v gh)",
+      "Bash(gh auth *)"
     ]
   }
 }

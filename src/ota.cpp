@@ -126,6 +126,9 @@ void checkForOTAUpdate() {
   dlClient.setInsecure();
 
   httpUpdate.rebootOnUpdate(true);
+  // GitHub release asset URLs 302-redirect to release-assets.githubusercontent.com;
+  // HTTPUpdate disables redirects by default, so the download must opt in or it fails.
+  httpUpdate.setFollowRedirects(HTTPC_FORCE_FOLLOW_REDIRECTS);
   t_httpUpdate_return ret = httpUpdate.update(dlClient, downloadUrl);
 
   switch (ret) {

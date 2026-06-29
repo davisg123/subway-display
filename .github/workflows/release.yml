@@ -54,6 +54,7 @@ jobs:
       - name: Build firmware
         env:
           FIRMWARE_VERSION: ${{ steps.ver.outputs.next }}
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
         run: pio run -e adafruit_matrixportal_esp32s3
 
       - name: Create and push tag
