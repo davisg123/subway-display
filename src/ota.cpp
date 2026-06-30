@@ -99,8 +99,26 @@ void checkForOTAUpdate() {
     return;
   }
 
+  // Only keep the few fields we need. GitHub's release JSON is large and grows
+  // with every release (the /releases array especially), so filtering keeps the
+  // on-device parse cheap and bounded regardless of how many releases exist.
+  JsonDocument filter;
+  if (prerelease) {
+    // Array of releases: filter each element (newest first).
+    JsonObject f = filter[0].to<JsonObject>();
+    f["tag_name"] = true;
+    f["assets"][0]["name"] = true;
+    f["assets"][0]["browser_download_url"] = true;
+  } else {
+    // Single release object.
+    filter["tag_name"] = true;
+    filter["assets"][0]["name"] = true;
+    filter["assets"][0]["browser_download_url"] = true;
+  }
+
   JsonDocument doc;
-  DeserializationError err = deserializeJson(doc, http.getStream());
+  DeserializationError err = deserializeJson(
+    doc, http.getStream(), DeserializationOption::Filter(filter));
   http.end();
 
   if (err) {
