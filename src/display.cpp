@@ -6,10 +6,10 @@ MatrixPanel_I2S_DMA* dma_display = nullptr;
 
 const int DISPLAY_WIDTH = PANEL_RES_X * PANEL_CHAIN;  // 80 * 2 = 160
 const int DISPLAY_HEIGHT = PANEL_RES_Y;               // 40
-const int ROW_HEIGHT = 16;
+const int ROW_HEIGHT = 20;  // 2 rows * 20 = 40 = full panel height, so rows are vertically centered
 
-const int CIRCLE_RADIUS = 6;
-const int CIRCLE_X = 8;
+const int CIRCLE_RADIUS = 8;
+const int CIRCLE_X = 10;  // keep the r=8 circle clear of the left edge
 const int MINUTES_WIDTH = 40;  // covers "XX min" with fixed label position
 
 // Animation state
@@ -135,6 +135,16 @@ uint16_t getRouteColor(char route) {
 void drawRouteCircle(int centerX, int centerY, char route) {
   uint16_t color = getRouteColor(route);
   dma_display->fillCircle(centerX, centerY, CIRCLE_RADIUS, color);
+
+  // Widen each cardinal point into a flat 3px cap (tangent to the edge) so the
+  // lone 1px tip reads as a flattened side instead of a spike.
+  const int r = CIRCLE_RADIUS;
+  for (int i = -1; i <= 1; i++) {
+    dma_display->drawPixel(centerX + i, centerY - r, color);  // top cap
+    dma_display->drawPixel(centerX + i, centerY + r, color);  // bottom cap
+    dma_display->drawPixel(centerX - r, centerY + i, color);  // left cap
+    dma_display->drawPixel(centerX + r, centerY + i, color);  // right cap
+  }
 
   // Draw letter in white (or black for yellow lines)
   uint16_t textColor = dma_display->color565(255, 255, 255);
