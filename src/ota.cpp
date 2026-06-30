@@ -1,21 +1,26 @@
 #include "ota.h"
 #include "display.h"
+#include "config_portal.h"
 #include <HTTPClient.h>
 #include <HTTPUpdate.h>
 #include <WiFiClientSecure.h>
 #include <ArduinoJson.h>
 
 #define OTA_REPO        "davisg123/subway-display"
-#if OTA_INCLUDE_PRERELEASES
-#define OTA_API_URL "https://api.github.com/repos/" OTA_REPO "/releases"
-#else
-#define OTA_API_URL "https://api.github.com/repos/" OTA_REPO "/releases/latest"
-#endif
+// Pre-release channel lists all releases (newest first); the stable channel
+// asks GitHub for the latest non-prerelease. Chosen at runtime per device.
+#define OTA_API_URL_PRERELEASE "https://api.github.com/repos/" OTA_REPO "/releases"
+#define OTA_API_URL_STABLE     "https://api.github.com/repos/" OTA_REPO "/releases/latest"
 
-// Parse "major.minor.patch" (ignoring any trailing pre-release/build suffix).
-// Returns false if the string doesn't start with three dotted numbers.
-static bool parseSemver(const String& v, long out[3]) {
-  out[0] = out[1] = out[2] = 0;
+volatile bool otaCheckRequested = false;
+
+// Parse "major.minor.patch" with an optional pre-release suffix (e.g.
+// "-rc.2"). Fills core[3]; sets *preRank to 0 for a stable release (no suffix)
+// or the trailing rc ordinal (rc.2 -> 2, >=1) for a pre-release. Returns false
+// if the string doesn't start with three dotted numbers.
+static bool parseSemver(const String& v, long core[3], long* preRank) {
+  core[0] = core[1] = core[2] = 0;
+  *preRank = 0;
   int start = 0;
   for (int i = 0; i < 3; i++) {
     if (start >= (int)v.length() || !isDigit(v[start])) return false;
@@ -24,25 +29,42 @@ static bool parseSemver(const String& v, long out[3]) {
       n = n * 10 + (v[start] - '0');
       start++;
     }
-    out[i] = n;
+    core[i] = n;
     if (i < 2) {
       if (start >= (int)v.length() || v[start] != '.') return false;
       start++;  // skip '.'
     }
   }
+  // Anything after patch (e.g. "-rc.2") marks a pre-release. Use the last run
+  // of digits as the ordinal so rc.2 outranks rc.1; default 1 if none.
+  if (start < (int)v.length()) {
+    long n = 0;
+    bool sawDigit = false;
+    for (int i = start; i < (int)v.length(); i++) {
+      if (isDigit(v[i])) { n = n * 10 + (v[i] - '0'); sawDigit = true; }
+      else { n = 0; sawDigit = false; }
+    }
+    *preRank = sawDigit ? n : 1;
+  }
   return true;
 }
 
-// True only when `remote` is a strictly newer semver than `local`. If either
+// True only when `remote` is a strictly newer version than `local`. If either
 // version can't be parsed (e.g. a "dev" / git-describe build), returns false so
-// we never auto-flash an unversioned unit or downgrade it.
+// we never auto-flash an unversioned unit or downgrade it. Pre-release ordering
+// follows semver: for the same major.minor.patch a stable build outranks any
+// pre-release, and a higher rc ordinal outranks a lower one.
 static bool isNewerVersion(const String& remote, const String& local) {
-  long r[3], l[3];
-  if (!parseSemver(remote, r) || !parseSemver(local, l)) return false;
+  long r[3], l[3], rPre, lPre;
+  if (!parseSemver(remote, r, &rPre) || !parseSemver(local, l, &lPre)) return false;
   for (int i = 0; i < 3; i++) {
     if (r[i] != l[i]) return r[i] > l[i];
   }
-  return false;
+  // Same core version: compare pre-release rank (0 == stable, ranks highest).
+  bool rStable = (rPre == 0), lStable = (lPre == 0);
+  if (rStable != lStable) return rStable;  // stable beats any pre-release
+  if (rStable) return false;               // both stable -> equal
+  return rPre > lPre;                      // both pre-release -> higher rc wins
 }
 
 static void showOTAMessage(const char* line1, const char* line2) {
@@ -59,11 +81,14 @@ static void showOTAMessage(const char* line1, const char* line2) {
 }
 
 void checkForOTAUpdate() {
+  bool prerelease = isPrereleaseChannel();
+  const char* apiUrl = prerelease ? OTA_API_URL_PRERELEASE : OTA_API_URL_STABLE;
+
   WiFiClientSecure client;
   client.setInsecure();
 
   HTTPClient http;
-  http.begin(client, OTA_API_URL);
+  http.begin(client, apiUrl);
   http.addHeader("User-Agent", "SubwaySign");
   http.setTimeout(8000);
 
@@ -83,15 +108,13 @@ void checkForOTAUpdate() {
     return;
   }
 
-#if OTA_INCLUDE_PRERELEASES
-  JsonObject release = doc[0].as<JsonObject>();
+  // The prerelease endpoint returns an array (newest first); the stable
+  // endpoint returns a single release object.
+  JsonObject release = prerelease ? doc[0].as<JsonObject>() : doc.as<JsonObject>();
   if (release.isNull()) {
     Serial.println("OTA: no releases found");
     return;
   }
-#else
-  JsonObject release = doc.as<JsonObject>();
-#endif
 
   // tag_name is e.g. "v1.0.1" — strip leading 'v'
   String tag = release["tag_name"].as<String>();

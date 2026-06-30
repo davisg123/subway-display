@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign Admin</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, sans-serif; max-width: 420px; margin: 0 auto; padding: 20px; background: #f5f5f7; color: #1d1d1f; min-height: 100vh; }
+    h1 { color: #0071e3; font-size: 22px; margin: 0 0 4px; }
+    .subtitle { font-size: 13px; color: #86868b; margin-bottom: 20px; }
+    .card { background: #fff; border-radius: 16px; padding: 20px; margin-bottom: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .card-title { font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: #86868b; margin-bottom: 16px; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .label { font-size: 15px; font-weight: 500; }
+    .hint { font-size: 12px; color: #86868b; margin-top: 4px; }
+    .ver { font-size: 15px; font-weight: 600; }
+
+    /* iOS-style toggle */
+    .toggle { position: relative; width: 44px; height: 26px; flex-shrink: 0; }
+    .toggle input { opacity: 0; width: 0; height: 0; }
+    .toggle .slider { position: absolute; inset: 0; background: #d2d2d7; border-radius: 26px; transition: 0.2s; cursor: pointer; }
+    .toggle .slider::before { content: ""; position: absolute; height: 22px; width: 22px; left: 2px; top: 2px; background: #fff; border-radius: 50%; transition: 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+    .toggle input:checked + .slider { background: #ff9500; }
+    .toggle input:checked + .slider::before { transform: translateX(18px); }
+
+    button.action { width: 100%; padding: 13px; border: none; border-radius: 12px; background: #0071e3; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; }
+    button.action:disabled { opacity: 0.5; cursor: default; }
+    .status { font-size: 13px; color: #86868b; margin-top: 12px; text-align: center; min-height: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Sign Admin</h1>
+  <div class="subtitle">Hidden maintenance controls</div>
+
+  <div class="card">
+    <div class="card-title">Firmware</div>
+    <div class="row">
+      <div class="label">Current version</div>
+      <div class="ver">{{FIRMWARE_VERSION}}</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Update channel</div>
+    <div class="row">
+      <div>
+        <div class="label">Pre-release (beta) updates</div>
+        <div class="hint">Receive release candidates before they ship to everyone. Persists across updates.</div>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="prerelease" {{PRERELEASE_CHECKED}}>
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Updates</div>
+    <button class="action" id="checkBtn" onclick="checkNow()">Check for updates now</button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <script>
+    function setStatus(msg) { document.getElementById('status').textContent = msg; }
+
+    document.getElementById('prerelease').addEventListener('change', function (e) {
+      const on = e.target.checked;
+      fetch('/api/preferences', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prerelease: on })
+      })
+        .then(function (r) { setStatus(on ? 'Switched to pre-release channel.' : 'Switched to stable channel.'); })
+        .catch(function () { setStatus('Failed to save channel.'); });
+    });
+
+    function checkNow() {
+      const btn = document.getElementById('checkBtn');
+      btn.disabled = true;
+      setStatus('Checking… the sign will update and reboot if a newer version is available.');
+      fetch('/api/check-update', { method: 'POST' })
+        .then(function (r) { return r.json(); })
+        .then(function () { setStatus('Check requested. If an update is found the sign reboots shortly.'); })
+        .catch(function () { setStatus('Failed to request a check.'); })
+        .finally(function () { setTimeout(function () { btn.disabled = false; }, 3000); });
+    }
+  </script>
+</body>
+</html>

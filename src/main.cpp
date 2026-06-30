@@ -12,7 +12,10 @@ HWCDC USBSerial;
 #include "config_portal.h"
 #include "ota.h"
 const unsigned long POLL_INTERVAL_MS = 60000;
-const unsigned long OTA_CHECK_INTERVAL_MS = 600000;  // 10 minutes
+// Stable devices check twice a day; pre-release testers check often for fast
+// feedback. The admin "Check for updates" button bypasses both via a flag.
+const unsigned long OTA_CHECK_INTERVAL_STABLE_MS = 12UL * 60 * 60 * 1000;  // 12 hours
+const unsigned long OTA_CHECK_INTERVAL_PRERELEASE_MS = 600000;             // 10 minutes
 unsigned long lastOTACheck = 0;
 
 // Kalshi API configuration
@@ -282,7 +285,10 @@ void loop() {
   return;
   #endif
 
-  if (millis() - lastOTACheck >= OTA_CHECK_INTERVAL_MS) {
+  unsigned long otaInterval = isPrereleaseChannel()
+    ? OTA_CHECK_INTERVAL_PRERELEASE_MS : OTA_CHECK_INTERVAL_STABLE_MS;
+  if (otaCheckRequested || millis() - lastOTACheck >= otaInterval) {
+    otaCheckRequested = false;
     checkForOTAUpdate();
     lastOTACheck = millis();
   }

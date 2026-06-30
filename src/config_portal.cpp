@@ -2,6 +2,7 @@
 #include "schedule.h"
 #include "version.h"
 #include "display.h"
+#include "ota.h"
 #include <WiFi.h>
 #include <ESPAsyncWebServer.h>
 #include <AsyncJson.h>
@@ -659,12 +660,108 @@ static const char SUCCESS_HTML[] PROGMEM = R"rawliteral(
 </html>
 )rawliteral";
 
+// Hidden admin page (served at /admin): update channel + manual update check.
+// Edit web_dev/admin.html and run sync_to_firmware.py to regenerate this.
+static const char ADMIN_HTML[] PROGMEM = R"rawliteral(
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign Admin</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, sans-serif; max-width: 420px; margin: 0 auto; padding: 20px; background: #f5f5f7; color: #1d1d1f; min-height: 100vh; }
+    h1 { color: #0071e3; font-size: 22px; margin: 0 0 4px; }
+    .subtitle { font-size: 13px; color: #86868b; margin-bottom: 20px; }
+    .card { background: #fff; border-radius: 16px; padding: 20px; margin-bottom: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .card-title { font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: #86868b; margin-bottom: 16px; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .label { font-size: 15px; font-weight: 500; }
+    .hint { font-size: 12px; color: #86868b; margin-top: 4px; }
+    .ver { font-size: 15px; font-weight: 600; }
+
+    /* iOS-style toggle */
+    .toggle { position: relative; width: 44px; height: 26px; flex-shrink: 0; }
+    .toggle input { opacity: 0; width: 0; height: 0; }
+    .toggle .slider { position: absolute; inset: 0; background: #d2d2d7; border-radius: 26px; transition: 0.2s; cursor: pointer; }
+    .toggle .slider::before { content: ""; position: absolute; height: 22px; width: 22px; left: 2px; top: 2px; background: #fff; border-radius: 50%; transition: 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+    .toggle input:checked + .slider { background: #ff9500; }
+    .toggle input:checked + .slider::before { transform: translateX(18px); }
+
+    button.action { width: 100%; padding: 13px; border: none; border-radius: 12px; background: #0071e3; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; }
+    button.action:disabled { opacity: 0.5; cursor: default; }
+    .status { font-size: 13px; color: #86868b; margin-top: 12px; text-align: center; min-height: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Sign Admin</h1>
+  <div class="subtitle">Hidden maintenance controls</div>
+
+  <div class="card">
+    <div class="card-title">Firmware</div>
+    <div class="row">
+      <div class="label">Current version</div>
+      <div class="ver">%FIRMWARE_VERSION%</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Update channel</div>
+    <div class="row">
+      <div>
+        <div class="label">Pre-release (beta) updates</div>
+        <div class="hint">Receive release candidates before they ship to everyone. Persists across updates.</div>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="prerelease" %PRERELEASE_CHECKED%>
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Updates</div>
+    <button class="action" id="checkBtn" onclick="checkNow()">Check for updates now</button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <script>
+    function setStatus(msg) { document.getElementById('status').textContent = msg; }
+
+    document.getElementById('prerelease').addEventListener('change', function (e) {
+      const on = e.target.checked;
+      fetch('/api/preferences', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prerelease: on })
+      })
+        .then(function (r) { setStatus(on ? 'Switched to pre-release channel.' : 'Switched to stable channel.'); })
+        .catch(function () { setStatus('Failed to save channel.'); });
+    });
+
+    function checkNow() {
+      const btn = document.getElementById('checkBtn');
+      btn.disabled = true;
+      setStatus('Checking… the sign will update and reboot if a newer version is available.');
+      fetch('/api/check-update', { method: 'POST' })
+        .then(function (r) { return r.json(); })
+        .then(function () { setStatus('Check requested. If an update is found the sign reboots shortly.'); })
+        .catch(function () { setStatus('Failed to request a check.'); })
+        .finally(function () { setTimeout(function () { btn.disabled = false; }, 3000); });
+    }
+  </script>
+</body>
+</html>
+)rawliteral";
+
 // Load configuration from flash
 static void loadConfig() {
   // Defaults for all paths below
   config.schedule = defaultSchedule();
   config.power_override = POWER_AUTO;
   config.brightness = DEFAULT_BRIGHTNESS;
+  config.prerelease_channel = false;
 
   if (!LittleFS.begin(true)) {
     Serial.println("LittleFS mount failed, using defaults");
@@ -689,6 +786,7 @@ static void loadConfig() {
       if (doc["schedule"].is<JsonObject>()) scheduleFromJson(doc["schedule"], config.schedule);
       config.power_override = parsePowerMode(doc["override"] | "auto");
       config.brightness = doc["brightness"] | DEFAULT_BRIGHTNESS;
+      config.prerelease_channel = doc["prerelease"] | false;
     } else {
       Serial.printf("Config parse error: %s\n", err.c_str());
     }
@@ -720,6 +818,7 @@ static void saveConfig() {
   doc["station_ids"]= config.station_ids;
   doc["override"]   = powerModeStr(config.power_override);
   doc["brightness"] = config.brightness;
+  doc["prerelease"] = config.prerelease_channel;
   scheduleToJson(config.schedule, doc["schedule"].to<JsonObject>());
 
   File f = LittleFS.open(CONFIG_PATH, "w");
@@ -815,6 +914,7 @@ static void writePreferencesJson(JsonDocument& doc) {
   prefs["station_ids"] = config.station_ids;
   prefs["override"] = powerModeStr(config.power_override);
   prefs["brightness"] = config.brightness;
+  prefs["prerelease"] = config.prerelease_channel;
   scheduleToJson(config.schedule, prefs["schedule"].to<JsonObject>());
 
   JsonObject state = doc["state"].to<JsonObject>();
@@ -830,6 +930,22 @@ static void setupConfigRoutes() {
     String html = FPSTR(DASHBOARD_HTML);
     html.replace(F("%GOOGLE_MAPS_API_KEY%"), F(GOOGLE_MAPS_API_KEY));
     request->send(200, "text/html", html);
+  });
+
+  // Hidden admin page: update channel + manual update check.
+  server.on("/admin", HTTP_GET, [](AsyncWebServerRequest *request) {
+    String html = FPSTR(ADMIN_HTML);
+    html.replace(F("%FIRMWARE_VERSION%"), F(FIRMWARE_VERSION));
+    html.replace(F("%PRERELEASE_CHECKED%"),
+                 config.prerelease_channel ? F("checked") : F(""));
+    request->send(200, "text/html", html);
+  });
+
+  // Ask the main loop to run an OTA check on its next iteration (the check is
+  // blocking, so we don't run it inside the async web handler).
+  server.on("/api/check-update", HTTP_POST, [](AsyncWebServerRequest *request) {
+    otaCheckRequested = true;
+    request->send(200, "application/json", "{\"status\":\"checking\"}");
   });
 
   server.on("/api/stations", HTTP_GET, [](AsyncWebServerRequest *request) {
@@ -894,6 +1010,8 @@ static void setupConfigRoutes() {
       }
       if (body["schedule"].is<JsonObject>())
         scheduleFromJson(body["schedule"], config.schedule);
+      if (!body["prerelease"].isNull())
+        config.prerelease_channel = body["prerelease"].as<bool>();
 
       pendingSave = true;  // persist on next loop (no restart)
 
@@ -985,6 +1103,10 @@ bool isInConfigMode() {
 
 DeviceConfig* getConfig() {
   return &config;
+}
+
+bool isPrereleaseChannel() {
+  return config.prerelease_channel;
 }
 
 void startConfigServer() {

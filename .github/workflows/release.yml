@@ -8,6 +8,10 @@ on:
         type: choice
         options: [patch, minor, major]
         default: patch
+      prerelease:
+        description: "Publish as a pre-release (release candidate)"
+        type: boolean
+        default: false
 
 jobs:
   release:
@@ -23,7 +27,10 @@ jobs:
       - name: Compute next version
         id: ver
         run: |
-          latest=$(git tag -l 'v*' --sort=-v:refname | head -n1)
+          # Base the bump on the latest *stable* tag only (ignore vX.Y.Z-rc.N),
+          # so a string of release candidates doesn't shift the target version.
+          latest=$(git tag -l 'v*' --sort=-v:refname \
+            | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n1)
           latest=${latest:-v0.0.0}
           ver=${latest#v}
           IFS=. read -r major minor patch <<< "$ver"
@@ -32,8 +39,15 @@ jobs:
             minor) minor=$((minor + 1)); patch=0 ;;
             patch) patch=$((patch + 1)) ;;
           esac
-          next="v$major.$minor.$patch"
-          echo "Releasing $next (was $latest)"
+          base="v$major.$minor.$patch"
+          if [ "${{ inputs.prerelease }}" = "true" ]; then
+            # Next rc number for this target version (rc.1, rc.2, ...).
+            n=$(( $(git tag -l "${base}-rc.*" | wc -l) + 1 ))
+            next="${base}-rc.${n}"
+          else
+            next="$base"
+          fi
+          echo "Releasing $next (latest stable $latest)"
           echo "next=$next" >> "$GITHUB_OUTPUT"
 
       - uses: actions/cache@v4
@@ -66,5 +80,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.ver.outputs.next }}
+          prerelease: ${{ inputs.prerelease }}
           files: .pio/build/adafruit_matrixportal_esp32s3/firmware.bin
           generate_release_notes: true

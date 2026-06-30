@@ -108,6 +108,7 @@ def preferences_payload(cfg):
             "schedule": cfg.get("schedule") or default_schedule(),
             "override": cfg.get("override", "auto"),
             "brightness": cfg.get("brightness", 90),
+            "prerelease": cfg.get("prerelease", False),
         },
         "state": {"on": effective_on(cfg), "mode": cfg.get("override", "auto")},
         "firmware": FIRMWARE_VERSION,
@@ -136,6 +137,8 @@ def render(template_name, config):
     html = html.replace("{{LIMIT}}", config.get("limit", "20"))
     html = html.replace("{{BRIGHTNESS}}", str(config.get("brightness", 90)))
     html = html.replace("{{GOOGLE_MAPS_API_KEY}}", ENV.get("GOOGLE_MAPS_API_KEY", ""))
+    html = html.replace("{{FIRMWARE_VERSION}}", FIRMWARE_VERSION)
+    html = html.replace("{{PRERELEASE_CHECKED}}", "checked" if config.get("prerelease") else "")
     return html
 
 
@@ -164,6 +167,14 @@ class Handler(BaseHTTPRequestHandler):
             # Simulate sign.local connected dashboard
             config = load_config()
             html = render("dashboard.html", config)
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.end_headers()
+            self.wfile.write(html.encode())
+
+        elif path == "/admin":
+            config = load_config()
+            html = render("admin.html", config)
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.end_headers()
@@ -240,10 +251,17 @@ class Handler(BaseHTTPRequestHandler):
                 config["brightness"] = max(0, min(255, int(patch["brightness"])))
             if isinstance(patch.get("schedule"), dict):
                 config["schedule"] = patch["schedule"]
+            if patch.get("prerelease") is not None:
+                config["prerelease"] = bool(patch["prerelease"])
             save_config(config)
             print(f"Prefs updated: override={config.get('override')}, "
                   f"lat={config.get('lat')}, stations={config.get('station_ids')}")
             self._send_json(preferences_payload(config))
+            return
+
+        if path == "/api/check-update":
+            print("[ota] manual update check requested")
+            self._send_json({"status": "checking"})
             return
 
         if path == "/save":

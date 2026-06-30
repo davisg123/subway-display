@@ -58,7 +58,11 @@
       "Read(//dev/**)",
       "Bash(pio device *)",
       "Bash(command -v gh)",
-      "Bash(gh auth *)"
+      "Bash(gh auth *)",
+      "Bash(command -v pio)",
+      "Bash(echo \"pio: $\\(command -v pio\\)\")",
+      "Bash(command -v platformio)",
+      "Read(//Users/davis/.platformio/penv/bin/**)"
     ]
   }
 }

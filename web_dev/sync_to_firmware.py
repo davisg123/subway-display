@@ -50,10 +50,12 @@ def main():
     wifi_html = read_html("wifi_setup.html")
     dashboard_html = read_html("dashboard.html")
     success_html = read_html("success.html")
+    admin_html = read_html("admin.html")
 
     cpp = update_progmem(cpp, "WIFI_HTML", wifi_html)
     cpp = update_progmem(cpp, "DASHBOARD_HTML", dashboard_html)
     cpp = update_progmem(cpp, "SUCCESS_HTML", success_html)
+    cpp = update_progmem(cpp, "ADMIN_HTML", admin_html)
 
     with open(CPP_FILE, "w") as f:
         f.write(cpp)
