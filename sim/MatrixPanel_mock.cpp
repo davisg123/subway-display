@@ -341,7 +341,10 @@ void MatrixPanel_I2S_DMA::flipDMABuffer() {
     std::swap(drawIdx, dispIdx);
     renderFrame();
 
+#ifndef __EMSCRIPTEN__
     // Drain SDL events so the window stays alive and responds to quit.
+    // In the browser build the page owns the canvas lifecycle, so there is
+    // nothing to quit — the main loop runs under requestAnimationFrame.
     SDL_Event e;
     while (SDL_PollEvent(&e)) {
         if (e.type == SDL_QUIT)
@@ -360,6 +363,7 @@ quit:
     if (sdlWindow)   { SDL_DestroyWindow(sdlWindow);     sdlWindow   = nullptr; }
     SDL_Quit();
     exit(0);
+#endif  // !__EMSCRIPTEN__
 }
 
 uint16_t MatrixPanel_I2S_DMA::color565(uint8_t r, uint8_t g, uint8_t b) {

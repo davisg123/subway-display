@@ -62,7 +62,23 @@
       "Bash(command -v pio)",
       "Bash(echo \"pio: $\\(command -v pio\\)\")",
       "Bash(command -v platformio)",
-      "Read(//Users/davis/.platformio/penv/bin/**)"
+      "Read(//Users/davis/.platformio/penv/bin/**)",
+      "Bash(emcc --version)",
+      "Bash(curl -s -I -X OPTIONS \"https://7vwbvo32dk.execute-api.us-east-1.amazonaws.com/trains/nearby?lat=40.706400&lon=-74.011400&limit=4\" -H \"Origin: http://localhost\" -H \"Access-Control-Request-Method: GET\")",
+      "Bash(curl -s -I \"https://7vwbvo32dk.execute-api.us-east-1.amazonaws.com/trains/nearby?lat=40.706400&lon=-74.011400&limit=4\" -H \"Origin: http://localhost\")",
+      "Bash(brew list *)",
+      "Read(//opt/homebrew/Caskroom/**)",
+      "Read(//Users/davis/**)",
+      "Bash(curl -s -o /dev/null -w \"index.html %{http_code}\\\\n\" http://localhost:8000/)",
+      "Bash(curl -s -o /dev/null -w \"subway_sim.js %{http_code} %{content_type}\\\\n\" http://localhost:8000/subway_sim.js)",
+      "Bash(curl -s -o /dev/null -w \"subway_sim.wasm %{http_code} %{content_type}\\\\n\" http://localhost:8000/subway_sim.wasm)",
+      "Bash(curl -s -D - -o /dev/null \"http://localhost:8000/trains/nearby?lat=40.706400&lon=-74.011400&limit=4\")",
+      "Bash(curl -s \"http://localhost:8000/trains/nearby?lat=40.706400&lon=-74.011400&limit=4\")",
+      "Read(//Applications/Google Chrome.app/Contents/MacOS/**)",
+      "Read(//Applications/**)",
+      "Bash(node -e \"try{require\\('puppeteer'\\);console.log\\('puppeteer'\\)}catch\\(e\\){console.log\\('no puppeteer'\\)}\")",
+      "Bash(kill %1)",
+      "Bash(pkill -f \"web/serve.py\")"
     ]
   }
 }

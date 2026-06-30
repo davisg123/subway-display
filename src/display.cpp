@@ -8,8 +8,8 @@ const int DISPLAY_WIDTH = PANEL_RES_X * PANEL_CHAIN;  // 80 * 2 = 160
 const int DISPLAY_HEIGHT = PANEL_RES_Y;               // 40
 const int ROW_HEIGHT = 20;  // 2 rows * 20 = 40 = full panel height, so rows are vertically centered
 
-const int CIRCLE_RADIUS = 8;
-const int CIRCLE_X = 10;  // keep the r=8 circle clear of the left edge
+const int CIRCLE_RADIUS = 7;
+const int CIRCLE_X = 10;  // keeps the circle clear of the left edge
 const int MINUTES_WIDTH = 40;  // covers "XX min" with fixed label position
 
 // Animation state
